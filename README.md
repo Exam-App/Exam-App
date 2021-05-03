@@ -2,8 +2,8 @@
 
 Clone this repository on your local machine.
 ```
-git clone https://github.com/Exam-App/ExamApp.git
-cd ExamApp
+git clone https://github.com/Exam-App/Exam-App.git
+cd Exam-App
 ```
 Run the following commands into the project folder to install project dependencies.
 ```
