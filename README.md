@@ -1,10 +1,21 @@
-# Getting Started with Create React App
+# Exam-App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Clone this repository on your local machine.
+```
+git clone https://github.com/Exam-App/ExamApp.git
+cd ExamApp
+```
+Run the following commands into the project folder to install project dependencies.
+```
+yarn init
+yarn install
+```
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+## add node modules by 
 
 ### `yarn start`
 
