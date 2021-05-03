@@ -49,8 +49,8 @@ function App() {
     <Typography variant="h6" className={classes.title}>
       Exam App
     </Typography>
-    <Button color="inherit">Login</Button>
-    <Button color="inherit">SignUp</Button>
+    {/* <Button color="inherit">Login</Button>
+    <Button color="inherit">SignUp</Button> */}
   </Toolbar>
 </AppBar>
 </div>
@@ -77,10 +77,33 @@ function App() {
 <CardContent>
           
           <Typography variant="body2" component="p" className={classes.pos}>
-            <h3 >Instructions:</h3>
+            <h1 >Instructions</h1>
           </Typography>
           <Typography variant="body1" component="p">
             <p>Dear Candidate<br></br>1.You are taking this exam from your residence or any convinient location.<br></br>2. You are required to ensure that the following conditions are adhered to before sitting for the test</p>
+            <h3>Do's and Don'ts</h3>
+            <p><b>Do's:</b><br></br>1.Ensure that your computer has the following specifications<br></br>
+            <ul>
+              <li>Computer-Pentium IV/Dual core,1GB RAM or higher,</li>
+              <li>80GB HDD or higher</li>
+              <li>15' colour Monitor,keyboard and mouse</li>
+              <li>Microsoft Windows 10 and Antivirus</li>
+              <li>Webcam and microphone</li>
+              <li>Internet connection of atleast 1MBPS</li>
+            </ul></p>
+            <p>2.Place the computer so that your back is facing the wall and there are no devices placed in the background</p>
+            <p>3.The room where you sit should be isolated and only you need to be present for complete examduration</p>
+            <p>4.Sit at table with computer.Keep the desk clear of objects,papers books and any other electronic material like mobiles</p>
+            <p>5.Ensure proper lighting so that your face is clearly visible to the camera</p>
+            <p>6.Ensure your dressed formally</p><br></br>
+            <p><b>Don'ts:</b><br></br></p>
+            <p>1.Do not take help from others</p>
+            <p>2.Do not wear any bluetooth devices</p>
+            <p>3.Do not read out anything loudly</p>
+            <p>4.Do not leave the work station while taking the test</p>
+            <p>5.Do not let anyone in the room and avoid background noise</p><br></br>
+            <Button color="inherit">SignUp</Button>
+            
           </Typography>
           <Typography variant="body1" component="p">
 
