@@ -63,10 +63,8 @@ function App() {
           style={{
             width: 1000,
             margin: "auto",
-
-
-
-            backgroundColor: "light grey",
+            backgroundColor: "",
+            
           }}
         >
           <CardContent>
