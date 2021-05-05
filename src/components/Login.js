@@ -94,13 +94,21 @@ class LoginTab extends React.Component {
             </Grid>
           </Grid>
           <Grid container justify="center" style={{ marginTop: "10px" }}>
-            <Button
+          <Button
+                    // onClick={routeChange}
+                    style={{ background: "#7e57c2" }}
+                  >
+                    <Typography style={{ color: "#ffffff" }}>
+                      Login
+                    </Typography>
+                  </Button>
+            {/* <Button
               variant="outlined"
               color="primary"
               style={{ textTransform: "none" }}
             >
               Login
-            </Button>
+            </Button> */}
           </Grid>
         </div>
       </Paper>
