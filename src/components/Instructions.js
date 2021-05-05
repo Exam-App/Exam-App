@@ -1,24 +1,13 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Grid from "@material-ui/core/Grid";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
     flexGrow: 1,
   },
   pos: {
@@ -37,23 +26,17 @@ export default function Instructions() {
     };
 
     const classes = useStyles();
-    <Grid
-      container
-      spacing={0}
-      direction="row"
-      alignItems="center"
-      justify="center"
-      display="flex"
-      style={{ minHeight: "100vh" }}
-    />;
     return (
       <div>
+<<<<<<< HEAD
 
         <br></br>
         <br></br>
         <br></br>
         <br></br>
 
+=======
+>>>>>>> 1c2058bbf44a72c14b9863ce5106811a7e49c662
         <div className={classes.root}>
           <Card
             style={{
