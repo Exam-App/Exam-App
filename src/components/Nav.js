@@ -2,14 +2,12 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-<<<<<<< HEAD
+
 import { makeStyles} from "@material-ui/core/styles";
-=======
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
->>>>>>> 1c2058bbf44a72c14b9863ce5106811a7e49c662
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,14 +33,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Nav() {
     const classes = useStyles();
-<<<<<<< HEAD
-=======
+
+
     const history = useHistory();
     const Home = () =>{ 
       let path = "/"; 
       history.push(path);
     }
->>>>>>> 1c2058bbf44a72c14b9863ce5106811a7e49c662
+
 
     return (
       <AppBar position="fixed" color='secondary'>

@@ -28,15 +28,14 @@ export default function Instructions() {
     const classes = useStyles();
     return (
       <div>
-<<<<<<< HEAD
+
 
         <br></br>
         <br></br>
         <br></br>
         <br></br>
 
-=======
->>>>>>> 1c2058bbf44a72c14b9863ce5106811a7e49c662
+
         <div className={classes.root}>
           <Card
             style={{
