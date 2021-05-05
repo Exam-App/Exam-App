@@ -8,27 +8,47 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@material-ui/core";
-import { Face, Fingerprint } from "@material-ui/icons";
+import Typography from "@material-ui/core/Typography";
+import PortraitIcon from '@material-ui/icons/Portrait';
+import LockIcon from '@material-ui/icons/Lock';
 const styles = (theme) => ({
   margin: {
         margin: theme.spacing.unit * 2,
         marginTop: 100,
-        width: 1000,
+        width: 500,
+    
   },
   padding: {
     padding: theme.spacing.unit,
   },
+  pos: {
+    textAlign: "center",
+    color: "#4747d1"
+  },
 });
+
+
 
 class LoginTab extends React.Component {
   render() {
     const { classes } = this.props;
     return (
+      <Grid
+  container
+  direction="row"
+  justify="center"
+  alignItems="center"
+  style={{ padding: 200 }}
+>
       <Paper className={classes.padding}>
+
         <div className={classes.margin}>
+        <Typography variant="body2" component="p" className={classes.pos}>
+                <h1>Login</h1>
+              </Typography>
           <Grid container spacing={8} alignItems="flex-end">
             <Grid item>
-              <Face />
+              <PortraitIcon fontSize="large" />
             </Grid>
             <Grid item md={true} sm={true} xs={true}>
               <TextField
@@ -43,7 +63,7 @@ class LoginTab extends React.Component {
           </Grid>
           <Grid container spacing={8} alignItems="flex-end">
             <Grid item>
-              <Fingerprint />
+              <LockIcon   fontSize="large"/>
             </Grid>
             <Grid item md={true} sm={true} xs={true}>
               <TextField
@@ -85,6 +105,8 @@ class LoginTab extends React.Component {
           </Grid>
         </div>
       </Paper>
+      </Grid>
+
     );
   }
 }
