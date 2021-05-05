@@ -103,8 +103,13 @@ export default function Instructions() {
                   </li>
                 </ol>
                 <CardContent className={classes.pos}>
-                  <Button variant="contained" onClick={routeChange}>
-                    Get Started
+                  <Button
+                    onClick={routeChange}
+                    style={{ background: "#7e57c2" }}
+                  >
+                    <Typography style={{ color: "#ffffff" }}>
+                      Get Started
+                    </Typography>
                   </Button>
                 </CardContent>
               </Typography>
