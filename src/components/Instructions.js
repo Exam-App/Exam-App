@@ -13,6 +13,9 @@ const useStyles = makeStyles((_theme) => ({
   pos: {
     textAlign: "center",
   },
+  pader: {
+    marginTop: 100,
+  },
 }));
 
 
@@ -36,7 +39,7 @@ export default function Instructions() {
               backgroundColor: "",
             }}
           >
-            <CardContent>
+            <CardContent className={classes.pader}>
               <Typography variant="body2" component="p" className={classes.pos}>
                 <h1>Instructions</h1>
               </Typography>
