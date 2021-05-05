@@ -4,6 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Nav() {
     const classes = useStyles();
     return (
-      <AppBar position="fixed">
+      <AppBar position="fixed" style={{ background: "#2E3B55" }}>
         <Toolbar>
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
       <MenuIcon />

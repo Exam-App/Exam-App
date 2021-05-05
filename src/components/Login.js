@@ -11,12 +11,13 @@ import {
 import Typography from "@material-ui/core/Typography";
 import PortraitIcon from '@material-ui/icons/Portrait';
 import LockIcon from '@material-ui/icons/Lock';
+
+
 const styles = (theme) => ({
   margin: {
-        margin: theme.spacing.unit * 2,
-        marginTop: 100,
+    margin: theme.spacing.unit * 2,
+    marginTop: 100,
         width: 500,
-    
   },
   padding: {
     padding: theme.spacing.unit,
@@ -28,7 +29,6 @@ const styles = (theme) => ({
 });
 
 
-
 class LoginTab extends React.Component {
   render() {
     const { classes } = this.props;
@@ -38,7 +38,7 @@ class LoginTab extends React.Component {
   direction="row"
   justify="center"
   alignItems="center"
-  style={{ padding: 200 }}>
+  style={{ padding: 100 }}>
       <Paper className={classes.padding}>
 
         <div className={classes.margin}>
@@ -62,7 +62,7 @@ class LoginTab extends React.Component {
           </Grid>
           <Grid container spacing={8} alignItems="flex-end">
             <Grid item>
-              <LockIcon   fontSize="large"/>
+              <LockIcon fontSize="large"/>
             </Grid>
             <Grid item md={true} sm={true} xs={true}>
               <TextField
