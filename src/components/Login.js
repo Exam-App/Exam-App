@@ -38,8 +38,7 @@ class LoginTab extends React.Component {
   direction="row"
   justify="center"
   alignItems="center"
-  style={{ padding: 200 }}
->
+  style={{ padding: 200 }}>
       <Paper className={classes.padding}>
 
         <div className={classes.margin}>
