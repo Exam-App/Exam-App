@@ -12,3 +12,8 @@ Run the following commands into the project folder to install project dependenci
 yarn init
 yarn install
 ```
+## start server
+
+```
+yarn run start
+```
