@@ -4,7 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles} from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import Button from "@material-ui/core/Button";
+
 
 
 
@@ -43,7 +43,7 @@ export default function Nav() {
 
     return (
 
-      <AppBar position="fixed" style={{ background: "#2E3B55" }}>
+      <AppBar position="fixed" style={{ background: "#7e57c2" }}>
 
         <Toolbar>
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">

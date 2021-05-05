@@ -24,7 +24,7 @@ const styles = (theme) => ({
   },
   pos: {
     textAlign: "center",
-    color: "#4747d1"
+    color: "#7e57c2"
   },
 });
 
