@@ -48,21 +48,7 @@ export default function Instructions() {
     />;
     return (
       <div>
-        <div>
-          <AppBar position="fixed">
-            <Toolbar>
-              {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-      <MenuIcon />
-    </IconButton> */}
 
-              <Typography variant="h6" className={classes.title}>
-                Exam App
-              </Typography>
-              {/* <Button color="inherit">Login</Button>
-    <Button color="inherit">SignUp</Button> */}
-            </Toolbar>
-          </AppBar>
-        </div>
         <br></br>
         <br></br>
         <br></br>

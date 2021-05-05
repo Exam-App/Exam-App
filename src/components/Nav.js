@@ -2,7 +2,7 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,12 +17,20 @@ const useStyles = makeStyles((theme) => ({
   pos: {
     textAlign: "center",
   },
+  
+    palette: {
+        main: '#00897b',
+    },
+  
 }));
+
+
 
 export default function Nav() {
     const classes = useStyles();
+
     return (
-      <AppBar position="fixed">
+      <AppBar position="fixed" color='secondary'>
         <Toolbar>
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
       <MenuIcon />
