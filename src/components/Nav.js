@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -27,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
     },
   
 }));
-
+import Button from "@material-ui/core/Button"
+import { Typography } from "@material-ui/core";
 
 
 export default function Nav() {
@@ -43,19 +45,23 @@ export default function Nav() {
 
     return (
 
+
+      <AppBar position="fixed" style={{ background: "#7e57c2" }}>
+
+
       <AppBar position="fixed" style={{ background: "#7e57c2" }}>
 
         <Toolbar>
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
       <MenuIcon />
     </IconButton> */}
-
-          <Typography variant="h6" className={classes.title} onClick={Home}>
-          {/* <Button variant="contained" onClick={Home}>Exam App</Button> */} Exam App
-          </Typography>
-          {/* <Button color="inherit">Login</Button>
-    <Button color="inherit">SignUp</Button> */}
+          <Button onClick={Home}>
+            <Typography style={{ color: "#ffffff" }}>
+              <b>Exam App</b>
+            </Typography>
+          </Button>
         </Toolbar>
+      </AppBar>
       </AppBar>
     );
 }

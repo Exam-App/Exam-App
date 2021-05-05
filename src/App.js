@@ -12,6 +12,7 @@ function App() {
         <Nav />
         <Route exact path="/" component={Instructions} />
         <Route path="/login" component={LoginTab} />
+        
       </div>
     </Router>
   );
