@@ -12,6 +12,9 @@ router.post('/Login', (request, response) => {
     loginUser.save()
         .then(data => {
         response.json(data)
+        })
+        .catch(error => {
+        response.json(error)
     })
 })
 

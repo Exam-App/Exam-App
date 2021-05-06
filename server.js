@@ -8,10 +8,9 @@ dotenv.config()
 
 mongoose.connect(process.env.DATABASE_ACCESS, () => console.log("Database Connected..") )
 
+app.use(express.json());
+app.use(cors());
 app.use('/app', routesUrls)
 
-app.use(express.json())
-
-app.use(cors())
 
 app.listen(4000, () => console.log("server is up and running"))
