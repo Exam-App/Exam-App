@@ -15,4 +15,5 @@ router.post('/Login', (request, response) => {
     })
 })
 
+router.get('/Login')
 module.exports = router
