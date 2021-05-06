@@ -11,7 +11,6 @@ export default function Nav() {
       let path = "/"; 
       history.push(path);
     }
-
     return (
       <AppBar position="fixed" style={{ background: "#7e57c2" }}>
         <Toolbar>
