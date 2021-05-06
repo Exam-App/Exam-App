@@ -18,4 +18,4 @@ const loginTemplate = new mongoose.Schema({
 })
 
 // student is database table name
-module.exports = mongoose('student', loginTemplate)
+module.exports = mongoose.model('student', loginTemplate)
