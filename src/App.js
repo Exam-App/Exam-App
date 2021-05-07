@@ -1,9 +1,8 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import LoginTab from "./components/Login"
 import Instructions from "./components/Instructions";
-import { createChainedFunction } from "@material-ui/core";
 
 
 class App extends React.Component {
@@ -14,7 +13,6 @@ class App extends React.Component {
         <Nav />
         <Route exact path="/" component={Instructions} />
         <Route path="/login" component={LoginTab} />
-        
       </div>
     </Router>
   );
