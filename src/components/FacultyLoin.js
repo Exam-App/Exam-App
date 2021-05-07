@@ -9,9 +9,8 @@ import {
   Checkbox,
 } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import PortraitIcon from "@material-ui/icons/Portrait";
-import LockIcon from "@material-ui/icons/Lock";
 import axios from "axios";
+import {Link} from "react-router-dom"
 
 const styles = (theme) => ({
   margin: {
@@ -52,14 +51,12 @@ class FacultyLoginTab extends React.Component {
               <h1>Faculty-Login</h1>
             </Typography>
             <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <PortraitIcon fontSize="large" />
-              </Grid>
               <Grid item md={true} sm={true} xs={true}>
                 <TextField
                   id="Faculty register ID"
                   label="Faculty register ID"
                   type="name"
+                  variant="outlined"
                   fullWidth
                   autoFocus
                   required
@@ -75,14 +72,12 @@ class FacultyLoginTab extends React.Component {
               </Grid>
             </Grid>
             <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <LockIcon fontSize="large" />
-              </Grid>
               <Grid item md={true} sm={true} xs={true}>
                 <TextField
                   id="password"
                   label="Password"
                   type="password"
+                  variant="outlined"
                   fullWidth
                   required
                   onChange={
@@ -115,6 +110,7 @@ class FacultyLoginTab extends React.Component {
                 </Button>
               </Grid>
             </Grid>
+            <br />
             <Grid container justify="center" style={{ marginTop: "10px" }}>
               <Button
                 // onClick={routeChange}
@@ -140,7 +136,11 @@ class FacultyLoginTab extends React.Component {
                 <Typography style={{ color: "#ffffff" }}>Login</Typography>
               </Button>
             </Grid>
+            <br />
           </div>
+          <Typography className={classes.pos}>
+            New faculty? <Link to={"/signup"}>Sign Up</Link>
+          </Typography>
         </Paper>
       </Grid>
     );

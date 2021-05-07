@@ -1,17 +1,9 @@
 import React from "react";
-import {
-  Paper,
-  withStyles,
-  Grid,
-  TextField,
-  Button,
-  FormControlLabel,
-  Checkbox,
-} from "@material-ui/core";
+import { Paper, withStyles, Grid, TextField, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import PortraitIcon from "@material-ui/icons/Portrait";
-import LockIcon from "@material-ui/icons/Lock";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 
 const styles = (theme) => ({
   margin: {
@@ -29,15 +21,17 @@ const styles = (theme) => ({
 });
 
 class SignUpTab extends React.Component {
+  
+
   constructor(props) {
     super(props);
     this.state = {
       FullName: "",
       EmailID: "",
-      username:"",
-      password:""
+      password: "",
     };
   }
+
   render() {
     const { classes } = this.props;
     return (
@@ -51,44 +45,15 @@ class SignUpTab extends React.Component {
         <Paper className={classes.padding}>
           <div className={classes.margin}>
             <Typography variant="body2" component="p" className={classes.pos}>
-              <h1>Login</h1>
+              <h1>🔐 Faculty Signup</h1>
             </Typography>
             <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <PortraitIcon fontSize="large" />
-              </Grid>
-              <Grid item md={true} sm={true} xs={true}>
-                <TextField
-                  id="username"
-                  label="Username"
-                  type="name"
-                  fullWidth
-                  autoFocus
-                  required
-                  onChange={
-                    (this.updateChange = (event) => {
-                      this.setState({
-                        username: event.target.value,
-                      });
-                    })
-                  }
-                  value={this.state.username}
-                />
-              </Grid>
-            </Grid>
-
-
-
-
-            <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <PortraitIcon fontSize="large" />
-              </Grid>
               <Grid item md={true} sm={true} xs={true}>
                 <TextField
                   id="fullname"
                   label="FullName"
                   type="name"
+                  variant="outlined"
                   fullWidth
                   autoFocus
                   required
@@ -104,20 +69,13 @@ class SignUpTab extends React.Component {
               </Grid>
             </Grid>
 
-
-
-
-
-
             <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <PortraitIcon fontSize="large" />
-              </Grid>
               <Grid item md={true} sm={true} xs={true}>
                 <TextField
                   id="EmailID"
-                  label="EmailID"
+                  label="FacultyID"
                   type="name"
+                  variant="outlined"
                   fullWidth
                   autoFocus
                   required
@@ -132,19 +90,17 @@ class SignUpTab extends React.Component {
                 />
               </Grid>
             </Grid>
-
-
-
-
+            <Typography>
+              <small>faculty ID is faculty registered ID</small>
+            </Typography>
+            <br/>
             <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <LockIcon fontSize="large" />
-              </Grid>
               <Grid item md={true} sm={true} xs={true}>
                 <TextField
                   id="password"
                   label="Password"
                   type="password"
+                  variant="outlined"
                   fullWidth
                   required
                   onChange={
@@ -158,56 +114,48 @@ class SignUpTab extends React.Component {
                 />
               </Grid>
             </Grid>
-            <Grid container alignItems="center" justify="space-between">
-              <Grid item>
-                <FormControlLabel
-                  control={<Checkbox color="primary" />}
-                  label="Remember me"
-                />
-              </Grid>
-              <Grid item>
-                <Button
-                  disableFocusRipple
-                  disableRipple
-                  style={{ textTransform: "none" }}
-                  variant="text"
-                  color="primary"
-                >
-                  Forgot password ?
-                </Button>
-              </Grid>
-            </Grid>
+
+            <br></br>
+            <br></br>
             <Grid container justify="center" style={{ marginTop: "10px" }}>
-              <Button
-                // onClick={routeChange}
-                style={{ background: "#7e57c2" }}
-                onClick={
-                  (this.onSubmit = () => {
-                    const signup = {
-                      FullName: this.state.FullName,
-                      EmailID: this.state.EmailID,
-                      username: this.state.username,
-                      password: this.state.password
-                    };
-
-                    axios
-                      .post("http://localhost:4000/app/signup", signup)
-                      .then((response) => console.log(response.data));
-
-                    this.setState({
-                        
-                      username: "",
-                      EmailID:"",
-                      FullName:"",
-                      password: "",
-                    });
-                  })
-                }
+              <Link
+                to={"/faculty"}
+                style={{ textDecoration: "none", color: "#ffffff" }}
               >
-                <Typography style={{ color: "#ffffff" }}>Login</Typography>
-              </Button>
+                <Button
+                  // onClick={routeChange}
+                  style={{ background: "#7e57c2" }}
+                  onClick={
+                    (this.onSubmit = () => {
+                      const signup = {
+                        FullName: this.state.FullName,
+                        EmailID: this.state.EmailID,
+                        username: this.state.username,
+                        password: this.state.password,
+                      };
+
+                      axios
+                        .post("http://localhost:4000/app/signup", signup)
+                        .then((response) => console.log(response.data));
+
+                      this.setState({
+                        EmailID: "",
+                        FullName: "",
+                        password: "",
+                      });
+                    })
+                  }
+                >
+                  <Typography style={{ color: "#ffffff" }}>Sign up</Typography>
+                </Button>
+              </Link>
             </Grid>
           </div>
+          <br />
+          <Typography className={classes.pos}>
+            Already signed in faculty? <Link to={"/faculty"}>login</Link>
+          </Typography>
+          <br />
         </Paper>
       </Grid>
     );

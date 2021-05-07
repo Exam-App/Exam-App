@@ -9,8 +9,6 @@ import {
   Checkbox,
 } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import PortraitIcon from "@material-ui/icons/Portrait";
-import LockIcon from "@material-ui/icons/Lock";
 import axios from "axios";
 
 const styles = (theme) => ({
@@ -52,14 +50,12 @@ class LoginTab extends React.Component {
               <h1>Login</h1>
             </Typography>
             <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <PortraitIcon fontSize="large" />
-              </Grid>
               <Grid item md={true} sm={true} xs={true}>
                 <TextField
                   id="username"
                   label="Username"
                   type="name"
+                  variant="outlined"
                   fullWidth
                   autoFocus
                   required
@@ -75,14 +71,12 @@ class LoginTab extends React.Component {
               </Grid>
             </Grid>
             <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <LockIcon fontSize="large" />
-              </Grid>
               <Grid item md={true} sm={true} xs={true}>
                 <TextField
                   id="password"
                   label="Password"
                   type="password"
+                  variant="outlined"
                   fullWidth
                   required
                   onChange={
