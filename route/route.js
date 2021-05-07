@@ -10,10 +10,10 @@ router.post('/Login', (request, response) => {
 
     // saves users data
     loginUser.save()
-        .then(data => {
+    .then(data => {
         response.json(data)
         })
-        .catch(error => {
+    .catch(error => {
         response.json(error)
     })
 })
