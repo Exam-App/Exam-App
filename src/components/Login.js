@@ -11,6 +11,8 @@ import {
 import Typography from "@material-ui/core/Typography";
 import PortraitIcon from '@material-ui/icons/Portrait';
 import LockIcon from '@material-ui/icons/Lock';
+import axios from 'axios';
+
 
 
 const styles = (theme) => ({
@@ -30,8 +32,33 @@ const styles = (theme) => ({
 
 
 class LoginTab extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      username:"",
+      password:"",
+
+    }
+  }
   render() {
     const { classes } = this.props;
+
+
+    // updateChange=(event)=>{
+    //   this.setState({
+    //     username:event.target.value
+
+
+    //   })
+    // }
+
+    // updateChange1=(event)=>{
+    //   this.setState({
+    //     password:event.target.value
+        
+
+    //   })
+    // }
     return (
       <Grid
   container
@@ -53,10 +80,18 @@ class LoginTab extends React.Component {
               <TextField
                 id="username"
                 label="Username"
-                type="email"
+                type="name"
                 fullWidth
                 autoFocus
                 required
+                onChange={this.updateChange=(event)=>{
+                  this.setState({
+                    username:event.target.value
+            
+            
+                  })
+                }}
+                value={this.state.username}
               />
             </Grid>
           </Grid>
@@ -66,12 +101,19 @@ class LoginTab extends React.Component {
             </Grid>
             <Grid item md={true} sm={true} xs={true}>
               <TextField
-                id="username"
+                id="password"
                 label="Password"
                 type="password"
                 fullWidth
                 required
+                onChange={this.updateChange1=(event)=>{
+                  this.setState({
+                    password:event.target.value
+                  })
+                }}
+                value={this.state.password}
               />
+              
             </Grid>
           </Grid>
           <Grid container alignItems="center" justify="space-between">
@@ -96,8 +138,16 @@ class LoginTab extends React.Component {
           <Grid container justify="center" style={{ marginTop: "10px" }}>
           <Button
                     // onClick={routeChange}
-                    style={{ background: "#7e57c2" }}
-                  >
+                    style={{ background: "#7e57c2" }} onClick={this.onSubmit=()=>{
+                      const login={
+                        username:this.state.username,
+                        password:this.state.password
+                      }
+
+                      axios.post('http://localhost:4000/app/login')
+
+
+                    }}>
                     <Typography style={{ color: "#ffffff" }}>
                       Login
                     </Typography>
@@ -109,6 +159,10 @@ class LoginTab extends React.Component {
             >
               Login
             </Button> */}
+            <Typography>
+              {this.state.username}
+              {this.state.password}
+            </Typography>
           </Grid>
         </div>
       </Paper>
@@ -116,6 +170,7 @@ class LoginTab extends React.Component {
 
     );
   }
+ 
 }
 
 export default withStyles(styles)(LoginTab);
