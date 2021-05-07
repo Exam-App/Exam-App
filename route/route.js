@@ -2,11 +2,16 @@ const express = require('express')
 const router = express.Router()
 const loginTemplateCopy = require('../models/LoginModel')
 const signupTemplateCopy = require('../models/SignupModel')
+const bcrypt = require('bcrypt')
 
-router.post('/Login', (request, response) => {
+router.post('/Login', async (request, response) => {
+    
+    const saltPassword = await bcrypt.genSalt(10)
+    const securePassword = await bcrypt.hash(request.body.password, saltPassword)
+
     const loginUser = new loginTemplateCopy({
         username: request.body.username,
-        password: request.body.password
+        password: securePassword
     })
 
     // saves users data
@@ -19,12 +24,16 @@ router.post('/Login', (request, response) => {
     })
 })
 
-router.post('/signup', (request, response) => {
+router.post('/signup', async (request, response) => {
+
+    const saltPassword = await bcrypt.genSalt(10)
+    const securePassword = await bcrypt.hash(request.body.password, saltPassword)
+
     const admin = new signupTemplateCopy({
         EmailID: request.body.EmailID,
         FullName: request.body.FullName,
         username: request.body.username,
-        password: request.body.password
+        password: securePassword
     })
 
     // saves users data
