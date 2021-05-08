@@ -45,7 +45,11 @@ class FacultyLoginTab extends React.Component {
         alignItems="center"
         style={{ padding: 100 }}
       >
-        <Paper className={classes.padding}>
+        <Paper
+          className={classes.padding}
+          variant="outlined"
+          style={{ borderRadius: "10px" }}
+        >
           <div className={classes.margin}>
             <Typography variant="body2" component="p" className={classes.pos}>
               <h1>Faculty-Login</h1>

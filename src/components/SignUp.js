@@ -42,7 +42,11 @@ class SignUpTab extends React.Component {
         alignItems="center"
         style={{ padding: 100 }}
       >
-        <Paper className={classes.padding}>
+        <Paper
+          className={classes.padding}
+          variant="outlined"
+          style={{ borderRadius: "10px" }}
+        >
           <div className={classes.margin}>
             <Typography variant="body2" component="p" className={classes.pos}>
               <h1>🔐 Faculty Signup</h1>
@@ -93,7 +97,7 @@ class SignUpTab extends React.Component {
             <Typography>
               <small>faculty ID is faculty registered ID</small>
             </Typography>
-            <br/>
+            <br />
             <Grid container spacing={8} alignItems="flex-end">
               <Grid item md={true} sm={true} xs={true}>
                 <TextField
