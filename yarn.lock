@@ -547,6 +547,11 @@ finalhandler@~1.1.2:
     statuses "~1.5.0"
     unpipe "~1.0.0"
 
+findone@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/findone/-/findone-0.0.0.tgz#23033ededa5428b0ea4e2b1c9ba691dadd4f9539"
+  integrity sha512-RVyOx5ofqnKC2c/mRrj8BFuGaF/73Zc4kIim6hpet5Uc7WksG6phb2jef7XyJ1g9w5L90nrtDS7vvdzSIzwoIQ==
+
 forwarded@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
