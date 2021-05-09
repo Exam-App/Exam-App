@@ -11,6 +11,7 @@ import {
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import {Link} from "react-router-dom"
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 const styles = (theme) => ({
   margin: {
@@ -25,6 +26,7 @@ const styles = (theme) => ({
     textAlign: "center",
     color: "#7e57c2",
   },
+  
 });
 
 class FacultyLoginTab extends React.Component {
@@ -33,6 +35,7 @@ class FacultyLoginTab extends React.Component {
     this.state = {
       username: "",
       password: "",
+      submitted: false,
     };
   }
   render() {
@@ -54,45 +57,48 @@ class FacultyLoginTab extends React.Component {
             <Typography variant="body2" component="p" className={classes.pos}>
               <h1>Faculty-Login</h1>
             </Typography>
-            <Grid container spacing={8} alignItems="flex-end">
+            <ValidatorForm ref="form"
+              >
+            <Grid container alignItems="flex-end">
               <Grid item md={true} sm={true} xs={true}>
-                <TextField
-                  id="Faculty register ID"
-                  label="Faculty register ID"
-                  type="name"
-                  variant="outlined"
-                  fullWidth
-                  autoFocus
-                  required
-                  onChange={
-                    (this.updateChange = (event) => {
+                
+
+                  <TextValidator 
+                    fullWidth={true}
+                   
+                    label="Email"
+                    onChange={(this.updateChange = (event) => {
                       this.setState({
                         username: event.target.value,
-                      });
-                    })
-                  }
-                  value={this.state.username}
-                />
+                      })})}
+                    name="username"
+                    value={this.state.username}
+                    validators={['required', 'isEmail']}
+                    errorMessages={['this field is required', 'email is not valid']}
+                  />
+                  <br />
+                  
+                <br></br>
               </Grid>
             </Grid>
             <Grid container spacing={8} alignItems="flex-end">
               <Grid item md={true} sm={true} xs={true}>
-                <TextField
-                  id="password"
-                  label="Password"
-                  type="password"
-                  variant="outlined"
-                  fullWidth
-                  required
-                  onChange={
-                    (this.updateChange1 = (event) => {
+                <TextValidator
+                    fullWidth={true}
+                    label="Password"
+                    onChange={(this.updateChange1 = (event) => {
                       this.setState({
                         password: event.target.value,
-                      });
-                    })
-                  }
-                  value={this.state.password}
-                />
+                      })})}
+                    name="password"
+                    value={this.state.password}
+                    validators={['required']}
+                    errorMessages={['this field is required']}
+                  />
+
+                  
+                
+
               </Grid>
             </Grid>
             <Grid container alignItems="center" justify="space-between">
@@ -114,13 +120,18 @@ class FacultyLoginTab extends React.Component {
                 </Button>
               </Grid>
             </Grid>
+            
             <br />
             <Grid container justify="center" style={{ marginTop: "10px" }}>
               <Button
                 // onClick={routeChange}
+                type="submit"
                 style={{ background: "#7e57c2" }}
                 onClick={
                   (this.onSubmit = () => {
+
+                    
+
                     const login = {
                       username: this.state.username,
                       password: this.state.password,
@@ -134,12 +145,17 @@ class FacultyLoginTab extends React.Component {
                       username: "",
                       password: "",
                     });
+
+                    
                   })
                 }
+                
               >
+                
                 <Typography style={{ color: "#ffffff" }}>Login</Typography>
               </Button>
             </Grid>
+            </ValidatorForm>
             <br />
           </div>
           <Typography className={classes.pos}>
