@@ -35,7 +35,6 @@ router.post('/signup', async (request, response) => {
     const admin = new signupTemplateCopy({
         EmailID: request.body.EmailID,
         FullName: request.body.FullName,
-        username: request.body.username,
         password: securePassword
     })
 
