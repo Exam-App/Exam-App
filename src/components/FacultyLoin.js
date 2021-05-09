@@ -3,7 +3,6 @@ import {
   Paper,
   withStyles,
   Grid,
-  TextField,
   Button,
   FormControlLabel,
   Checkbox,
@@ -137,7 +136,7 @@ class FacultyLoginTab extends React.Component {
                       };
 
                       axios
-                        .post("http://localhost:4000/app/login", login)
+                        .get("http://localhost:4000/app/faculty", login)
                         .then((response) => console.log(response.data));
 
                       this.setState({
@@ -156,6 +155,7 @@ class FacultyLoginTab extends React.Component {
           <Typography className={classes.pos}>
             New faculty? <Link to={"/signup"}>Sign Up</Link>
           </Typography>
+          <br/>
         </Paper>
       </Grid>
     );
