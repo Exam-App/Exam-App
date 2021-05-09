@@ -10,8 +10,8 @@ import {
 } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-import {Link} from "react-router-dom"
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { Link } from "react-router-dom";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 const styles = (theme) => ({
   margin: {
@@ -27,9 +27,8 @@ const styles = (theme) => ({
     color: "#7e57c2",
   },
   center: {
-    
     marginLeft: 50,
-},
+  },
 });
 
 class LoginTab extends React.Component {
@@ -146,8 +145,6 @@ class LoginTab extends React.Component {
   //   );
   // }
 
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -175,106 +172,99 @@ class LoginTab extends React.Component {
             <Typography variant="body2" component="p" className={classes.pos}>
               <h1>Login</h1>
             </Typography>
-            <ValidatorForm ref="form"
-              >
-            <Grid container alignItems="flex-end">
-              <Grid item md={true} sm={true} xs={true}>
-                
-
-                  <TextValidator 
+            <ValidatorForm ref="form">
+              <Grid container spacing={8} alignItems="flex-end">
+                <Grid item md={true} sm={true} xs={true}>
+                  <TextValidator
                     fullWidth={true}
-                   
+                    variant="outlined"
                     label="Email"
-                    onChange={(this.updateChange = (event) => {
-                      this.setState({
-                        username: event.target.value,
-                      })})}
+                    onChange={
+                      (this.updateChange = (event) => {
+                        this.setState({
+                          username: event.target.value,
+                        });
+                      })
+                    }
                     name="username"
                     value={this.state.username}
-                    validators={['required', 'isEmail']}
-                    errorMessages={['this field is required', 'email is not valid']}
+                    validators={["required", "isEmail"]}
+                    errorMessages={[
+                      "this field is required",
+                      "email is not valid",
+                    ]}
                   />
-                  <br />
-                  
-                <br></br>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container spacing={8} alignItems="flex-end">
-              <Grid item md={true} sm={true} xs={true}>
-                <TextValidator
+
+              <Grid container spacing={8} alignItems="flex-end">
+                <Grid item md={true} sm={true} xs={true}>
+                  <TextValidator
                     className={classes.center1}
                     fullWidth={true}
                     label="Password"
-                    onChange={(this.updateChange1 = (event) => {
-                      this.setState({
-                        password: event.target.value,
-                      })})}
+                    onChange={
+                      (this.updateChange1 = (event) => {
+                        this.setState({
+                          password: event.target.value,
+                        });
+                      })
+                    }
                     name="password"
                     value={this.state.password}
-                    validators={['required']}
-                    errorMessages={['this field is required']}
+                    validators={["required"]}
+                    errorMessages={["this field is required"]}
+                    variant="outlined"
                   />
-
-                  
-                  <br />
-                  <br />
-
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container alignItems="center" justify="space-between">
-              <Grid item>
-                <FormControlLabel
-                  control={<Checkbox color="primary" />}
-                  label="Remember me"
-                />
+              <Grid container alignItems="center" justify="space-between">
+                <Grid item>
+                  <FormControlLabel
+                    control={<Checkbox color="primary" />}
+                    label="Remember me"
+                  />
+                </Grid>
+                <Grid item>
+                  <Button
+                    disableFocusRipple
+                    disableRipple
+                    style={{ textTransform: "none" }}
+                    variant="text"
+                    color="primary"
+                  >
+                    Forgot password ?
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid item>
+
+              <br />
+              <Grid container justify="center" style={{ marginTop: "10px" }}>
                 <Button
-                  disableFocusRipple
-                  disableRipple
-                  style={{ textTransform: "none" }}
-                  variant="text"
-                  color="primary"
+                  // onClick={routeChange}
+                  type="submit"
+                  style={{ background: "#7e57c2" }}
+                  onClick={
+                    (this.onSubmit = () => {
+                      const login = {
+                        username: this.state.username,
+                        password: this.state.password,
+                      };
+
+                      axios
+                        .post("http://localhost:4000/app/login", login)
+                        .then((response) => console.log(response.data));
+
+                      this.setState({
+                        username: "",
+                        password: "",
+                      });
+                    })
+                  }
                 >
-                  Forgot password ?
+                  <Typography style={{ color: "#ffffff" }}>Login</Typography>
                 </Button>
               </Grid>
-            </Grid>
-            
-            <br />
-            <Grid container justify="center" style={{ marginTop: "10px" }}>
-              <Button
-                // onClick={routeChange}
-                type="submit"
-                style={{ background: "#7e57c2" }}
-                onClick={
-                  (this.onSubmit = () => {
-
-                    
-
-                    const login = {
-                      username: this.state.username,
-                      password: this.state.password,
-                    };
-
-                    axios
-                      .post("http://localhost:4000/app/login", login)
-                      .then((response) => console.log(response.data));
-
-                    this.setState({
-                      username: "",
-                      password: "",
-                    });
-
-                    
-                  })
-                }
-                
-              >
-                
-                <Typography style={{ color: "#ffffff" }}>Login</Typography>
-              </Button>
-            </Grid>
             </ValidatorForm>
             <br />
           </div>
