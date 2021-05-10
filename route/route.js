@@ -1,117 +1,136 @@
-const express = require('express')
-const router = express.Router()
-const loginTemplateCopy = require('../models/LoginModel')
-const User = require('../models/LoginModel')
-const signupTemplateCopy = require('../models/SignupModel')
-const bcrypt = require('bcrypt')
-const LoginModel = require('../models/LoginModel')
+const express = require("express");
+const router = express.Router();
+const newFaculty = require("../models/SignupModel");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-// router.post('/Login', async (request, response) => {
-    
-//     const saltPassword = await bcrypt.genSalt(10)
-//     const securePassword = await bcrypt.hash(request.body.password, saltPassword)
+// register for Faculty
 
-//     const loginUser = new loginTemplateCopy({
-//         username: request.body.username,
-//         password: securePassword
-//     })
+router.post("/signup", async (request, response) => {
+  try {
+    const { EmailID, FullName, password } = request.body;
 
+    // validation
 
-//     // saves users data
-//     loginUser.save()
-//     .then(data => {
-//         response.json(data)
-//         })
-//     .catch(error => {
-//         response.json(error)
-//     })
-// })
+    if (!EmailID || !FullName || !password)
+      return response
+        .status(400)
+        .json({ errorMassage: "Please all required fields." });
 
-router.post('/signup', async (request, response) => {
-
-    const saltPassword = await bcrypt.genSalt(10)
-    const securePassword = await bcrypt.hash(request.body.password, saltPassword)
-
-    const admin = new signupTemplateCopy({
-        EmailID: request.body.EmailID,
-        FullName: request.body.FullName,
-        password: securePassword
-    })
-
-    // saves users data
-    admin.save()
-    .then(data => {
-        response.json(data)
-        })
-    .catch(error => {
-        response.json(error)
-    })
-})
-
-
-router.post("/Login", (req, res) => {
-    let { username, password } = req.body;
-        username = username.trim();
-        password = password.trim();
-    
-  
-    if (username == "" || password == "") {
-      res.json({
-        status: "FAILED",
-        message: "Empty credentials supplied",
+    if (password.length < 6)
+      return response.status(400).json({
+        errorMassage: "Please enter a password of at least 6 characters",
       });
-    } else {
-      // Check if user exist
-      User.find({ username })
-        .then((data) => {
-          if (data.length) {
-            // User exists
-  
-            const hashedPassword = data[0].password;
-            bcrypt
-              .compare(password, hashedPassword)
-              .then((result) => {
-                if (result) {
-                  // Password match
-                  res.json({
-                    status: "SUCCESS",
-                    message: "Signin successful",
-                    data: data,
-                  });
-                } else {
-                  res.json({
-                    status: "FAILED",
-                    message: "Invalid password entered!",
-                  });
-                }
-              })
-              .catch((err) => {
-                res.json({
-                  status: "FAILED",
-                  message: "An error occurred while comparing passwords",
-                });
-              });
-          } else {
-            res.json({
-              status: "FAILED",
-              message: "Invalid credentials entered!",
-            });
-          }
-        })
-        .catch((err) => {
-          res.json({
-            status: "FAILED",
-            message: "An error occurred while checking for existing user",
-          });
-        });
-    }
-  });
+
+    const existingFacultyID = await newFaculty.findOne({ EmailID });
+    if (existingFacultyID)
+      return response.status(400).json({
+        errorMassage: "An account with this FacultyID already exists",
+      });
+
+    // Hash the password
+
+    const saltPassword = await bcrypt.genSalt(10);
+    const securePassword = await bcrypt.hash(password, saltPassword);
+
+    const newFacultyID = new newFaculty({
+      EmailID,
+      securePassword,
+    });
+
+    const savedFacultyID = await newFacultyID.save();
+
+    // sign using token
+
+    const token = jwt.sign(
+      {
+        faculty: savedFacultyID._id,
+      },
+      process.env.JWT_SECRET
+    );
+
+    // send the token in a HTTP only cookie
+
+    response
+      .cookie("token", token, {
+        httpOnly: true,
+      })
+      .send();
+  } catch (err) {
+    console.error(err);
+    response.status(500).send();
+  }
+});
+
+router.post("/login", async (request, response) => {
+  try {
+    const { EmailID, password } = request.body;
+
+    // validate
+
+    if (!EmailID || !password)
+      return response
+        .status(400)
+        .json({ errorMassage: "Please all required fields." });
+
+    const existingFacultyID = await newFaculty.findOne({ EmailID });
+    if (!existingFacultyID)
+      return response
+        .status(401)
+        .json({ errorMassage: "Wrong email or password." });
+
+    const passwordCorrect = await bcrypt.compare(
+      password,
+      existingFacultyID.securePassword
+    );
+    if (!passwordCorrect)
+      return response
+        .status(401)
+        .json({ errorMassage: "Wrong email or password." });
+
+    // Login using token
+
+    const token = jwt.sign(
+      {
+        faculty: existingFacultyID._id,
+      },
+      process.env.JWT_SECRET
+    );
+
+    // send the token in a HTTP only cookie
+
+    response
+      .cookie("token", token, {
+        httpOnly: true,
+      })
+      .send();
+  } catch (err) {
+    console.error(err);
+    response.status(500).send();
+  }
+});
+
+// delete cookie on logout
+
+router.get('/logout', (request, response) => {
+  response.cookie("token", "", {
+    httpOnly: true,
+    expires: new Date(0)
+  }).send();
+});
+
+router.get("/loggedIn", (request, response) => {
+  try {
+    const token = request.cookies.token;
+    if (!token) return response.json(false);
+
+    jwt.verify(token, process.env.JWT_SECRET);
+
+    response.send(true);
+  } catch (err) {
+    response.json(false);
+  }
+});
 
 
-
-// router.get('/Login')
-
-router.get('/signup')
-
-
-module.exports = router
+module.exports = router;

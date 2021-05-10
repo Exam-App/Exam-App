@@ -6,7 +6,10 @@ const routesUrls= require('./route/route')
 const cors=require('cors')
 dotenv.config()
 
-mongoose.connect(process.env.DATABASE_ACCESS, () => console.log("Database Connected..") )
+mongoose.connect(process.env.DATABASE_ACCESS, {
+    useNewUrlParser : true,
+    useUnifiedTopology : true,
+}, () => console.log("Database Connected..") )
 
 app.use(express.json());
 app.use(cors());
