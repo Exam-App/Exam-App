@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
   margin: {
-    margin: theme.spacing.unit * 2,
+    margin: 10,
     marginTop: 100,
     width: 500,
   },
   padding: {
-    padding: theme.spacing.unit,
+    padding: 25,
   },
   pos: {
     textAlign: "center",
@@ -54,7 +54,7 @@ class SignUpTab extends React.Component {
             <Grid container spacing={8} alignItems="flex-end">
               <Grid item md={true} sm={true} xs={true}>
                 <TextField
-                  id="fullname"
+                  id="fullName"
                   label="FullName"
                   type="name"
                   variant="outlined"

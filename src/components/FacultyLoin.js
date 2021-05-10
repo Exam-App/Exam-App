@@ -14,12 +14,12 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 const styles = (theme) => ({
   margin: {
-    margin: theme.spacing.unit * 2,
+    margin: 10,
     marginTop: 100,
     width: 500,
   },
   padding: {
-    padding: theme.spacing.unit,
+    padding: 25,
   },
   pos: {
     textAlign: "center",

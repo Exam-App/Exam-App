@@ -9,17 +9,16 @@ import {
 } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 const styles = (theme) => ({
   margin: {
-    margin: theme.spacing.unit * 2,
+    margin: 10,
     marginTop: 100,
-    width: 500,
+    width: 400,
   },
   padding: {
-    padding: theme.spacing.unit,
+    padding: 25,
   },
   pos: {
     textAlign: "center",
@@ -31,8 +30,6 @@ const styles = (theme) => ({
 });
 
 class LoginTab extends React.Component {
- 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -51,11 +48,7 @@ class LoginTab extends React.Component {
         alignItems="center"
         style={{ padding: 100 }}
       >
-        <Paper
-          className={classes.padding}
-          variant="outlined"
-          style={{ borderRadius: "10px" }}
-        >
+        <Paper className={classes.padding} variant="outlined" style={{ borderRadius: "10px" }}>
           <div className={classes.margin}>
             <Typography variant="body2" component="p" className={classes.pos}>
               <h1>Login</h1>
@@ -76,10 +69,10 @@ class LoginTab extends React.Component {
                     }
                     name="username"
                     value={this.state.username}
-                    validators={["required", "isEmail"]}
+                    validators={["required"]}
                     errorMessages={[
                       "this field is required",
-                      "email is not valid",
+                      "Student ID is not valid",
                     ]}
                   />
                 </Grid>
@@ -140,7 +133,7 @@ class LoginTab extends React.Component {
                       };
 
                       axios
-                        .get("http://localhost:4000/app/login", login)
+                        .post("http://localhost:4000/app/login", login)
                         .then((response) => console.log(response.data));
 
                       this.setState({
@@ -153,13 +146,9 @@ class LoginTab extends React.Component {
                   <Typography style={{ color: "#ffffff" }}>Login</Typography>
                 </Button>
               </Grid>
+              <br />
             </ValidatorForm>
-            <br />
           </div>
-          <Typography className={classes.pos}>
-            New faculty? <Link to={"/signup"}>Sign Up</Link>
-          </Typography>
-          <br/>
         </Paper>
       </Grid>
     );
