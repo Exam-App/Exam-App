@@ -8,24 +8,24 @@ const jwt = require("jsonwebtoken");
 
 router.post("/signup", async (request, response) => {
   try {
-    const { EmailID, FullName, password } = request.body;
+    const { FacultyID, FullName, password } = request.body;
 
     // validation
 
-    if (!EmailID || !FullName || !password)
+    if (!FacultyID || !FullName || !password)
       return response
         .status(400)
-        .json({ errorMassage: "Please all required fields." });
+        .json({ errorMessage: "Please all required fields." });
 
     if (password.length < 6)
       return response.status(400).json({
-        errorMassage: "Please enter a password of at least 6 characters",
+        errorMessage: "Please enter a password of at least 6 characters",
       });
 
-    const existingFacultyID = await newFaculty.findOne({ EmailID });
+    const existingFacultyID = await newFaculty.findOne({ FacultyID });
     if (existingFacultyID)
       return response.status(400).json({
-        errorMassage: "An account with this FacultyID already exists",
+        errorMessage: "An account with this FacultyID already exists",
       });
 
     // Hash the password
@@ -34,7 +34,7 @@ router.post("/signup", async (request, response) => {
     const securePassword = await bcrypt.hash(password, saltPassword);
 
     const newFacultyID = new newFaculty({
-      EmailID,
+      FacultyID,
       securePassword,
     });
 
@@ -64,20 +64,20 @@ router.post("/signup", async (request, response) => {
 
 router.post("/login", async (request, response) => {
   try {
-    const { EmailID, password } = request.body;
+    const { FacultyID, password } = request.body;
 
     // validate
 
-    if (!EmailID || !password)
+    if (!FacultyID || !password)
       return response
         .status(400)
-        .json({ errorMassage: "Please all required fields." });
+        .json({ errorMessage: "Please all required fields." });
 
-    const existingFacultyID = await newFaculty.findOne({ EmailID });
+    const existingFacultyID = await newFaculty.findOne({ FacultyID });
     if (!existingFacultyID)
       return response
         .status(401)
-        .json({ errorMassage: "Wrong email or password." });
+        .json({ errorMessage: "Wrong Faculty or password." });
 
     const passwordCorrect = await bcrypt.compare(
       password,
@@ -86,7 +86,7 @@ router.post("/login", async (request, response) => {
     if (!passwordCorrect)
       return response
         .status(401)
-        .json({ errorMassage: "Wrong email or password." });
+        .json({ errorMessage: "Wrong Id or password." });
 
     // Login using token
 
