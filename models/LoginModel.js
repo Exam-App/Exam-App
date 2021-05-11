@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 
 const loginTemplate = new mongoose.Schema({
-    username: {
+    FacultyID: {
         type: String,
         required:true
     },

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const newFaculty = require("../models/SignupModel");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // register for Faculty
@@ -35,6 +35,7 @@ router.post("/signup", async (request, response) => {
 
     const newFacultyID = new newFaculty({
       FacultyID,
+      FullName,
       securePassword,
     });
 
