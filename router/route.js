@@ -66,6 +66,7 @@ router.post("/signup", async (request, response) => {
 router.post("/login", async (request, response) => {
   try {
     const { FacultyID, password } = request.body;
+    
 
     // validate
 
@@ -88,7 +89,11 @@ router.post("/login", async (request, response) => {
       return response
         .status(401)
         .json({ errorMessage: "Wrong Id or password." });
-
+    
+    if (FacultyID && password)
+      return response
+        .status(200)
+        .json({ errorMessage: "Success" });
     // Login using token
 
     const token = jwt.sign(
