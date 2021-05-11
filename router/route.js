@@ -15,7 +15,7 @@ router.post("/signup", async (request, response) => {
     if (!FacultyID || !FullName || !password)
       return response
         .status(400)
-        .json({ errorMessage: "Please all required fields." });
+        .json({ errorMessage: "Please fill all required fields." });
 
     if (password.length < 6)
       return response.status(400).json({
