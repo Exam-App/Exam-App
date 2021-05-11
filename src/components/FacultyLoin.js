@@ -31,7 +31,7 @@ class FacultyLoginTab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      FacultyID: "",
       password: "",
       submitted: false,
     };
@@ -60,21 +60,21 @@ class FacultyLoginTab extends React.Component {
                 <Grid item md={true} sm={true} xs={true}>
                   <TextValidator
                     fullWidth={true}
-                    label="Email"
+                    label="FacultyID"
                     onChange={
                       (this.updateChange = (event) => {
                         this.setState({
-                          username: event.target.value,
+                          FacultyID: event.target.value,
                         });
                       })
                     }
                     variant="outlined"
                     name="username"
                     value={this.state.username}
-                    validators={["required", "isEmail"]}
+                    validators={["required"]}
                     errorMessages={[
                       "this field is required",
-                      "email is not valid",
+                      
                     ]}
                   />
                   <br />
@@ -131,7 +131,7 @@ class FacultyLoginTab extends React.Component {
                   onClick={
                     (this.onSubmit = () => {
                       const login = {
-                        username: this.state.username,
+                        FacultyID: this.state.username,
                         password: this.state.password,
                       };
 
@@ -140,7 +140,7 @@ class FacultyLoginTab extends React.Component {
                         .then((response) => console.log(response.data));
 
                       this.setState({
-                        username: "",
+                        FacultyID: "",
                         password: "",
                       });
                     })
@@ -153,7 +153,7 @@ class FacultyLoginTab extends React.Component {
             <br />
           </div>
           <Typography className={classes.pos}>
-            New faculty? <Link to={"/signup"}>Sign Up</Link>
+            New Faculty? <Link to={"/signup"}>Sign Up</Link>
           </Typography>
           <br/>
         </Paper>

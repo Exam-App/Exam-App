@@ -27,7 +27,7 @@ class SignUpTab extends React.Component {
     super(props);
     this.state = {
       FullName: "",
-      EmailID: "",
+      FacultyID: "",
       password: "",
     };
   }
@@ -76,7 +76,7 @@ class SignUpTab extends React.Component {
             <Grid container spacing={8} alignItems="flex-end">
               <Grid item md={true} sm={true} xs={true}>
                 <TextField
-                  id="EmailID"
+                  id="FacultyID"
                   label="FacultyID"
                   type="name"
                   variant="outlined"
@@ -86,7 +86,7 @@ class SignUpTab extends React.Component {
                   onChange={
                     (this.updateChange = (event) => {
                       this.setState({
-                        EmailID: event.target.value,
+                        FacultyID: event.target.value,
                       });
                     })
                   }
@@ -133,7 +133,7 @@ class SignUpTab extends React.Component {
                     (this.onSubmit = () => {
                       const signup = {
                         FullName: this.state.FullName,
-                        EmailID: this.state.EmailID,
+                        FacultyID: this.state.FacultyID,
                         username: this.state.username,
                         password: this.state.password,
                       };
@@ -143,7 +143,7 @@ class SignUpTab extends React.Component {
                         .then((response) => console.log(response.data));
 
                       this.setState({
-                        EmailID: "",
+                        FacultyID: "",
                         FullName: "",
                         password: "",
                       });
