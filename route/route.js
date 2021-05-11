@@ -71,7 +71,7 @@ router.post("/login", async (request, response) => {
     if (!FacultyID || !password)
       return response
         .status(400)
-        .json({ errorMessage: "Please all required fields." });
+        .json({ errorMessage: "Please enter all required fields." });
 
     const existingFacultyID = await newFaculty.findOne({ FacultyID });
     if (!existingFacultyID)
