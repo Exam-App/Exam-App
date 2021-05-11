@@ -93,7 +93,7 @@ router.post("/login", async (request, response) => {
     if (FacultyID && password)
       return response
         .status(200)
-        .json({ errorMessage: "Success" });
+        .json({ Message: "Success" });
     // Login using token
 
     const token = jwt.sign(
