@@ -36,6 +36,38 @@ class FacultyLoginTab extends React.Component {
       submitted: false,
     };
   }
+
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const signup = {
+      FacultyID: this.state.FacultyID,
+      password: this.state.password,
+    };
+
+    axios
+      .post("http://localhost:4000/app/signup", signup, {
+        withCredentials: true,
+      })
+      .then((response) => console.log(response.data));
+
+    // from code snippet https://dev.to/cesareferrari/how-to-display-error-messages-in-a-react-application-3g48
+
+    // .then(response => this.setState({items: response.data}))
+    // .catch((err) => {
+    //   this.setState({ errorMessage: err.message });
+    // });
+
+    // .catch((err) => {
+    //   this.setState({ errorMessage: err.message });
+    // });
+
+    this.setState({
+      FacultyID: "",
+      password: "",
+    });
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -69,13 +101,10 @@ class FacultyLoginTab extends React.Component {
                       })
                     }
                     variant="outlined"
-                    name="username"
-                    value={this.state.username}
+                    name="FacultyID"
+                    value={this.state.FacultyID}
                     validators={["required"]}
-                    errorMessages={[
-                      "this field is required",
-                      
-                    ]}
+                    errorMessages={["this field is required"]}
                   />
                   <br />
 
@@ -128,23 +157,7 @@ class FacultyLoginTab extends React.Component {
                   // onClick={routeChange}
                   type="submit"
                   style={{ background: "#7e57c2" }}
-                  onClick={
-                    (this.onSubmit = () => {
-                      const login = {
-                        FacultyID: this.state.username,
-                        password: this.state.password,
-                      };
-
-                      axios
-                        .get("http://localhost:4000/app/faculty", login)
-                        .then((response) => console.log(response.data));
-
-                      this.setState({
-                        FacultyID: "",
-                        password: "",
-                      });
-                    })
-                  }
+                  onClick={this.onSubmit}
                 >
                   <Typography style={{ color: "#ffffff" }}>Login</Typography>
                 </Button>
@@ -155,7 +168,7 @@ class FacultyLoginTab extends React.Component {
           <Typography className={classes.pos}>
             New Faculty? <Link to={"/signup"}>Sign Up</Link>
           </Typography>
-          <br/>
+          <br />
         </Paper>
       </Grid>
     );

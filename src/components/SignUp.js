@@ -4,7 +4,6 @@ import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
 const styles = (theme) => ({
   margin: {
     margin: 10,
@@ -21,16 +20,49 @@ const styles = (theme) => ({
 });
 
 class SignUpTab extends React.Component {
-  
-
   constructor(props) {
     super(props);
     this.state = {
       FullName: "",
       FacultyID: "",
       password: "",
+      items: [],
+      errorMessage: "",
     };
   }
+
+  // Submit details to backend at port 4000
+  onSubmit = (e) => {
+    e.preventDefault();
+    const signup = {
+      FullName: this.state.FullName,
+      FacultyID: this.state.FacultyID,
+      password: this.state.password,
+    };
+
+    axios
+      .post("http://localhost:4000/app/signup", signup, {
+        withCredentials: true,
+      })
+      .then((response) => console.log(response.data));
+
+    // from code snippet https://dev.to/cesareferrari/how-to-display-error-messages-in-a-react-application-3g48
+
+    // .then(response => this.setState({items: response.data}))
+    // .catch((err) => {
+    //   this.setState({ errorMessage: err.message });
+    // });
+
+    // .catch((err) => {
+    //   this.setState({ errorMessage: err.message });
+    // });
+
+    this.setState({
+      FacultyID: "",
+      FullName: "",
+      password: "",
+    });
+  };
 
   render() {
     const { classes } = this.props;
@@ -48,9 +80,13 @@ class SignUpTab extends React.Component {
           style={{ borderRadius: "10px" }}
         >
           <div className={classes.margin}>
-            <Typography variant="body2" component="p" className={classes.pos}>
-              <h1>🔐 Faculty Signup</h1>
+            {this.state.errorMessage && (
+              <h3 className="error"> {this.state.errorMessage} </h3>
+            )}
+            <Typography variant="h4" className={classes.pos}>
+              🔐 Faculty Signup
             </Typography>
+            <br />
             <Grid container spacing={8} alignItems="flex-end">
               <Grid item md={true} sm={true} xs={true}>
                 <TextField
@@ -122,33 +158,12 @@ class SignUpTab extends React.Component {
             <br></br>
             <br></br>
             <Grid container justify="center" style={{ marginTop: "10px" }}>
-              <Link
-                to={"/faculty"}
-                style={{ textDecoration: "none", color: "#ffffff" }}
-              >
+              <Link style={{ textDecoration: "none", color: "#ffffff" }}>
                 <Button
                   // onClick={routeChange}
+                  type="submit"
                   style={{ background: "#7e57c2" }}
-                  onClick={
-                    (this.onSubmit = () => {
-                      const signup = {
-                        FullName: this.state.FullName,
-                        FacultyID: this.state.FacultyID,
-                        username: this.state.username,
-                        password: this.state.password,
-                      };
-
-                      axios
-                        .post("http://localhost:4000/app/signup", signup)
-                        .then((response) => console.log(response.data));
-
-                      this.setState({
-                        FacultyID: "",
-                        FullName: "",
-                        password: "",
-                      });
-                    })
-                  }
+                  onClick={this.onSubmit}
                 >
                   <Typography style={{ color: "#ffffff" }}>Sign up</Typography>
                 </Button>
