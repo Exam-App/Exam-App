@@ -10,7 +10,8 @@ const signupTemplate = new mongoose.Schema({
     required: true,
   },
 
-  securePassword: {
+  // securePassword
+  password: {
     type: String,
     required: true,
   },

@@ -6,113 +6,146 @@ const jwt = require("jsonwebtoken");
 
 // register for Faculty
 
-router.post("/signup", async (request, response) => {
-  try {
-    const { FacultyID, FullName, password } = request.body;
+router.post("/signup", (request, response) => {
 
-    // validation
-
-    if (!FacultyID || !FullName || !password)
-      return response
-        .status(400)
-        .json({ errorMessage: "Please fill all required fields." });
-
-    if (password.length < 6)
-      return response.status(400).json({
-        errorMessage: "Please enter a password of at least 6 characters",
-      });
-
-    const existingFacultyID = await newFaculty.findOne({ FacultyID });
-    if (existingFacultyID)
-      return response.status(400).json({
-        errorMessage: "An account with this FacultyID already exists",
-      });
-
-    // Hash the password
-
-    const saltPassword = await bcrypt.genSalt(10);
-    const securePassword = await bcrypt.hash(password, saltPassword);
-
-    const newFacultyID = new newFaculty({
-      FacultyID,
-      FullName,
-      securePassword,
+  let { FacultyID, FullName, password } = request.body;
+  
+  if (FacultyID == "" || FullName == "" || password == "") {
+    response.json({
+      status: "FAILED",
+      message: "Please fill all required fields.",
     });
+  } else if (!/^[a-zA-Z]*$/.test(FullName)) {
+    response.json({
+      status: "FAILED",
+      message: "Enter name entered [a-z or/and A-Z]",
+    });
+  } else if (!/^[a-zA-Z0-9]*$/.test(FacultyID)) {
+    response.json({
+      status: "FAILED",
+      message:
+        "Invalid FacultyID entered \n Hint: FacultyID should be alphanumeric ",
+    });
+  } else if (password.length < 6) {
+    response.json({
+      status: "FAILED",
+      message: "Password is too short! enter atleast 6 character",
+    });
+  } else {
+    // Checking if newFaculty already exists
+    newFaculty
+      .find({ FacultyID })
+      .then((result) => {
+        if (result.length) {
+          // A newFaculty already exists
+          response.json({
+            status: "FAILED",
+            message: "FacultyID already exists",
+          });
+        } else {
+          // Try to create
+          // password handling
 
-    const savedFacultyID = await newFacultyID.save();
+          const saltRound = 10;
+          bcrypt
+            .hash(password, saltRound)
+            .then((hashedPassword) => {
+              const newFacultyID = new newFaculty({
+                FacultyID,
+                FullName,
+                password: hashedPassword,
+              });
 
-    // sign using token
-
-    const token = jwt.sign(
-      {
-        faculty: savedFacultyID._id,
-      },
-      process.env.JWT_SECRET
-    );
-
-    // send the token in a HTTP only cookie
-
-    response
-      .cookie("token", token, {
-        httpOnly: true,
+              newFacultyID
+                .save()
+                .then((result) => {
+                  response.json({
+                    status: "SUCCESS",
+                    message: "Signup successful",
+                    data: result,
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                  response.status(409).json({
+                    status: "FAILED",
+                    message:
+                      "An error occurred while saving newFaculty account!",
+                  });
+                });
+            })
+            .catch((err) => {
+              console.log(err);
+              response.json({
+                status: "FAILED",
+                message: "An error occurred while hashing password!",
+              });
+            });
+        }
       })
-      .send();
-  } catch (err) {
-    console.error(err);
-    response.status(500).send();
+      .catch((err) => {
+        console.log(err);
+        response.json({
+          status: "FAILED",
+          message: "checking... this FacultyID already exists",
+        });
+      });
   }
 });
 
-router.post("/login", async (request, response) => {
-  try {
-    const { FacultyID, password } = request.body;
-    
 
-    // validate
+router.post("/login", (request, response) => {
+  let { FacultyID, password } = request.body;
 
-    if (!FacultyID || !password)
-      return response
-        .status(400)
-        .json({ errorMessage: "Please enter all required fields." });
+  if (FacultyID == "" || password == "") {
+    response.json({
+      status: "FAILED",
+      message: "Empty credentials supplied",
+    });
+  } else {
+    // Check if FacultyID exist
+    newFaculty.find({ FacultyID })
+      .then((data) => {
+        if (data.length) {
+          // FacultyID exists
 
-    const existingFacultyID = await newFaculty.findOne({ FacultyID });
-    if (!existingFacultyID)
-      return response
-        .status(401)
-        .json({ errorMessage: "Wrong Faculty or password." });
-
-    const passwordCorrect = await bcrypt.compare(
-      password,
-      existingFacultyID.securePassword
-    );
-    if (!passwordCorrect)
-      return response
-        .status(401)
-        .json({ errorMessage: "Wrong Id or password." });
-    
-    if (FacultyID && password)
-      return response
-        .status(200)
-        .json({ Message: "Success" });
-    // Login using token
-
-    const token = jwt.sign(
-      {
-        faculty: existingFacultyID._id,
-      },
-      process.env.JWT_SECRET
-    );
-
-    // send the token in a HTTP only cookie
-
-    response
-      .cookie("token", token, {
-        httpOnly: true,
+          const hashedPassword = data[0].password;
+          bcrypt
+            .compare(password, hashedPassword)
+            .then((result) => {
+              if (result) {
+                // Password match
+                response.json({
+                  status: "SUCCESS",
+                  message: "login successful",
+                  data: data,
+                });
+              } else {
+                response.json({
+                  status: "FAILED",
+                  message: "Invalid password entered!",
+                });
+              }
+            })
+            .catch((err) => {
+              response.json({
+                status: "FAILED",
+                message: "An error occurred while comparing passwords",
+              });
+            });
+        } else {
+          response.json({
+            status: "FAILED",
+            message: "Invalid credentials entered!",
+          });
+        }
       })
-      .send();
-  } catch (err) {
-    console.error(err);
-    response.status(500).send();
+      .catch((err) => {
+        response.json({
+          status: "FAILED",
+          message: "An error occurred while checking for existing FacultyID",
+        });
+      });
   }
 });
 
