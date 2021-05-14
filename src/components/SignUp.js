@@ -26,7 +26,6 @@ class SignUpTab extends React.Component {
       FullName: "",
       FacultyID: "",
       password: "",
-      items: [],
       errorMessage: "",
     };
   }
@@ -43,26 +42,16 @@ class SignUpTab extends React.Component {
     axios
       .post("http://localhost:4000/app/signup", signup, {
         withCredentials: true,
-      })
-      .then((response) => console.log(response.data));
-
-    // from code snippet https://dev.to/cesareferrari/how-to-display-error-messages-in-a-react-application-3g48
-
-    // .then(response => this.setState({items: response.data}))
-    // .catch((err) => {
-    //   this.setState({ errorMessage: err.message });
-    // });
-
-    // .catch((err) => {
-    //   this.setState({ errorMessage: err.message });
-    // });
-
+      }).then((response) => this.setState({errorMessage: response.data.message}));
+    
     this.setState({
       FacultyID: "",
       FullName: "",
       password: "",
     });
   };
+
+
 
   render() {
     const { classes } = this.props;
@@ -163,7 +152,7 @@ class SignUpTab extends React.Component {
                   // onClick={routeChange}
                   type="submit"
                   style={{ background: "#7e57c2" }}
-                  onClick={this.onSubmit}
+                  onClick={(this.onSubmit)}
                 >
                   <Typography style={{ color: "#ffffff" }}>Sign up</Typography>
                 </Button>
