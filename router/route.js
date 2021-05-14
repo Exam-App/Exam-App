@@ -18,13 +18,13 @@ router.post("/signup", (request, response) => {
   } else if (!/^[a-zA-Z]*$/.test(FullName)) {
     response.json({
       status: "FAILED",
-      message: "Enter name entered [a-z or/and A-Z]",
+      message: "Name should consist only a-z or A-Z",
     });
   } else if (!/^[a-zA-Z0-9]*$/.test(FacultyID)) {
     response.json({
       status: "FAILED",
       message:
-        "Invalid FacultyID entered \n Hint: FacultyID should be alphanumeric ",
+        "Invalid FacultyID entered  Hint: FacultyID should be alphanumeric",
     });
   } else if (password.length < 6) {
     response.json({
@@ -44,7 +44,7 @@ router.post("/signup", (request, response) => {
           });
         } else {
           // Try to create
-          // password handling
+          // password handling  
 
           const saltRound = 10;
           bcrypt
