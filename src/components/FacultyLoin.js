@@ -1,18 +1,9 @@
-import React from "react";
-import {
-  Paper,
-  withStyles,
-  Grid,
-  Button,
-  FormControlLabel,
-  Checkbox,
-} from "@material-ui/core";
+import React, { useState } from "react";
+import { Paper, withStyles, Grid, TextField, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
-const styles = (theme) => ({
+const styles = () => ({
   margin: {
     margin: 10,
     marginTop: 100,
@@ -27,152 +18,121 @@ const styles = (theme) => ({
   },
 });
 
-class FacultyLoginTab extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      FacultyID: "",
-      password: "",
-      submitted: false,
-    };
-  }
+function LoginTab(props) {
+  const [state, setState] = useState({
+    FacultyID: "",
+    password: "",
+    errorMessage: "",
+    isSignedUp: false,
+  });
 
-
-  onSubmit = (e) => {
+  // Submit details to backend at port 4000
+  function handleSubmit(e) {
     e.preventDefault();
-    const signup = {
-      FacultyID: this.state.FacultyID,
-      password: this.state.password,
+    const login = {
+      FacultyID: state.FacultyID,
+      password: state.password,
     };
 
-    axios
-      .post("http://localhost:4000/app/signup", signup, {
-        withCredentials: true,
-      })
-      .then((response) => console.log(response.data));
+    axios.post("http://localhost:4000/app/login", login).then((response) => {
+      if (response.data.status === "SUCCESS") {
+        console.log("status = ", response.data.status);
+        window.location = "/home";
+      }
+      setState({ errorMessage: response.data.message });
+    });
 
-    // from code snippet https://dev.to/cesareferrari/how-to-display-error-messages-in-a-react-application-3g48
-
-    // .then(response => this.setState({items: response.data}))
-    // .catch((err) => {
-    //   this.setState({ errorMessage: err.message });
-    // });
-
-    // .catch((err) => {
-    //   this.setState({ errorMessage: err.message });
-    // });
-
-    this.setState({
+    setState({
       FacultyID: "",
       password: "",
     });
+  }
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setState((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
   };
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-        style={{ padding: 100 }}
+  const { classes } = props;
+
+  return (
+    <Grid
+      container
+      direction="row"
+      justify="center"
+      alignItems="center"
+      style={{ padding: 100 }}
+    >
+      <Paper
+        className={classes.padding}
+        variant="outlined"
+        style={{ borderRadius: "10px" }}
       >
-        <Paper
-          className={classes.padding}
-          variant="outlined"
-          style={{ borderRadius: "10px" }}
-        >
+        <form onSubmit={handleSubmit}>
           <div className={classes.margin}>
-            <Typography variant="body2" component="p" className={classes.pos}>
-              <h1>Faculty-Login</h1>
+            {state.errorMessage && (
+              <h3 className="error"> {state.errorMessage} </h3>
+            )}
+            <Typography variant="h4" className={classes.pos}>
+              🔐 Faculty login
             </Typography>
-            <ValidatorForm ref="form">
-              <Grid container alignItems="flex-end">
-                <Grid item md={true} sm={true} xs={true}>
-                  <TextValidator
-                    fullWidth={true}
-                    label="FacultyID"
-                    onChange={
-                      (this.updateChange = (event) => {
-                        this.setState({
-                          FacultyID: event.target.value,
-                        });
-                      })
-                    }
-                    variant="outlined"
-                    name="FacultyID"
-                    value={this.state.FacultyID}
-                    validators={["required"]}
-                    errorMessages={["this field is required"]}
-                  />
-                  <br />
-
-                  <br></br>
-                </Grid>
-              </Grid>
-              <Grid container spacing={8} alignItems="flex-end">
-                <Grid item md={true} sm={true} xs={true}>
-                  <TextValidator
-                    fullWidth={true}
-                    label="Password"
-                    onChange={
-                      (this.updateChange1 = (event) => {
-                        this.setState({
-                          password: event.target.value,
-                        });
-                      })
-                    }
-                    name="password"
-                    variant="outlined"
-                    value={this.state.password}
-                    validators={["required"]}
-                    errorMessages={["this field is required"]}
-                  />
-                </Grid>
-              </Grid>
-              <Grid container alignItems="center" justify="space-between">
-                <Grid item>
-                  <FormControlLabel
-                    control={<Checkbox color="primary" />}
-                    label="Remember me"
-                  />
-                </Grid>
-                <Grid item>
-                  <Button
-                    disableFocusRipple
-                    disableRipple
-                    style={{ textTransform: "none" }}
-                    variant="text"
-                    color="primary"
-                  >
-                    Forgot password ?
-                  </Button>
-                </Grid>
-              </Grid>
-
-              <br />
-              <Grid container justify="center" style={{ marginTop: "10px" }}>
-                <Button
-                  // onClick={routeChange}
-                  type="submit"
-                  style={{ background: "#7e57c2" }}
-                  onClick={this.onSubmit}
-                >
-                  <Typography style={{ color: "#ffffff" }}>Login</Typography>
-                </Button>
-              </Grid>
-            </ValidatorForm>
             <br />
+            <Grid container spacing={8} alignItems="flex-end">
+              <Grid item md={true} sm={true} xs={true}>
+                <TextField
+                  id="FacultyID"
+                  label="FacultyID"
+                  type="name"
+                  variant="outlined"
+                  fullWidth
+                  autoFocus
+                  required
+                  onChange={handleChange}
+                  value={state.FacultyID}
+                />
+              </Grid>
+            </Grid>
+            <Typography>
+              <small>faculty ID is faculty registered ID</small>
+            </Typography>
+            <br />
+            <Grid container spacing={8} alignItems="flex-end">
+              <Grid item md={true} sm={true} xs={true}>
+                <TextField
+                  id="password"
+                  label="Password"
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  onChange={handleChange}
+                  value={state.password}
+                />
+              </Grid>
+            </Grid>
+
+            <br></br>
+            <br></br>
+            <Grid container justify="center" style={{ marginTop: "10px" }}>
+              {/* style={{ textDecoration: "none", color: "#ffffff" }} */}
+              <Button type="submit" style={{ background: "#7e57c2" }}>
+                <Typography style={{ color: "#ffffff" }}>login</Typography>
+              </Button>
+            </Grid>
           </div>
-          <Typography className={classes.pos}>
-            New Faculty? <Link to={"/signup"}>Sign Up</Link>
-          </Typography>
-          <br />
-        </Paper>
-      </Grid>
-    );
-  }
+        </form>
+
+        <br />
+        <Typography className={classes.pos}>
+          Not Registered? Sign up
+        </Typography>
+        <br />
+      </Paper>
+    </Grid>
+  );
 }
 
-export default withStyles(styles)(FacultyLoginTab);
+export default withStyles(styles)(LoginTab);

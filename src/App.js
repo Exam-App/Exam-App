@@ -6,7 +6,8 @@ import FacultyLoginTab from "./components/FacultyLoin"
 import SignUpTab from "./components/SignUp"
 import Instructions from "./components/Instructions";
 import error404 from "./components/error/404"
-
+import HomeTab from "./components/Home"
+ 
 
 class App extends React.Component {
   render(){
@@ -19,6 +20,7 @@ class App extends React.Component {
             <Route path="/login" component={LoginTab} />
             <Route path="/signup" component={SignUpTab} />
             <Route path="/faculty" component={FacultyLoginTab} />
+            <Route path="/home" component={HomeTab} />
             <Route component={error404} />
           </Switch>
         </div>
