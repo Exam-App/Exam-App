@@ -3,7 +3,6 @@ import { Paper, withStyles, Grid, TextField, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 
-
 const styles = () => ({
   margin: {
     margin: 10,
@@ -25,10 +24,11 @@ function SignUpTab(props) {
     FacultyID: "",
     password: "",
     errorMessage: "",
+    isSignedUp: false,
   });
 
   // Submit details to backend at port 4000
-  const onSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     const signup = {
       FullName: state.FullName,
@@ -36,20 +36,20 @@ function SignUpTab(props) {
       password: state.password,
     };
 
-    axios
-      .post("http://localhost:4000/app/signup", signup, {
-        withCredentials: true,
-      })
-      .then((response) =>
-        setState({ errorMessage: response.data.message })
-      );
+    axios.post("http://localhost:4000/app/signup", signup).then((response) => {
+      if (response.data.status === "SUCCESS") {
+        console.log("status = ", response.data.status);
+        window.location="/faculty"
+      }
+      setState({ errorMessage: response.data.message });
+    });
 
     setState({
       FacultyID: "",
       FullName: "",
       password: "",
     });
-  };
+  }
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -74,78 +74,76 @@ function SignUpTab(props) {
         variant="outlined"
         style={{ borderRadius: "10px" }}
       >
-        <div className={classes.margin}>
-          {state.errorMessage && (
-            <h3 className="error"> {state.errorMessage} </h3>
-          )}
-          <Typography variant="h4" className={classes.pos}>
-            🔐 Faculty Signup
-          </Typography>
-          <br />
-          <Grid container spacing={8} alignItems="flex-end">
-            <Grid item md={true} sm={true} xs={true}>
-              <TextField
-                id="FullName"
-                label="FullName"
-                type="name"
-                variant="outlined"
-                fullWidth
-                autoFocus
-                required
-                onChange={handleChange}
-                value={state.FullName}
-              />
+        <form onSubmit={handleSubmit}>
+          <div className={classes.margin}>
+            {state.errorMessage && (
+              <h3 className="error"> {state.errorMessage} </h3>
+            )}
+            <Typography variant="h4" className={classes.pos}>
+              🔐 Faculty Signup
+            </Typography>
+            <br />
+            <Grid container spacing={8} alignItems="flex-end">
+              <Grid item md={true} sm={true} xs={true}>
+                <TextField
+                  id="FullName"
+                  label="FullName"
+                  type="name"
+                  variant="outlined"
+                  fullWidth
+                  autoFocus
+                  required
+                  onChange={handleChange}
+                  value={state.FullName}
+                />
+              </Grid>
             </Grid>
-          </Grid>
 
-          <Grid container spacing={8} alignItems="flex-end">
-            <Grid item md={true} sm={true} xs={true}>
-              <TextField
-                id="FacultyID"
-                label="FacultyID"
-                type="name"
-                variant="outlined"
-                fullWidth
-                autoFocus
-                required
-                onChange={handleChange}
-                value={state.FacultyID}
-              />
+            <Grid container spacing={8} alignItems="flex-end">
+              <Grid item md={true} sm={true} xs={true}>
+                <TextField
+                  id="FacultyID"
+                  label="FacultyID"
+                  type="name"
+                  variant="outlined"
+                  fullWidth
+                  autoFocus
+                  required
+                  onChange={handleChange}
+                  value={state.FacultyID}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-          <Typography>
-            <small>faculty ID is faculty registered ID</small>
-          </Typography>
-          <br />
-          <Grid container spacing={8} alignItems="flex-end">
-            <Grid item md={true} sm={true} xs={true}>
-              <TextField
-                id="password"
-                label="Password"
-                type="password"
-                variant="outlined"
-                fullWidth
-                required
-                onChange={handleChange}
-                value={state.password}
-              />
+            <Typography>
+              <small>faculty ID is faculty registered ID</small>
+            </Typography>
+            <br />
+            <Grid container spacing={8} alignItems="flex-end">
+              <Grid item md={true} sm={true} xs={true}>
+                <TextField
+                  id="password"
+                  label="Password"
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  onChange={handleChange}
+                  value={state.password}
+                />
+              </Grid>
             </Grid>
-          </Grid>
 
-          <br></br>
-          <br></br>
-          <Grid container justify="center" style={{ marginTop: "10px" }}>
-            {/* style={{ textDecoration: "none", color: "#ffffff" }} */}
-            <Button
-              // onClick={routeChange}
-              type="submit"
-              style={{ background: "#7e57c2" }}
-              onClick={onSubmit}
-            >
-              <Typography style={{ color: "#ffffff" }}>Sign up</Typography>
-            </Button>
-          </Grid>
-        </div>
+            <br></br>
+            <br></br>
+            <Grid container justify="center" style={{ marginTop: "10px" }}>
+              {/* style={{ textDecoration: "none", color: "#ffffff" }} */}
+              <Button type="submit" style={{ background: "#7e57c2" }}>
+                <Typography style={{ color: "#ffffff" }}>Sign up</Typography>
+              </Button>
+            </Grid>
+          </div>
+        </form>
+
         <br />
         <Typography className={classes.pos}>
           Already signed in faculty? login
