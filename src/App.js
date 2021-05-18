@@ -14,12 +14,12 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-          <Nav />
           <Switch>
             <Route exact path="/" component={Instructions} />
             <Route path="/login" component={LoginTab} />
             <Route path="/signup" component={SignUpTab} />
             <Route path="/faculty" component={FacultyLoginTab} />
+            <Nav />
             <Route path="/home" component={HomeTab} />
             <Route component={error404} />
           </Switch>

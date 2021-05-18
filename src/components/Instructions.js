@@ -8,13 +8,12 @@ import CardContent from "@material-ui/core/CardContent";
 
 const useStyles = makeStyles((_theme) => ({
   root: {
-    flexGrow: 1,
+    minWidth: 275,
+    backgroundColor: "#151515"
   },
   pos: {
     textAlign: "center",
-  },
-  pad: {
-    marginTop: 100,
+    marginBottom: 12,
   },
 }));
 
@@ -30,13 +29,12 @@ export default function Instructions() {
 
     const classes = useStyles();
     return (
-      <div>
         <div className={classes.root}>
           <Card
             style={{
               width: 1000,
-              margin: "auto",
-              backgroundColor: "",
+            margin: "auto",
+           
             }}
           >
             <CardContent className={classes.pad}>
@@ -115,9 +113,8 @@ export default function Instructions() {
               </Typography>
               <Typography variant="body1" component="p"></Typography>
             </CardContent>
-          </Card>
+        </Card>
         </div>
-      </div>
     );
 
 }
