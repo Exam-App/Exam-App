@@ -1,9 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav";
-import LoginTab from "./components/Login"
-import FacultyLoginTab from "./components/FacultyLoin"
-import SignUpTab from "./components/SignUp"
+import FacultyLoginTab from "./components/faculty/FacultyLoin"
+import SignUpTab from "./components/faculty/SignUp"
 import Instructions from "./components/Instructions";
 import error404 from "./components/error/404"
 import HomeTab from "./components/Home"
@@ -16,7 +15,6 @@ class App extends React.Component {
         <div className="App">
           <Switch>
             <Route exact path="/" component={Instructions} />
-            <Route path="/login" component={LoginTab} />
             <Route path="/signup" component={SignUpTab} />
             <Route path="/faculty" component={FacultyLoginTab} />
             <Nav />

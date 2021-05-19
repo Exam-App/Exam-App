@@ -36,14 +36,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignUpTab() {
+function LoginTab() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const [state, setState] = useState({
     FacultyID: "",
     password: "",
-    FullName: "",
     Success: "",
     Error: "",
     Warn: "",
@@ -53,14 +52,13 @@ function SignUpTab() {
   function handleSubmit(e) {
     e.preventDefault();
     const login = {
-      FullName: state.FullName,
       FacultyID: state.FacultyID,
       password: state.password,
     };
 
-    axios.post("http://localhost:4000/app/login", login).then((response) => {
+    axios.post("http://localhost:4000/app/faculty", login).then((response) => {
       if (response.data.status === "SUCCESS") {
-        window.location = "/faculty";
+        window.location = "/home";
         setState({ Success: response.data.message });
       } else if (response.data.status === "WARNING") {
         setState({ Warn: response.data.message });
@@ -72,7 +70,6 @@ function SignUpTab() {
     setState({
       FacultyID: "",
       password: "",
-      FullName: "",
     });
     setOpen(true);
   }
@@ -99,7 +96,7 @@ function SignUpTab() {
       direction="row"
       justify="center"
       alignItems="center"
-      style={{ padding: 50 }}
+      style={{ padding: 100 }}
     >
       {(() => {
         if (state.Success) {
@@ -142,25 +139,9 @@ function SignUpTab() {
       >
         <div className={classes.margin}>
           <Typography variant="h4" className={classes.pos}>
-            🔐 Faculty Signup
+            🔐 Faculty login
           </Typography>
           <br />
-          <Grid container spacing={8} alignItems="flex-end">
-            <Grid item md={true} sm={true} xs={true}>
-              <TextField
-                id="FullName"
-                label="FullName"
-                type="name"
-                variant="outlined"
-                fullWidth
-                autoFocus
-                required
-                onChange={handleChange}
-                value={state.FullName}
-              />
-            </Grid>
-          </Grid>
-
           <Grid container spacing={8} alignItems="flex-end">
             <Grid item md={true} sm={true} xs={true}>
               <TextField
@@ -176,12 +157,10 @@ function SignUpTab() {
               />
             </Grid>
           </Grid>
-
           <Typography>
             <small>faculty ID is faculty registered ID</small>
           </Typography>
           <br />
-
           <Grid container spacing={8} alignItems="flex-end">
             <Grid item md={true} sm={true} xs={true}>
               <TextField
@@ -212,7 +191,7 @@ function SignUpTab() {
 
         <br />
         <Typography className={classes.pos}>
-          Already Registered ? <a href="/faculty">login</a>
+          Not Registered? <a href="/signup">Sign up</a>
         </Typography>
         <br />
       </Paper>
@@ -220,4 +199,4 @@ function SignUpTab() {
   );
 }
 
-export default SignUpTab;
+export default LoginTab;
