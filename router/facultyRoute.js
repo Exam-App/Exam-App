@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const newFaculty = require("../models/SignupModel");
+const newFaculty = require("../models/facultyModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -94,7 +94,7 @@ router.post("/signup", (request, response) => {
 });
 
 
-router.post("/login", (request, response) => {
+router.post("/faculty", (request, response) => {
   let { FacultyID, password } = request.body;
 
   if (FacultyID == "" || password == "") {
