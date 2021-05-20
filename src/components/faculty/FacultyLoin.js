@@ -58,7 +58,10 @@ function LoginTab() {
 
     axios.post("http://localhost:4000/app/faculty", login).then((response) => {
       if (response.data.status === "SUCCESS") {
-        window.location = "/home";
+        
+          window.location = "/dashboard";
+        
+
         setState({ Success: response.data.message });
       } else if (response.data.status === "WARNING") {
         setState({ Warn: response.data.message });

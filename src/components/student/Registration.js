@@ -36,12 +36,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignUpTab() {
+function Registration() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const [state, setState] = useState({
-    FacultyID: "",
+    StudentID: "",
     password: "",
     FullName: "",
     Success: "",
@@ -54,13 +54,13 @@ function SignUpTab() {
     e.preventDefault();
     const signUp = {
       FullName: state.FullName,
-      FacultyID: state.FacultyID,
+      StudentID: state.StudentID,
       password: state.password,
     };
 
-    axios.post("http://localhost:4000/app/signup", signUp).then((response) => {
+    axios.post("http://localhost:4000/app/register", signUp).then((response) => {
       if (response.data.status === "SUCCESS") {
-        window.location = "/faculty";
+        // window.location = "/login";
         setState({ Success: response.data.message });
       } else if (response.data.status === "WARNING") {
         setState({ Warn: response.data.message });
@@ -70,7 +70,7 @@ function SignUpTab() {
     });
 
     setState({
-      FacultyID: "",
+      StudentID: "",
       password: "",
       FullName: "",
     });
@@ -164,21 +164,21 @@ function SignUpTab() {
           <Grid container spacing={8} alignItems="flex-end">
             <Grid item md={true} sm={true} xs={true}>
               <TextField
-                id="FacultyID"
-                label="FacultyID"
+                id="StudentID"
+                label="StudentID"
                 type="name"
                 variant="outlined"
                 fullWidth
                 autoFocus
                 required
                 onChange={handleChange}
-                value={state.FacultyID}
+                value={state.StudentID}
               />
             </Grid>
           </Grid>
 
           <Typography>
-            <small>faculty ID is faculty registered ID</small>
+            <small>Student Register ID / Roll Number</small>
           </Typography>
           <br />
 
@@ -211,13 +211,13 @@ function SignUpTab() {
         </div>
 
         <br />
-        <Typography className={classes.pos}>
+        {/* <Typography className={classes.pos}>
           Already Registered ? <a href="/faculty">login</a>
-        </Typography>
+        </Typography> */}
         <br />
       </Paper>
     </Grid>
   );
 }
 
-export default SignUpTab;
+export default Registration;
