@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -18,30 +18,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function Instructions() {
+  const history = useHistory();
 
-    const history = useHistory();
+  const routeChange = () => {
+    let path = "/login";
+    history.push(path);
+  };
 
-    const routeChange = () => {
-      let path = "/login";
-      history.push(path);
-    };
-
-    const classes = useStyles();
-    return (
-      <div className={classes.root}>
-        <Card
-          style={{
-            width: 1000,
-            margin: "auto",
-          }}
-        >
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <Card
+        style={{
+          width: 1000,
+          margin: "auto",
+        }}
+      >
+        <main>
           <CardContent>
-            <Typography variant="body2" component="p" className={classes.pos} >
-              <h1>Instructions</h1>
+            <Typography
+              variant="h4"
+              component="p"
+              align="center"
+              color="textPrimary"
+              gutterBottom
+            >
+              Instructions
             </Typography>
-            <Typography variant="body1" component="p">
+            <Typography variant="body1">
               <b>Dear Candidate</b>
               <ol>
                 <li>
@@ -110,8 +115,8 @@ export default function Instructions() {
             </Typography>
             <Typography variant="body1" component="p"></Typography>
           </CardContent>
-        </Card>
-      </div>
-    );
-
+        </main>
+      </Card>
+    </div>
+  );
 }

@@ -21,7 +21,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-          {/* https://youtu.be/Y0-qdp-XBJg?t=270 */}
+          
           {/* <Nav /> */}
           <Switch>
             <Route exact path="/" component={Instructions} />
