@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import Nav from "./components/Nav";
 
 // Faculty Routes
-import FacultyLoginTab from "./components/faculty/FacultyLoin";
+import FacultyLoginTab from "./components/faculty/FacultyLogin";
 import SignUpTab from "./components/faculty/SignUp";
 
 // Student Routes
@@ -15,33 +15,36 @@ import Instructions from "./components/Instructions";
 import error404 from "./components/error/404";
 import FacultyTab from "./components/faculty/dashboard/FacultyTab";
 
+// backend bridger
+import axios from "axios";
 
-class App extends React.Component {
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          
-          {/* <Nav /> */}
-          <Switch>
-            <Route exact path="/" component={Instructions} />
+axios.defaults.withCredentials = true;
 
-            {/* Faculty Route */}
-            <Route path="/signup" component={SignUpTab} />
-            <Route path="/faculty" component={FacultyLoginTab} />
-            <Route path="/dashboard" component={FacultyTab} />
+function App() {
+  
 
-            {/* Student Route */}
-            <Route path="/login" component={StudentLogin} />
-            <Route path="/exam" component={ExamTab} />
+  return (
+    <Router>
+      <div className="App">
+        {/* <Nav /> */}
+        <Switch>
+          <Route exact path="/" component={Instructions} />
 
-            {/* Home Route */}
-            <Route component={error404} />
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+          {/* Faculty Route */}
+          <Route path="/signup" component={SignUpTab} />
+          <Route path="/faculty" component={FacultyLoginTab} />
+          <Route path="/dashboard" component={FacultyTab} />
+
+          {/* Student Route */}
+          <Route path="/login" component={StudentLogin} />
+          <Route path="/exam" component={ExamTab} />
+
+          {/* Home Route */}
+          <Route component={error404} />
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
