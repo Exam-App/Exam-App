@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Faculty Routes
 import FacultyLoginTab from "./components/faculty/FacultyLoin";
 import SignUpTab from "./components/faculty/SignUp";
+import FacultyHome from "./components/faculty/dashboard/FacultyHome";
 
 // Student Routes
 import StudentLogin from "./components/student/StudentLogin";
@@ -30,6 +31,7 @@ class App extends React.Component {
             <Route path="/signup" component={SignUpTab} />
             <Route path="/faculty" component={FacultyLoginTab} />
             <Route path="/dashboard" component={FacultyTab} />
+            <Route path="/welcome" component={FacultyHome} />
 
             {/* Student Route */}
             <Route path="/login" component={StudentLogin} />
@@ -37,6 +39,7 @@ class App extends React.Component {
 
             {/* Home Route */}
             <Route component={error404} />
+            
           </Switch>
         </div>
       </Router>
