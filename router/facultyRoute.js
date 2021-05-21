@@ -7,9 +7,8 @@ const jwt = require("jsonwebtoken");
 // register for Faculty
 
 router.post("/signup", (request, response) => {
-
   let { FacultyID, FullName, password } = request.body;
-  
+
   if (FacultyID == "" || FullName == "" || password == "") {
     response.json({
       status: "FAILED",
@@ -44,7 +43,7 @@ router.post("/signup", (request, response) => {
           });
         } else {
           // Try to create
-          // password handling  
+          // password handling
 
           const saltRound = 10;
           bcrypt
@@ -59,7 +58,21 @@ router.post("/signup", (request, response) => {
               newFacultyID
                 .save()
                 .then((result) => {
+                  const token = jwt.sign(
+                    { id: newFacultyID._id },
+                    process.env.JWT_SECRET,
+                    {
+                      // expiresIn: 3600,
+                    }
+                  );
+
+                  response.cookie("token", token, {
+                    httpOnly: true,
+                  });
+
+                  // console.log(token);
                   response.json({
+                    // token,
                     status: "SUCCESS",
                     message: "Signup successful",
                     data: result,
@@ -93,7 +106,6 @@ router.post("/signup", (request, response) => {
   }
 });
 
-
 router.post("/faculty", (request, response) => {
   let { FacultyID, password } = request.body;
 
@@ -104,7 +116,8 @@ router.post("/faculty", (request, response) => {
     });
   } else {
     // Check if FacultyID exist
-    newFaculty.find({ FacultyID })
+   const existingFaculty =  newFaculty
+      .find({ FacultyID })
       .then((data) => {
         if (data.length) {
           // FacultyID exists
@@ -114,6 +127,19 @@ router.post("/faculty", (request, response) => {
             .compare(password, hashedPassword)
             .then((result) => {
               if (result) {
+
+                const token = jwt.sign(
+                  { id: existingFaculty._id },
+                  process.env.JWT_SECRET,
+                  {
+                    // expiresIn: 3600,
+                  }
+                );
+
+                response.cookie("token", token, {
+                  httpOnly: true,
+                });
+
                 // Password match
                 response.json({
                   status: "SUCCESS",
@@ -127,7 +153,7 @@ router.post("/faculty", (request, response) => {
                 });
               }
             })
-            .catch((err) => {
+            .catch(() => {
               response.json({
                 status: "FAILED",
                 message: "An error occurred while comparing passwords",
@@ -140,7 +166,7 @@ router.post("/faculty", (request, response) => {
           });
         }
       })
-      .catch((err) => {
+      .catch(() => {
         response.json({
           status: "FAILED",
           message: "An error occurred while checking for existing FacultyID",
@@ -151,11 +177,13 @@ router.post("/faculty", (request, response) => {
 
 // delete cookie on logout
 
-router.get('/logout', (request, response) => {
-  response.cookie("token", "", {
-    httpOnly: true,
-    expires: new Date(0)
-  }).send();
+router.get("/logout", (request, response) => {
+  response
+    .cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+    })
+    .send();
 });
 
 router.get("/loggedIn", (request, response) => {
@@ -170,6 +198,5 @@ router.get("/loggedIn", (request, response) => {
     response.json(false);
   }
 });
-
 
 module.exports = router;

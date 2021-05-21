@@ -6,6 +6,7 @@ const facultyUrls = require("./router/facultyRoute");
 const studentUrls = require("./router/studentRoute");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const auth = require("./middleware/auth");
 dotenv.config();
 
 mongoose.connect(
@@ -28,26 +29,6 @@ app.use(
 app.use("/app", facultyUrls);
 app.use("/app", studentUrls);
 
+app.get('/dashboard',auth , (request, response) => response.render('dashboard') )
+
 app.listen(4000, () => console.log("server is up and running"));
-
-// cookies
-app.get("/set-cookies", (request, response) => {
-  //response.setHeader("Set-Cookie", "newStudent=true");
-
-  response.cookie("newStudent", false);
-  response.cookie("isFaculty", true, {
-    maxAge: 1000 * 60 * 60 * 24,
-    httpOnly: true,
-  });
-
-  response.send("you got the cookies!");
-});
-
-app.get("/read-cookies", (request, response) => {
-
-  const cookies = request.cookies;
-  console.log(cookies.newStudent);
-
-  response.json(cookies)
-
-});
