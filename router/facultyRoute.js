@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const newFaculty = require("../models/SignupModel");
+const newFaculty = require("../models/facultyModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -17,18 +17,18 @@ router.post("/signup", (request, response) => {
     });
   } else if (!/^[a-zA-Z]*$/.test(FullName)) {
     response.json({
-      status: "FAILED",
+      status: "WARNING",
       message: "Name should consist only a-z or A-Z",
     });
   } else if (!/^[a-zA-Z0-9]*$/.test(FacultyID)) {
     response.json({
-      status: "FAILED",
+      status: "WARNING",
       message:
         "Invalid FacultyID entered  Hint: FacultyID should be alphanumeric",
     });
   } else if (password.length < 6) {
     response.json({
-      status: "FAILED",
+      status: "WARNING",
       message: "Password is too short! enter atleast 6 character",
     });
   } else {
@@ -94,12 +94,12 @@ router.post("/signup", (request, response) => {
 });
 
 
-router.post("/login", (request, response) => {
+router.post("/faculty", (request, response) => {
   let { FacultyID, password } = request.body;
 
   if (FacultyID == "" || password == "") {
     response.json({
-      status: "FAILED",
+      status: "WARNING",
       message: "Empty credentials supplied",
     });
   } else {
