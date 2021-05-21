@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Faculty Routes
 import FacultyLoginTab from "./components/faculty/FacultyLogin";
 import SignUpTab from "./components/faculty/SignUp";
+import FacultyHome from "./components/faculty/dashboard/FacultyHome";
 
 // Student Routes
 import StudentLogin from "./components/student/StudentLogin";
@@ -20,31 +21,32 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
-function App() {
-  
+class App extends React.Component {
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          {/* <Nav /> */}
+          <Switch>
+            <Route exact path="/" component={Instructions} />
 
-  return (
-    <Router>
-      <div className="App">
-        {/* <Nav /> */}
-        <Switch>
-          <Route exact path="/" component={Instructions} />
+            {/* Faculty Route */}
+            <Route path="/signup" component={SignUpTab} />
+            <Route path="/faculty" component={FacultyLoginTab} />
+            <Route path="/dashboard" component={FacultyTab} />
+            <Route path="/welcome" component={FacultyHome} />
 
-          {/* Faculty Route */}
-          <Route path="/signup" component={SignUpTab} />
-          <Route path="/faculty" component={FacultyLoginTab} />
-          <Route path="/dashboard" component={FacultyTab} />
+            {/* Student Route */}
+            <Route path="/login" component={StudentLogin} />
+            <Route path="/exam" component={ExamTab} />
 
-          {/* Student Route */}
-          <Route path="/login" component={StudentLogin} />
-          <Route path="/exam" component={ExamTab} />
-
-          {/* Home Route */}
-          <Route component={error404} />
-        </Switch>
-      </div>
-    </Router>
-  );
+            {/* Home Route */}
+            <Route component={error404} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
