@@ -11,7 +11,7 @@ import FacultyHome from "./components/faculty/dashboard/FacultyHome";
 import StudentLogin from "./components/student/StudentLogin";
 import ExamTab from "./components/student/dashboard/ExamTab";
 
-// Home Routes
+// Home Routes  
 import Instructions from "./components/Instructions";
 import error404 from "./components/error/404";
 import FacultyTab from "./components/faculty/dashboard/FacultyTab";
@@ -27,22 +27,28 @@ function Routes() {
       <Switch>
         <Route exact path="/" component={Instructions} />
 
-        {loggedIn === false && (
-          <>
-            <Route path="/signup" component={SignUpTab} />
-            <Route path="/faculty" component={FacultyLoginTab} />
+        {(() => {
+          if (loggedIn === false) {
+            return (
+              <>
+                <Route path="/signup" component={SignUpTab} />
+                <Route path="/faculty" component={FacultyLoginTab} />
 
-            <Route path="/login" component={StudentLogin} />
-          </>
-        )}
-        {loggedIn === true && (
-          <>
-            <Route path="/dashboard" component={FacultyTab} />
-            <Route path="/welcome" component={FacultyHome} />
+                <Route path="/login" component={StudentLogin} />
+              </>
+            );
+          } else if (loggedIn === true) {
+            return (
+              <>
+                <Route path="/dashboard" component={FacultyTab} />
+                <Route path="/welcome" component={FacultyHome} />
 
-            <Route path="/exam" component={ExamTab} />
-          </>
-        )}
+                <Route path="/exam" component={ExamTab} />
+              </>
+            );
+          }
+        })()}
+
         <Route component={error404} />
       </Switch>
     </BrowserRouter>
