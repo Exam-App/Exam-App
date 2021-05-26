@@ -12,15 +12,9 @@ function AuthContextProvider(props) {
 
   async function getLoggedIn() {
     const loggedInRes = await axios.get("http://localhost:4000/app/loggedIn");
-    if (loggedInRes.data === false) {
-      setState({ message: "Unauthorized" });
-    } else if (loggedInRes.data === true) {
-      setState({message: "Session in Progress can't go back to Login or Registration."})
-    }
     setLoggedIn(loggedInRes.data);
   }
 
-  // if (!getLoggedIn) return <h1>Unauthorized</h1>;
   useEffect(() => {
     getLoggedIn();
   }, []);
@@ -28,15 +22,6 @@ function AuthContextProvider(props) {
   return (
     <AuthContext.Provider value={{ loggedIn, getLoggedIn }}>
       {props.children}
-      <Typography
-        variant="h3"
-        component="p"
-        align="center"
-        color="textPrimary"
-        gutterBottom
-      >
-        {state.message}
-      </Typography>
     </AuthContext.Provider>
   );
 }

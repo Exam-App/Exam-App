@@ -11,7 +11,7 @@ import FacultyHome from "./components/faculty/dashboard/FacultyHome";
 import StudentLogin from "./components/student/StudentLogin";
 import ExamTab from "./components/student/dashboard/ExamTab";
 
-// Home Routes  
+// Home Routes
 import Instructions from "./components/Instructions";
 import error404 from "./components/error/404";
 import FacultyTab from "./components/faculty/dashboard/FacultyTab";
@@ -33,8 +33,8 @@ function Routes() {
               <>
                 <Route path="/signup" component={SignUpTab} />
                 <Route path="/faculty" component={FacultyLoginTab} />
-
                 <Route path="/login" component={StudentLogin} />
+                <Route component={error404} />
               </>
             );
           } else if (loggedIn === true) {
@@ -42,14 +42,12 @@ function Routes() {
               <>
                 <Route path="/dashboard" component={FacultyTab} />
                 <Route path="/welcome" component={FacultyHome} />
-
                 <Route path="/exam" component={ExamTab} />
+                <Route component={error404} />
               </>
             );
           }
         })()}
-
-        <Route component={error404} />
       </Switch>
     </BrowserRouter>
   );
