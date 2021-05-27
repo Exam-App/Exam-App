@@ -31,19 +31,23 @@ function Routes() {
           if (loggedIn === false) {
             return (
               <>
-                <Route path="/signup" component={SignUpTab} />
-                <Route path="/faculty" component={FacultyLoginTab} />
-                <Route path="/login" component={StudentLogin} />
-                <Route component={error404} />
+                <Switch>
+                  <Route path="/signup" component={SignUpTab} />
+                  <Route path="/faculty" component={FacultyLoginTab} />
+                  <Route path="/login" component={StudentLogin} />
+                  <Route component={error404} />
+                </Switch>
               </>
             );
           } else if (loggedIn === true) {
             return (
               <>
-                <Route path="/dashboard" component={FacultyTab} />
-                <Route path="/welcome" component={FacultyHome} />
-                <Route path="/exam" component={ExamTab} />
-                <Route component={error404} />
+                <Switch>
+                  <Route path="/dashboard" component={FacultyTab} />
+                  <Route path="/welcome" component={FacultyHome} />
+                  <Route path="/exam" component={ExamTab} />
+                  <Route component={error404} />
+                </Switch>
               </>
             );
           }

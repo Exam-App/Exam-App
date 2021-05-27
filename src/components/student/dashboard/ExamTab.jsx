@@ -1,6 +1,11 @@
 import React from "react";
+import FacultyHome from "../../faculty/dashboard/FacultyHome";
 
 export default function ExamTab( ) {
 
-  return <h1>Exam Page...</h1>;
+  const data = (d) => {console.log("hello")}
+
+  return (
+    <FacultyHome data={data}/>
+  );
 }
