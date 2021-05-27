@@ -19,7 +19,7 @@ router.post("/signup", (request, response) => {
       status: "WARNING",
       message: "Name should consist only a-z or A-Z",
     });
-  } else if (!/^[a-zA-Z0-9]*$/.test(FacultyID)) {
+  } else if (!/^[a-zA-Z][0-9]*$/.test(FacultyID)) {
     response.json({
       status: "WARNING",
       message:
