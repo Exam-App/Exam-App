@@ -1,11 +1,10 @@
+import { Typography } from "@material-ui/core";
 import React from "react";
-import FacultyHome from "../../faculty/dashboard/FacultyHome";
 
-export default function ExamTab( ) {
-
-  const data = (d) => {console.log("hello")}
-
+export default function ExamTab() {
   return (
-    <FacultyHome data={data}/>
+    <Typography variant="h5" gutterBottom align="center">
+      Exam Page
+    </Typography>
   );
 }

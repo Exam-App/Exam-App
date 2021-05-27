@@ -71,7 +71,7 @@ body {
   text-transform: uppercase;
 }
 
-.notfound a {
+/* .notfound Button {
   font-family: 'Titillium Web', sans-serif;
   display: inline-block;
   text-transform: uppercase;
@@ -88,9 +88,9 @@ body {
   transition: 0.2s all;
 }
 
-.notfound a:hover {
+.notfound Button:hover {
   opacity: 0.8;
-}
+} */
 
 @media only screen and (max-width: 767px) {
   .notfound .notfound-404 {
