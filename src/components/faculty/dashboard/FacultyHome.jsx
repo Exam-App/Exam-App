@@ -144,16 +144,36 @@ function FacultyHome() {
             <>
             
               <p>{d.Question}</p>
+              
+              { d.A!==undefined &&(<>
               <input type="radio" id="male" name="gender" value="male" />
               <label for="male">{d.A}</label><br></br>
+              </>)}
+              { d.B!==undefined &&(<>
               <input type="radio" id="male" name="gender" value="male" />
+              <label for="male">{d.B}</label><br></br>
+              </>)}
+              { d.C!==undefined &&(<>
+              <input type="radio" id="male" name="gender" value="male" />
+              <label for="male">{d.C}</label><br></br>
+              </>)}
+              { d.D!==undefined &&(<>
+              <input type="radio" id="male" name="gender" value="male" />
+              <label for="male">{d.D}</label><br></br>
+              </>)}
+              { d.E!==undefined &&(<>
+              <input type="radio" id="male" name="gender" value="male" />
+              <label for="male">{d.E}</label><br></br>
+              </>)}
+              
+              {/* <input type="radio" id="male" name="gender" value="male" />
               <label for="male">{d.B}</label><br></br>
               <input type="radio" id="male" name="gender" value="male" />
               <label for="male">{d.C}</label><br></br>
               <input type="radio" id="male" name="gender" value="male" />
               <label for="male">{d.D}</label><br></br>
               <input type="radio" id="male" name="gender" value="male" />
-              <label for="male">{d.E}</label><br></br>
+              <label for="male">{d.E}</label><br></br> */}
               
             </>
           ))}
