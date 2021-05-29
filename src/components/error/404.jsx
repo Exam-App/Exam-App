@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router";
 import "./404.css";
@@ -23,8 +23,15 @@ export default function Error404() {
           removed. name changed or is temporarily unavailable
           <br />
         </p>
-        <Button onClick={goToPreviousPath} style={{ background: "#5c91fe", padding: "10px 40px", marginTop: "15px"}}>
-          Go Back
+        <Button
+          onClick={goToPreviousPath}
+          style={{
+            background: "#5c91fe",
+            padding: "10px 40px",
+            marginTop: "15px",
+          }}
+        >
+          <Typography style={{color: "whitesmoke"}}>Go Back</Typography>
         </Button>
       </div>
     </div>

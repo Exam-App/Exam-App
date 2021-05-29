@@ -106,8 +106,8 @@ export default function Instructions() {
                 </li>
               </ol>
               <CardContent className={classes.pos}>
-                <Button onClick={routeChange} style={{ background: "#7e57c2" }}>
-                  <Typography style={{ color: "#ffffff" }}>
+                <Button variant="outlined" onClick={routeChange}>
+                  <Typography variant="h6" style={{ color: "#7e57c2" }}>
                     Get Started
                   </Typography>
                 </Button>

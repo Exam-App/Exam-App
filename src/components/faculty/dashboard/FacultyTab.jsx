@@ -12,7 +12,7 @@ export default function FacultyTab() {
 
 
   return (
-    <Box className={classes.toolbar} width="45%" height="10%">
+    <Box width="40%">
       <div>
         <Registration />
       </div>

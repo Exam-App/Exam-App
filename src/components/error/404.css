@@ -71,27 +71,6 @@ body {
   text-transform: uppercase;
 }
 
-/* .notfound Button {
-  font-family: 'Titillium Web', sans-serif;
-  display: inline-block;
-  text-transform: uppercase;
-  color: #fff;
-  text-decoration: none;
-  border: none;
-  background: #5c91fe;
-  padding: 10px 40px;
-  font-size: 14px;
-  font-weight: 700;
-  border-radius: 1px;
-  margin-top: 15px;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
-}
-
-.notfound Button:hover {
-  opacity: 0.8;
-} */
-
 @media only screen and (max-width: 767px) {
   .notfound .notfound-404 {
     height: 110px;

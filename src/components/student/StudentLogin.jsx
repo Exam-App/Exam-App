@@ -196,11 +196,9 @@ function StudentLogin() {
               variant="outlined"
               type="submit"
               onClick={handleSubmit}
-              // style={{ background: "#7e57c2" }}
             >
               <Typography
                 variant="h6"
-                // className={classes.font}
                 style={{ color: "#7e57c2" }}
               >
                 login
