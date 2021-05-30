@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import Nav from "./components/Nav";
+import Nav from "./components/Nav";
 
 // Faculty Routes
 import FacultyLoginTab from "./components/faculty/FacultyLogin";
@@ -24,7 +24,9 @@ function Routes() {
 
   return (
     <BrowserRouter>
+      <Nav/>
       <Switch>
+        
         <Route exact path="/" component={Instructions} />
 
         {(() => {

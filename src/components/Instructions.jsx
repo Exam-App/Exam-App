@@ -6,15 +6,20 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     minWidth: 275,
     // backgroundColor: "#151515",
   },
   pos: {
-    ...theme.mixins.toolbar,
     textAlign: "center",
-    marginBottom: 12,
+    marginBottom: 10,
+  },
+  cardStyle: {
+    width: 1000,
+    marginTop: 80,
+    marginBottom: 15,
+    marginLeft: 180,
   },
 }));
 
@@ -29,12 +34,7 @@ export default function Instructions() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Card
-        style={{
-          width: 1000,
-          margin: "auto",
-        }}
-      >
+      <Card variant="outlined" className={classes.cardStyle}>
         <main>
           <CardContent>
             <Typography
