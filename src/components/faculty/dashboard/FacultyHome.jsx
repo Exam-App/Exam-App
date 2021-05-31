@@ -96,6 +96,8 @@
 
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
+import axios from "axios";
+
 
 function FacultyHome() {
   const [items, setItems] = useState([]);
@@ -129,6 +131,22 @@ function FacultyHome() {
     });
   };
 
+  const handleclick=()=>{
+
+
+
+    axios.post('http://localhost:4000/app/sendfile',items)
+  }
+
+
+  
+
+
+  
+
+
+
+
   return (
     <div>
       <input
@@ -138,6 +156,8 @@ function FacultyHome() {
           readExcel(file);
         }}
       />
+
+      
 
       
           {items.map((d) => (
@@ -176,7 +196,9 @@ function FacultyHome() {
               <label for="male">{d.E}</label><br></br> */}
               
             </>
+            
           ))}
+        <button onClick={handleclick}> Send to the server </button>
         
     </div>
   );
