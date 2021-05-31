@@ -3,7 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import questions from "../../upload.json"
+import questions from "../../../upload.json"
+
 import * as XLSX from "xlsx";
 
 import { Grid, Header, List } from "semantic-ui-react";
@@ -83,7 +84,9 @@ export default function ExamTab() {
             <b>Answer the following choose the correct answers </b>
           </Typography>
           <br />
+
           
+
         </CardContent>
       </Card>
 
@@ -148,6 +151,7 @@ export default function ExamTab() {
                           </>
                         )}  
                         </List.Content>
+
                       </List.Item>
                     );
                   })}

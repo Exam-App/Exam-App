@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     width: 1000,
     marginTop: 80,
     marginBottom: 15,
-    marginLeft: 180,
+    marginLeft: 250,
   },
 }));
 
