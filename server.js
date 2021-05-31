@@ -1,12 +1,15 @@
 const express = require("express");
 const app = express();
+
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const facultyUrls = require("./router/facultyRoute");
 const studentUrls = require("./router/studentRoute");
+const fileUrls = require("./router/filesRoute");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const auth = require("./middleware/auth");
+const { request, response } = require("express");
 dotenv.config();
 
 mongoose.connect(
@@ -20,6 +23,7 @@ mongoose.connect(
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use(
   cors({
     origin: ["http://localhost:3000"],
@@ -28,6 +32,8 @@ app.use(
 );
 app.use("/app", facultyUrls);
 app.use("/app", studentUrls);
+app.use("/app", fileUrls);
+
 
 app.get('/dashboard',auth , (request, response) => response.render('dashboard') )
 
