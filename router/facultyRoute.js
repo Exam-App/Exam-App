@@ -19,7 +19,7 @@ router.post("/signup", (request, response) => {
       status: "WARNING",
       message: "Name should consist only a-z or A-Z",
     });
-  } else if (!/^[a-zA-Z0-9]*$/.test(FacultyID)) {
+  } else if (!/^[a-zA-Z][0-9]*$/.test(FacultyID)) {
     response.json({
       status: "WARNING",
       message:
@@ -70,9 +70,7 @@ router.post("/signup", (request, response) => {
                     httpOnly: true,
                   });
 
-                  // console.log(token);
                   response.json({
-                    // token,
                     status: "SUCCESS",
                     message: "Signup successful",
                     data: result,
@@ -116,7 +114,7 @@ router.post("/faculty", (request, response) => {
     });
   } else {
     // Check if FacultyID exist
-   const existingFaculty =  newFaculty
+    const existingFaculty = newFaculty
       .find({ FacultyID })
       .then((data) => {
         if (data.length) {
@@ -127,7 +125,6 @@ router.post("/faculty", (request, response) => {
             .compare(password, hashedPassword)
             .then((result) => {
               if (result) {
-
                 const token = jwt.sign(
                   { id: existingFaculty._id },
                   process.env.JWT_SECRET,

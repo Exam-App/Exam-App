@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const newFaculty = require("../models/studentModel");
+const newStudent = require("../models/studentModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// register for Faculty
+// register for Student
 
 router.post("/register", (request, response) => {
   let { StudentID, FullName, password } = request.body;
@@ -19,7 +19,7 @@ router.post("/register", (request, response) => {
       status: "WARNING",
       message: "Name should consist only a-z or A-Z",
     });
-  } else if (!/^[a-zA-Z0-9]*$/.test(StudentID)) {
+  } else if (!/^[a-zA-Z][0-9]*$/.test(StudentID)) {
     response.json({
       status: "WARNING",
       message:
@@ -31,12 +31,12 @@ router.post("/register", (request, response) => {
       message: "Password is too short! enter atleast 6 character",
     });
   } else {
-    // Checking if newFaculty already exists
-    newFaculty
+    // Checking if newStudent already exists
+    newStudent
       .find({ StudentID })
       .then((result) => {
         if (result.length) {
-          // A newFaculty already exists
+          // A newStudent already exists
           response.json({
             status: "FAILED",
             message: "StudentID already exists",
@@ -49,15 +49,27 @@ router.post("/register", (request, response) => {
           bcrypt
             .hash(password, saltRound)
             .then((hashedPassword) => {
-              const newFacultyID = new newFaculty({
+              const newStudentID = new newStudent({
                 StudentID,
                 FullName,
                 password: hashedPassword,
               });
 
-              newFacultyID
+              newStudentID
                 .save()
                 .then((result) => {
+                  const token = jwt.sign(
+                    { id: newStudentID._id },
+                    process.env.JWT_SECRET,
+                    {
+                      //expiresIn: 3600
+                    }
+                  );
+
+                  response.cookie("token", token, {
+                    httpOnly: true,
+                  });
+
                   response.json({
                     status: "SUCCESS",
                     message: "Signup successful",
@@ -69,7 +81,7 @@ router.post("/register", (request, response) => {
                   response.status(409).json({
                     status: "FAILED",
                     message:
-                      "An error occurred while saving newFaculty account!",
+                      "An error occurred while saving newStudent account!",
                   });
                 });
             })
@@ -102,7 +114,7 @@ router.post("/login", (request, response) => {
     });
   } else {
     // Check if StudentID exist
-    newFaculty
+    const existingStudent = newStudent
       .find({ StudentID })
       .then((data) => {
         if (data.length) {
@@ -113,6 +125,18 @@ router.post("/login", (request, response) => {
             .compare(password, hashedPassword)
             .then((result) => {
               if (result) {
+                const token = jwt.sign(
+                  { id: existingStudent._id },
+                  process.env.JWT_SECRET,
+                  {
+                    // expiresIn: 3600,
+                  }
+                );
+
+                response.cookie("token", token, {
+                  httpOnly: true,
+                });
+
                 // Password match
                 response.json({
                   status: "SUCCESS",
