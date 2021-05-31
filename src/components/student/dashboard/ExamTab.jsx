@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-// import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import questions from "../../upload.json"
 import * as XLSX from "xlsx";
 
+import { Grid, Header, List } from "semantic-ui-react";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -65,7 +65,8 @@ export default function ExamTab() {
 
   return (
     <div>
-    <Card variant="outlined"
+      <Card
+        variant="outlined"
         style={{
           width: 1000,
           marginTop: 100,
@@ -73,67 +74,89 @@ export default function ExamTab() {
         }}
       >
         <CardContent>
-        <Typography variant="body2" component="p" className={classes.pos} >
-            <h1>Welcome To Exam Application  </h1>
-            <br/><br/>
-            
+          <Typography variant="body2" component="p" className={classes.pos}>
+            <h1>Welcome To Exam Application </h1>
+            <br />
+            <br />
           </Typography>
           <Typography variant="body1" component="p">
-            <b>Answer the following choose the correct answers  </b>
+            <b>Answer the following choose the correct answers </b>
           </Typography>
-          <br/>
-    <input
-      type="file"
-      onChange={(e) => {
-        const file = e.target.files[0];
-        readExcel(file);
-      }}
-    />
-    </CardContent>
-    </Card>
-    
+          <br />
+          
+        </CardContent>
+      </Card>
 
-
-      <Card variant="outlined" style={{
+      <Card
+        variant="outlined"
+        style={{
           width: 1000,
           marginTop: 20,
           marginLeft: 190,
-        }}>
-      <CardContent>
-        
-        {items.map((d) => (
-          <>
-          
-            <p>{d.Question}</p>
-            
-            { d.A!==undefined &&(<>
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">{d.A}</label><br></br>
-            </>)}
-            { d.B!==undefined &&(<>
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">{d.B}</label><br></br>
-            </>)}
-            { d.C!==undefined &&(<>
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">{d.C}</label><br></br>
-            </>)}
-            { d.D!==undefined &&(<>
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">{d.D}</label><br></br>
-            </>)}
-            { d.E!==undefined &&(<>
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">{d.E}</label><br></br>
-            </>)}
-            
-
-            
-          </>
-        ))}
-        
+        }}
+      >
+        <CardContent>
+          <Grid>
+            <Grid.Row>
+              <Grid.Column>
+                <Header>Quiz</Header>
+                <List>
+                  {questions.map((el) => {
+                    return (
+                      <List.Item key={el.Question}>
+                        <br></br>
+                        <List.Content>
+                          {el.Question}
+                        </List.Content>
+                        <List.Content>
+                        { el.A!==undefined &&(
+                          <>
+                            <input type="radio" id="male" name="gender" value="male" />
+                            <label for="male">{el.A}</label>
+                          </>
+                        )}
+                        </List.Content>
+                        <List.Content>
+                        { el.B!==undefined &&(
+                          <>
+                            <input type="radio" id="male" name="gender" value="male" />
+                            <label for="male">{el.B}</label><br></br>
+                          </>
+                        )}
+                        </List.Content>
+                        <List.Content>
+                        { el.C!==undefined &&(
+                          <>
+                            <input type="radio" id="male" name="gender" value="male" />
+                            <label for="male">{el.C}</label><br></br>
+                          </>
+                        )}
+                        </List.Content>
+                        <List.Content>
+                        { el.D!==undefined &&(
+                          <>
+                            <input type="radio" id="male" name="gender" value="male" />
+                            <label for="male">{el.D}</label><br></br>
+                          </>
+                        )}
+                        </List.Content>
+                        <List.Content>
+                        { el.E!==undefined &&(
+                          <>
+                            <input type="radio" id="male" name="gender" value="male" />
+                            <label for="male">{el.E}</label><br></br>
+                          </>
+                        )}  
+                        </List.Content>
+                      </List.Item>
+                    );
+                  })}
+                </List>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </CardContent>
       </Card>
-  </div>
-);
+    </div>
+  );
 }

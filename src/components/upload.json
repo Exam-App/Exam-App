@@ -1,0 +1,33 @@
+[
+  {
+    "Question": "what are the basic datatypes",
+    "A": "int",
+    "B": "float",
+    "C": "char",
+    "D": "string",
+    "E": "All of the above",
+    "Answer": "All of the above"
+  },
+  {
+    "Question": "syntax to add two numbers",
+    "A": "A-B",
+    "B": "A*B",
+    "C": "A+B",
+    "Answer": "C"
+  },
+  {
+    "Question": "next question3",
+    "A": "option1",
+    "B": "option2",
+    "C": "option3",
+    "Answer": "option2"
+  },
+  {
+    "Question": "next question4",
+    "A": "option1",
+    "B": "option2",
+    "C": "option3",
+    "D": "option4",
+    "Answer": "option2"
+  }
+]
