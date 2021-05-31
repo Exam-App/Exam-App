@@ -142,7 +142,7 @@ function LoginTab() {
       >
         <div className={classes.margin}>
           <Typography variant="h4" className={classes.pos}>
-            🔐 Faculty login
+            Faculty login
           </Typography>
           <br />
           <Grid container spacing={8} alignItems="flex-end">
@@ -183,11 +183,11 @@ function LoginTab() {
           <br></br>
           <Grid container justify="center" style={{ marginTop: "10px" }}>
             <Button
+              variant="outlined"
               type="submit"
               onClick={handleSubmit}
-              style={{ background: "#7e57c2" }}
             >
-              <Typography style={{ color: "#ffffff" }}>login</Typography>
+              <Typography variant="h6" style={{ color: "#7e57c2" }}>login</Typography>
             </Button>
           </Grid>
         </div>

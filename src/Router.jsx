@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import Nav from "./components/Nav";
+import Nav from "./components/Nav";
 
 // Faculty Routes
 import FacultyLoginTab from "./components/faculty/FacultyLogin";
@@ -24,26 +24,32 @@ function Routes() {
 
   return (
     <BrowserRouter>
+      <Nav/>
       <Switch>
+        
         <Route exact path="/" component={Instructions} />
 
         {(() => {
           if (loggedIn === false) {
             return (
               <>
-                <Route path="/signup" component={SignUpTab} />
-                <Route path="/faculty" component={FacultyLoginTab} />
-                <Route path="/login" component={StudentLogin} />
-                <Route component={error404} />
+                <Switch>
+                  <Route path="/signup" component={SignUpTab} />
+                  <Route path="/faculty" component={FacultyLoginTab} />
+                  <Route path="/login" component={StudentLogin} />
+                  <Route component={error404} />
+                </Switch>
               </>
             );
           } else if (loggedIn === true) {
             return (
               <>
-                <Route path="/dashboard" component={FacultyTab} />
-                <Route path="/welcome" component={FacultyHome} />
-                <Route path="/exam" component={ExamTab} />
-                <Route component={error404} />
+                <Switch>
+                  <Route path="/dashboard" component={FacultyTab} />
+                  <Route path="/welcome" component={FacultyHome} />
+                  <Route path="/exam" component={ExamTab} />
+                  <Route component={error404} />
+                </Switch>
               </>
             );
           }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Paper,
   makeStyles,
   Grid,
   TextField,
@@ -16,16 +15,9 @@ function Alert(props) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    "& > * + *": {
-      marginTop: theme.spacing(2),
-    },
-  },
   margin: {
     margin: 10,
-    marginTop: 100,
-    width: 500,
+    width: "auto",
   },
   padding: {
     padding: 25,
@@ -134,88 +126,81 @@ function Registration() {
           );
         }
       })()}
-
-      <Paper
-        className={classes.padding}
-        variant="outlined"
-        style={{ borderRadius: "10px" }}
-      >
-        <div className={classes.margin}>
-          <Typography variant="h4" className={classes.pos}>
-            🔐 Faculty Signup
-          </Typography>
-          <br />
-          <Grid container spacing={8} alignItems="flex-end">
-            <Grid item md={true} sm={true} xs={true}>
-              <TextField
-                id="FullName"
-                label="FullName"
-                type="name"
-                variant="outlined"
-                fullWidth
-                autoFocus
-                required
-                onChange={handleChange}
-                value={state.FullName}
-              />
-            </Grid>
-          </Grid>
-
-          <Grid container spacing={8} alignItems="flex-end">
-            <Grid item md={true} sm={true} xs={true}>
-              <TextField
-                id="StudentID"
-                label="StudentID"
-                type="name"
-                variant="outlined"
-                fullWidth
-                autoFocus
-                required
-                onChange={handleChange}
-                value={state.StudentID}
-              />
-            </Grid>
-          </Grid>
-
-          <Typography>
-            <small>Student Register ID / Roll Number</small>
-          </Typography>
-          <br />
-
-          <Grid container spacing={8} alignItems="flex-end">
-            <Grid item md={true} sm={true} xs={true}>
-              <TextField
-                id="password"
-                label="Password"
-                type="password"
-                variant="outlined"
-                fullWidth
-                required
-                onChange={handleChange}
-                value={state.password}
-              />
-            </Grid>
-          </Grid>
-
-          <br></br>
-          <br></br>
-          <Grid container justify="center" style={{ marginTop: "10px" }}>
-            <Button
-              type="submit"
-              onClick={handleSubmit}
-              style={{ background: "#7e57c2" }}
-            >
-              <Typography style={{ color: "#ffffff" }}>sign up</Typography>
-            </Button>
-          </Grid>
-        </div>
-
+      <div className={classes.margin}>
+        <Typography variant="h4" className={classes.pos}>
+          Register a student for exam
+        </Typography>
         <br />
-        {/* <Typography className={classes.pos}>
+        <Grid container spacing={8} alignItems="flex-end">
+          <Grid item md={true} sm={true} xs={true}>
+            <TextField
+              id="FullName"
+              label="FullName"
+              type="name"
+              variant="outlined"
+              fullWidth
+              autoFocus
+              required
+              onChange={handleChange}
+              value={state.FullName}
+            />
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={8} alignItems="flex-end">
+          <Grid item md={true} sm={true} xs={true}>
+            <TextField
+              id="StudentID"
+              label="StudentID"
+              type="name"
+              variant="outlined"
+              fullWidth
+              autoFocus
+              required
+              onChange={handleChange}
+              value={state.StudentID}
+            />
+          </Grid>
+        </Grid>
+
+        <Typography>
+          <small>Student Register ID / Roll Number</small>
+        </Typography>
+        <br />
+
+        <Grid container spacing={8} alignItems="flex-end">
+          <Grid item md={true} sm={true} xs={true}>
+            <TextField
+              id="password"
+              label="Password"
+              type="password"
+              variant="outlined"
+              fullWidth
+              required
+              onChange={handleChange}
+              value={state.password}
+            />
+          </Grid>
+        </Grid>
+
+        <br></br>
+        <br></br>
+        <Grid container justify="center" style={{ marginTop: "10px" }}>
+          <Button
+            type="submit"
+            onClick={handleSubmit}
+            variant="outlined"
+          >
+            <Typography variant="h6" style={{ color: "#7e57c2" }}>sign up</Typography>
+          </Button>
+        </Grid>
+      </div>
+
+      <br />
+      {/* <Typography className={classes.pos}>
           Already Registered ? <a href="/faculty">login</a>
         </Typography> */}
-        <br />
-      </Paper>
+      <br />
     </Grid>
   );
 }

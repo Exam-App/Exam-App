@@ -186,14 +186,6 @@ function FacultyHome() {
               <label for="male">{d.E}</label><br></br>
               </>)}
               
-              {/* <input type="radio" id="male" name="gender" value="male" />
-              <label for="male">{d.B}</label><br></br>
-              <input type="radio" id="male" name="gender" value="male" />
-              <label for="male">{d.C}</label><br></br>
-              <input type="radio" id="male" name="gender" value="male" />
-              <label for="male">{d.D}</label><br></br>
-              <input type="radio" id="male" name="gender" value="male" />
-              <label for="male">{d.E}</label><br></br> */}
               
             </>
             
