@@ -148,7 +148,15 @@ function FacultyHome() {
 
 
   return (
+    
     <div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <input
         type="file"
         onChange={(e) => {
