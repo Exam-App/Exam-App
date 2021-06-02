@@ -5,7 +5,6 @@ class ExamTab extends Component {
   constructor() {
     super();
     this.state = {
-      
       index: 0,
       score: 0,
     };
@@ -21,9 +20,9 @@ class ExamTab extends Component {
 
   formSubmit = (event) => {
     event.preventDefault();
-     this.setState({
-       index: this.state.index + 1,
-     });
+    this.setState({
+      index: this.state.index + 1,
+    });
     console.log(this.state.selectedOption);
     if (this.state.selectedOption === questions[this.state.index].Answer) {
       this.setState({
@@ -35,80 +34,99 @@ class ExamTab extends Component {
 
   render() {
     return (
-      <form onSubmit={this.formSubmit}>
-        <div className="radio">
-          <p>{questions[this.state.index].Question}</p>
-          <label>
-            <input
-              type="radio"
-              value={questions[this.state.index].A}
-              checked={
-                this.state.selectedOption === questions[this.state.index].A
-              }
-              onChange={this.onValueChange}
-            />
-            {questions[this.state.index].A}
-          </label>
+      <>
+        <div>
+          {questions[this.state.index]=== undefined ? (
+            
+            <div> End of the Quiz
+              <br></br>
+              <br></br>
+              <br></br>
+            <h1 align="center">The score is:{this.state.score}</h1>
+          </div>
+          ) : (
+            <form onSubmit={this.formSubmit}>
+          <div className="radio">
+            <br></br>
+            <br></br>
+            <br></br>
+            <p>{questions[this.state.index].Question}</p>
+            <label>
+              <input
+                type="radio"
+                value={questions[this.state.index].A}
+                checked={
+                  this.state.selectedOption === questions[this.state.index].A
+                }
+                onChange={this.onValueChange}
+              />
+              {questions[this.state.index].A}
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                value={questions[this.state.index].B}
+                checked={
+                  this.state.selectedOption === questions[this.state.index].B
+                }
+                onChange={this.onValueChange}
+              />
+              {questions[this.state.index].B}
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                value={questions[this.state.index].C}
+                checked={
+                  this.state.selectedOption === questions[this.state.index].C
+                }
+                onChange={this.onValueChange}
+              />
+              {questions[this.state.index].C}
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                value={questions[this.state.index].D}
+                checked={
+                  this.state.selectedOption === questions[this.state.index].D
+                }
+                onChange={this.onValueChange}
+              />
+              {questions[this.state.index].D}
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                value={questions[this.state.index].E}
+                checked={
+                  this.state.selectedOption === questions[this.state.index].E
+                }
+                onChange={this.onValueChange}
+              />
+              {questions[this.state.index].E}
+            </label>
+          </div>
+          <div>Selected option is : {this.state.selectedOption}</div>
+          <button className="btn btn-default" type="submit">
+            Next
+          </button>
+          <br />
+          <h1 align="center">{this.state.score}</h1>
+        </form>
+          )}
         </div>
-        <div className="radio">
-          <label>
-            <input
-              type="radio"
-              value={questions[this.state.index].B}
-              checked={
-                this.state.selectedOption === questions[this.state.index].B
-              }
-              onChange={this.onValueChange}
-            />
-            {questions[this.state.index].B}
-          </label>
-        </div>
-        <div className="radio">
-          <label>
-            <input
-              type="radio"
-              value={questions[this.state.index].C}
-              checked={
-                this.state.selectedOption === questions[this.state.index].C
-              }
-              onChange={this.onValueChange}
-            />
-            {questions[this.state.index].C}
-          </label>
-        </div>
-        <div className="radio">
-          <label>
-            <input
-              type="radio"
-              value={questions[this.state.index].D}
-              checked={
-                this.state.selectedOption === questions[this.state.index].D
-              }
-              onChange={this.onValueChange}
-            />
-            {questions[this.state.index].D}
-          </label>
-        </div>
-        <div className="radio">
-          <label>
-            <input
-              type="radio"
-              value={questions[this.state.index].E}
-              checked={
-                this.state.selectedOption === questions[this.state.index].E
-              }
-              onChange={this.onValueChange}
-            />
-            {questions[this.state.index].E}
-          </label>
-        </div>
-        <div>Selected option is : {this.state.selectedOption}</div>
-        <button className="btn btn-default" type="submit">
-          Next
-        </button>
-        <br />
-        <h1 align="center">{this.state.score}</h1>
-      </form>
+
+        
+      </>
     );
   }
 }
