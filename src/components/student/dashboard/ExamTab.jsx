@@ -1,7 +1,30 @@
 import React, { Component } from "react";
 import questions from "../../../upload.json";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+
+
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
 
 class ExamTab extends Component {
+  
   constructor() {
     super();
     this.state = {
@@ -33,9 +56,20 @@ class ExamTab extends Component {
   };
 
   render() {
+
     return (
       <>
         <div>
+        <br></br>
+              <br></br>
+              <br></br><br></br>
+              <br></br>
+              <br></br>
+        <Card style={{ marginLeft:200, marginRight:200}} >
+      <CardContent style={{ marginLeft:30}}>
+      <Typography variant="h6" component="h2">
+        
+        
           {questions[this.state.index]=== undefined ? (
             
             <div> End of the Quiz
@@ -116,14 +150,21 @@ class ExamTab extends Component {
             </label>
           </div>
           <div>Selected option is : {this.state.selectedOption}</div>
-          <button className="btn btn-default" type="submit">
-            Next
+          <button  variant="outlined" type="submit" >
+          <Typography variant="h6" style={{ color: "#7e57c2" }} p={50}>
+                    Next Question
+              </Typography>
           </button>
           <br />
           <h1 align="center">{this.state.score}</h1>
         </form>
           )}
+          </Typography>
+          </CardContent>
+        </Card>
         </div>
+
+      
 
         
       </>
