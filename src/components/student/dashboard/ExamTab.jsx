@@ -1,48 +1,119 @@
-import React from "react";
-// import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import Button from "@material-ui/core/Button";
+import React, { Component } from "react";
 import questions from "../../../upload.json";
 
-import { Grid, Header } from "semantic-ui-react";
-import { Component } from "react";
+class ExamTab extends Component {
+  constructor() {
+    super();
+    this.state = {
+      
+      index: 0,
+      score: 0,
+    };
+    this.onValueChange = this.onValueChange.bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
+  }
 
-// const useStyles = withStyles(() => ({
-//   root: {
-//     minWidth: 275,
-//   },
-//   pos: {
-//     textAlign: "center",
-//     marginBottom: 12,
-//   },
-// }));
+  onValueChange = (event) => {
+    this.setState({
+      selectedOption: event.target.value,
+    });
+  };
 
-// export default function ExamTab() {
-//   const [value, setValue] = React.useState("");
-//   const [state, setState] = React.useState([{
-//     Index: 0,
-//   }]);
+  formSubmit = (event) => {
+    event.preventDefault();
+     this.setState({
+       index: this.state.index + 1,
+     });
+    console.log(this.state.selectedOption);
+    if (this.state.selectedOption === questions[this.state.index].Answer) {
+      this.setState({
+        // index: this.state.index + 1,
+        score: this.state.score + 1,
+      });
+    }
+  };
 
-//   const handleNext = (event) => {
-//     event.preventDefault();
+  render() {
+    return (
+      <form onSubmit={this.formSubmit}>
+        <div className="radio">
+          <p>{questions[this.state.index].Question}</p>
+          <label>
+            <input
+              type="radio"
+              value={questions[this.state.index].A}
+              checked={
+                this.state.selectedOption === questions[this.state.index].A
+              }
+              onChange={this.onValueChange}
+            />
+            {questions[this.state.index].A}
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              value={questions[this.state.index].B}
+              checked={
+                this.state.selectedOption === questions[this.state.index].B
+              }
+              onChange={this.onValueChange}
+            />
+            {questions[this.state.index].B}
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              value={questions[this.state.index].C}
+              checked={
+                this.state.selectedOption === questions[this.state.index].C
+              }
+              onChange={this.onValueChange}
+            />
+            {questions[this.state.index].C}
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              value={questions[this.state.index].D}
+              checked={
+                this.state.selectedOption === questions[this.state.index].D
+              }
+              onChange={this.onValueChange}
+            />
+            {questions[this.state.index].D}
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              value={questions[this.state.index].E}
+              checked={
+                this.state.selectedOption === questions[this.state.index].E
+              }
+              onChange={this.onValueChange}
+            />
+            {questions[this.state.index].E}
+          </label>
+        </div>
+        <div>Selected option is : {this.state.selectedOption}</div>
+        <button className="btn btn-default" type="submit">
+          Next
+        </button>
+        <br />
+        <h1 align="center">{this.state.score}</h1>
+      </form>
+    );
+  }
+}
 
-//     if (value === "best") {
-//     }
-//   };
-
-//    const handleRadioChange = (event) => {
-//      setValue(event.target.value);
-//    };
-
-//   const classes = useStyles();
-
+export default ExamTab;
 //   return (
 //     <div>
 //       <Card
@@ -93,7 +164,7 @@ import { Component } from "react";
 //                     >
 //                       <FormControlLabel
 //                         value="A"
-//                         control={<Radio />}
+//                         control={<checkbox />}
 //                         label="A"
 //                       />
 //                       <FormControlLabel
@@ -173,119 +244,7 @@ import { Component } from "react";
 //       </Card>
 //     </div>
 //   );
+//     }
+//   }
 // }
-
-class ExamTab extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: "",
-      index: 0,
-    };
-  }
-
-  handleNext = (event) => {
-    event.preventDefault();
-  };
-
-  handleRadioChange = (event) => {
-    this.setState(event.target.value);
-  };
-
-  handleClick = () => {
-    this.setState({
-      index: this.state.index + 1,
-    });
-  };
-
-  render() {
-    // const { classes } = this.props;
-    if (questions[(questions.length) - 1] === questions[this.state.index]) {
-      return (
-        <div> <h3>End of Quiz</h3> <button> Submit</button> </div >
-      )
-    }
-    else {
-      return (
-        <div>
-          <Card
-            variant="outlined"
-            style={{
-              width: 1000,
-              marginTop: 100,
-              marginLeft: 190,
-            }}
-          >
-            <CardContent>
-              <Typography variant="body2" component="p">
-                <h1>Welcome To Exam Application </h1>
-                <br />
-                <br />
-              </Typography>
-              <Typography variant="body1" component="p">
-                <b>Answer the following choose the correct answers </b>
-              </Typography>
-              <br />
-            </CardContent>
-          </Card>
-
-          <Card
-            variant="outlined"
-            style={{
-              width: 1000,
-              marginTop: 20,
-              marginLeft: 190,
-            }}
-          >
-            <CardContent>
-              <Grid>
-                <Grid.Row>
-                  <Grid.Column>
-                    <form onSubmit={this.handleNext}>
-                      <FormControl component="fieldset">
-                        <FormLabel component="legend">
-                          {questions[this.state.index].Question}
-                        </FormLabel>
-                        <RadioGroup
-                          aria-label="quiz"
-                          name="quiz"
-                          value={this.value}
-                          onChange={this.handleRadioChange}
-                        >
-                          <FormControlLabel
-                            value={questions[this.state.index].A}
-                            control={<Radio />}
-                            label={questions[this.state.index].A}
-                          />
-                          <FormControlLabel
-                            value={questions[this.state.index].B}
-                            control={<Radio />}
-                            label={questions[this.state.index].B}
-                          />
-                        </RadioGroup>
-
-                        <Button
-                          type="submit"
-                          variant="outlined"
-                          color="primary"
-                          onClick={this.handleClick}
-                        >
-                          Next
-                        </Button>
-                      </FormControl>
-                    </form>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            </CardContent>
-          </Card>
-        </div>
-      );
-    }
-  }
-}
-export default ExamTab;
-
-
-
-
+// export default ExamTab;

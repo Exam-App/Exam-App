@@ -50,16 +50,18 @@ function Registration() {
       password: state.password,
     };
 
-    axios.post("http://localhost:4000/app/register", signUp).then((response) => {
-      if (response.data.status === "SUCCESS") {
-        // window.location = "/login";
-        setState({ Success: response.data.message });
-      } else if (response.data.status === "WARNING") {
-        setState({ Warn: response.data.message });
-      } else if (response.data.status === "FAILED") {
-        setState({ Error: response.data.message });
-      }
-    });
+    axios
+      .post("http://localhost:4000/app/register", signUp)
+      .then((response) => {
+        if (response.data.status === "SUCCESS") {
+          // window.location = "/login";
+          setState({ Success: response.data.message });
+        } else if (response.data.status === "WARNING") {
+          setState({ Warn: response.data.message });
+        } else if (response.data.status === "FAILED") {
+          setState({ Error: response.data.message });
+        }
+      });
 
     setState({
       StudentID: "",
@@ -186,12 +188,10 @@ function Registration() {
         <br></br>
         <br></br>
         <Grid container justify="center" style={{ marginTop: "10px" }}>
-          <Button
-            type="submit"
-            onClick={handleSubmit}
-            variant="outlined"
-          >
-            <Typography variant="h6" style={{ color: "#7e57c2" }}>sign up</Typography>
+          <Button type="submit" onClick={handleSubmit} variant="outlined">
+            <Typography variant="h6" style={{ color: "#7e57c2" }}>
+              sign up
+            </Typography>
           </Button>
         </Grid>
       </div>

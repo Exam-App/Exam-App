@@ -1,134 +1,208 @@
-import React, { useState } from "react";
-
+import React from "react";
+import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Drawer from "@material-ui/core/Drawer";
+import Box from "@material-ui/core/Box";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import * as XLSX from "xlsx";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Link from "@material-ui/core/Link";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import { mainListItems } from "./listItems";
+import FacultyHome from "./FacultyHome";
+import LogOutBtn from "../../LogOutBtn";
+// import Chart from "./Chart";
+// import Deposits from "./Deposits";
+// import Orders from "./Orders";
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="https://material-ui.com/">
+        Exam-App
+      </Link>
+      {new Date().getFullYear()}
+    </Typography>
+  );
+}
+
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 275,
-    // backgroundColor: "#151515",
+    display: "flex",
   },
-  pos: {
+  toolbar: {
+    paddingRight: 24, // keep right padding when drawer closed
+  },
+  toolbarIcon: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: "0 8px",
     ...theme.mixins.toolbar,
-    textAlign: "center",
-    marginBottom: 12,
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginRight: 36,
+  },
+  menuButtonHidden: {
+    display: "none",
+  },
+  title: {
+    flexGrow: 1,
+  },
+  drawerPaper: {
+    position: "relative",
+    whiteSpace: "nowrap",
+    width: drawerWidth,
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerPaperClose: {
+    overflowX: "hidden",
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    width: theme.spacing(7),
+    [theme.breakpoints.up("sm")]: {
+      width: theme.spacing(9),
+    },
+  },
+  appBarSpacer: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    height: "100vh",
+    overflow: "auto",
+  },
+  container: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
+  },
+  fixedHeight: {
+    height: 240,
   },
 }));
 
-
-
-
-export default function FacultyTab() {
-  const [items, setItems] = useState([]);
-
-  const readExcel = (file) => {
-    const promise = new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsArrayBuffer(file);
-
-      fileReader.onload = (e) => {
-        const bufferArray = e.target.result;
-
-        const wb = XLSX.read(bufferArray, { type: "buffer" });
-
-        const wsname = wb.SheetNames[0];
-
-        const ws = wb.Sheets[wsname];
-
-        const data = XLSX.utils.sheet_to_json(ws);
-
-        resolve(data);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-
-    promise.then((d) => {
-      setItems(d);
-    });
-  };
- 
-
+export default function Dashboard() {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(true);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
-    <div>
-    <Card variant="outlined"
-        style={{
-          width: 1000,
-          marginTop: 80,
-          marginLeft:180,
-        }}
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar
+        position="absolute"
+        className={clsx(classes.appBar, open && classes.appBarShift)}
       >
-        <CardContent>
-        <Typography variant="body2" component="p" className={classes.pos} >
-            <h1>Welcome To Exam Application  </h1>
-            <br/><br/>
-            
+        <Toolbar className={classes.toolbar}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            className={clsx(
+              classes.menuButton,
+              open && classes.menuButtonHidden
+            )}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          >
+            Dashboard
           </Typography>
-          <Typography variant="body1" component="p">
-            <b>Dear Faculty Please Upload Exam Test File  </b>
-          </Typography>
-          <br/>
-    <input
-      type="file"
-      onChange={(e) => {
-        const file = e.target.files[0];
-        readExcel(file);
-      }}
-    />
-    </CardContent>
-    </Card>
-    
-
-
-      <Card variant="outlined" style={{
-          width: 1000,
-          marginTop: 15,
-          marginLeft: 180,
-        }}>
-      <CardContent>
-        
-        {items.map((d) => (
-          <>
-          
-            <p>{d.Question}</p>
-            
-            { d.A!==undefined &&(<>
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">{d.A}</label><br></br>
-            </>)}
-            { d.B!==undefined &&(<>
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">{d.B}</label><br></br>
-            </>)}
-            { d.C!==undefined &&(<>
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">{d.C}</label><br></br>
-            </>)}
-            { d.D!==undefined &&(<>
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">{d.D}</label><br></br>
-            </>)}
-            { d.E!==undefined &&(<>
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">{d.E}</label><br></br>
-            </>)}
-            
-         
-            
-          </>
-        ))}
-        
-        </CardContent>
-      </Card>
-  </div>
+          <IconButton color="inherit">
+            <LogOutBtn />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="permanent"
+        classes={{
+          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+        }}
+        open={open}
+      >
+        <div className={classes.toolbarIcon}>
+          <IconButton onClick={handleDrawerClose}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </div>
+        <Divider />
+        <List>{mainListItems}</List>
+        <Divider />
+        {/* <List>{secondaryListItems}</List> */}
+      </Drawer>
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
+            {/* Chart */}
+            <Grid item xs={12} md={8} lg={9}>
+              <Paper className={fixedHeightPaper}>
+                <FacultyHome />
+                {/* <Chart /> */}
+              </Paper>
+            </Grid>
+            {/* Recent Deposits */}
+            <Grid item xs={12} md={4} lg={3}>
+              <Paper className={fixedHeightPaper}>{/* <Deposits /> */}</Paper>
+            </Grid>
+            {/* Recent Orders */}
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>{/* <Orders /> */}</Paper>
+            </Grid>
+          </Grid>
+          <Box pt={4}>
+            <Copyright />
+          </Box>
+        </Container>
+      </main>
+    </div>
   );
 }

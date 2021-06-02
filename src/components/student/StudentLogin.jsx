@@ -192,15 +192,8 @@ function StudentLogin() {
           <br></br>
           <br></br>
           <Grid container justify="center" style={{ marginTop: "10px" }}>
-            <Button
-              variant="outlined"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              <Typography
-                variant="h6"
-                style={{ color: "#7e57c2" }}
-              >
+            <Button variant="outlined" type="submit" onClick={handleSubmit}>
+              <Typography variant="h6" style={{ color: "#7e57c2" }}>
                 login
               </Typography>
             </Button>
