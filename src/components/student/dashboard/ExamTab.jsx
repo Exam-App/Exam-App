@@ -99,6 +99,7 @@ class ExamTab extends Component {
             <br></br>
             <p>{questions[this.state.index].Question}</p>
             <label>
+            {questions[this.state.index].A !== undefined &&(
               <input
                 type="radio"
                 value={questions[this.state.index].A}
@@ -107,11 +108,13 @@ class ExamTab extends Component {
                 }
                 onChange={this.onValueChange}
               />
+            )}
               {questions[this.state.index].A}
             </label>
           </div>
           <div className="radio">
             <label>
+            {questions[this.state.index].B !== undefined &&(
               <input
                 type="radio"
                 value={questions[this.state.index].B}
@@ -120,11 +123,13 @@ class ExamTab extends Component {
                 }
                 onChange={this.onValueChange}
               />
+            )}
               {questions[this.state.index].B}
             </label>
           </div>
           <div className="radio">
             <label>
+            {questions[this.state.index].C !== undefined &&(
               <input
                 type="radio"
                 value={questions[this.state.index].C}
@@ -133,11 +138,13 @@ class ExamTab extends Component {
                 }
                 onChange={this.onValueChange}
               />
+            )}
               {questions[this.state.index].C}
             </label>
           </div>
           <div className="radio">
             <label>
+            {questions[this.state.index].D !== undefined &&(
               <input
                 type="radio"
                 value={questions[this.state.index].D}
@@ -146,11 +153,13 @@ class ExamTab extends Component {
                 }
                 onChange={this.onValueChange}
               />
+            )}
               {questions[this.state.index].D}
             </label>
           </div>
           <div className="radio">
             <label>
+            {questions[this.state.index].E !== undefined &&(
               <input
                 type="radio"
                 value={questions[this.state.index].E}
@@ -159,6 +168,7 @@ class ExamTab extends Component {
                 }
                 onChange={this.onValueChange}
               />
+            )}
               {questions[this.state.index].E}
             </label>
           </div>
