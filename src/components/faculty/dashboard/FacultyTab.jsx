@@ -19,6 +19,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { mainListItems } from "./listItems";
 import FacultyHome from "./FacultyHome";
 import LogOutBtn from "../../LogOutBtn";
+import Registration from "../../student/Registration";
 // import Chart from "./Chart";
 // import Deposits from "./Deposits";
 // import Orders from "./Orders";
@@ -191,7 +192,7 @@ export default function Dashboard() {
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>{/* <Deposits /> */}</Paper>
+              <Paper className={fixedHeightPaper}><Registration/></Paper>
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>

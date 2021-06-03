@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from '@material-ui/core/Box';
+import Timer from "react-compound-timer";
 
 
 
@@ -67,6 +68,22 @@ class ExamTab extends Component {
               <br></br><br></br>
               <br></br>
               <br></br>
+              <Timer
+                initialTime={60000 * 60 * 2}
+                lastUnit="h"
+                direction="backward"
+              >
+              {() => (
+                <>
+                  <button>
+                  <Timer.Hours /> :
+                  
+                  <Timer.Minutes /> :
+                  <Timer.Seconds /> 
+                  </button>
+                </>
+              )}
+              </Timer>
         <Card style={{ marginLeft:200, marginRight:200}} >
       <CardContent style={{ marginLeft:30}}>
         <Typography variant="h4" component="h2" align="center">
