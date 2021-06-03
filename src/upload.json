@@ -13,7 +13,7 @@
     "A": "A-B",
     "B": "A*B",
     "C": "A+B",
-    "Answer": "C"
+    "Answer": "A+B"
   },
   {
     "Question": "syntax to sub two numbers",
