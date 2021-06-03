@@ -4,6 +4,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import Box from '@material-ui/core/Box';
+
 
 
 const useStyles = makeStyles({
@@ -67,15 +69,26 @@ class ExamTab extends Component {
               <br></br>
         <Card style={{ marginLeft:200, marginRight:200}} >
       <CardContent style={{ marginLeft:30}}>
+        <Typography variant="h4" component="h2" align="center">
+        <Box fontWeight="fontWeightBold" fontStyle="italic" m={1}>
+        Quiz
+      </Box>
+        </Typography>
       <Typography variant="h6" component="h2">
         
         
           {questions[this.state.index]=== undefined ? (
             
-            <div> End of the Quiz
+            <div>    
+            
+              
+            <Typography variant="h4" component="h2" align="center">
+            <Box fontWeight="fontWeightBold" fontStyle="italic" m={1}>
+            End of the Quiz
+          </Box>
+          </Typography>
               <br></br>
-              <br></br>
-              <br></br>
+              
             <h1 align="center">The score is:{this.state.score}</h1>
           </div>
           ) : (
