@@ -9,7 +9,6 @@ const fileUrls = require("./router/filesRoute");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const auth = require("./middleware/auth");
-const { request, response } = require("express");
 dotenv.config();
 
 mongoose.connect(
