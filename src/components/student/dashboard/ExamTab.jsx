@@ -36,6 +36,7 @@ class ExamTab extends Component {
     this.state = {
       index: 0,
       score: 0,
+      timeup: false,
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
@@ -61,35 +62,25 @@ class ExamTab extends Component {
     }
   };
 
-  render() {
+  Timeout = () => {
+    this.setState({
+      timeup: true,
+    });
+    console.log("hi");
+  };
 
-    const Timeout = () => {
-      return (
-        <div>
-          <br />
-          <br />
-          <br />
-          <br />
-          <Typography variant="h4" component="h2" align="center">
-            <Box fontWeight="fontWeightBold" fontStyle="italic" m={1}>
-              End of the Quiz
-            </Box>
-          </Typography>
-          <br></br>
-        </div>
-      );
-    };
+  render() {
     return (
       <div>
         <Card variant="outlined" className={this.props.classes.timeStyle}>
           <Timer
-            initialTime={10000 * 1 * 1}
+            initialTime={22000 * 1 * 1}
             lastUnit="h"
             direction="backward"
             checkpoints={[
               {
                 time: 0,
-                callback: () => Timeout(),
+                callback: () => this.Timeout(),
               },
             ]}
           >
@@ -107,7 +98,8 @@ class ExamTab extends Component {
               </Box>
             </Typography>
             <Typography variant="h6" component="h2">
-              {questions[this.state.index] === undefined ? (
+              {questions[this.state.index] === undefined ||
+              this.state.timeup ? (
                 <div>
                   <Typography variant="h4" align="center">
                     <Box fontWeight="fontWeightBold">End of the Quiz</Box>
