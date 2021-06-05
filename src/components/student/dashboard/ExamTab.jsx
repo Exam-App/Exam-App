@@ -8,7 +8,7 @@ import Box from "@material-ui/core/Box";
 import Timer from "react-compound-timer";
 import { withStyles } from "@material-ui/core";
 
-const styles = (theme) => ({
+const styles = (_theme) => ({
   root: {
     minWidth: 275,
     // backgroundColor: "#151515",
@@ -36,7 +36,7 @@ class ExamTab extends Component {
     this.state = {
       index: 0,
       score: 0,
-      timeup: false,
+      timeUp: false,
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
@@ -64,9 +64,8 @@ class ExamTab extends Component {
 
   Timeout = () => {
     this.setState({
-      timeup: true,
+      timeUp: true,
     });
-    console.log("hi");
   };
 
   render() {
@@ -99,7 +98,7 @@ class ExamTab extends Component {
             </Typography>
             <Typography variant="h6" component="h2">
               {questions[this.state.index] === undefined ||
-              this.state.timeup ? (
+              this.state.timeUp ? (
                 <div>
                   <Typography variant="h4" align="center">
                     <Box fontWeight="fontWeightBold">End of the Quiz</Box>
