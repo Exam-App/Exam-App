@@ -6,12 +6,12 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Timer from "react-compound-timer";
-import { withStyles } from "@material-ui/core";
+import { Grid, withStyles } from "@material-ui/core";
 
 const styles = (_theme) => ({
   root: {
     minWidth: 275,
-    // backgroundColor: "#151515",
+    backgroundColor: "#151515",
   },
   pos: {
     textAlign: "center",
@@ -49,10 +49,10 @@ class ExamTab extends Component {
   };
 
   formSubmit = (event) => {
-    event.preventDefault();
     this.setState({
       index: this.state.index + 1,
     });
+    event.preventDefault();
     console.log(this.state.selectedOption);
     if (this.state.selectedOption === questions[this.state.index].Answer) {
       this.setState({
@@ -62,6 +62,24 @@ class ExamTab extends Component {
     }
   };
 
+  NextQuestion = (event) => {
+    event.preventDefault();
+  };
+
+  PreviousQuestion = (event) => {
+    event.preventDefault();
+    this.setState({
+      index: this.state.index - 1,
+      selectedOption: "",
+    });
+
+    // const clear_obj = Object.assign({}, this.state);
+    // for (let key in clear_obj) {
+    //   clear_obj[key] = "";
+    // }
+    // this.setState(clear_obj);
+  };
+
   Timeout = () => {
     this.setState({
       timeUp: true,
@@ -69,6 +87,10 @@ class ExamTab extends Component {
   };
 
   render() {
+    
+    /* from snippet https://stackblitz.com/edit/react-material-quiz?file=app.js */
+    var moveLeft = this.state.index === 0;
+
     return (
       <div>
         <Card variant="outlined" className={this.props.classes.timeStyle}>
@@ -99,17 +121,37 @@ class ExamTab extends Component {
             <Typography variant="h6" component="h2">
               {questions[this.state.index] === undefined ||
               this.state.timeUp ? (
-                <div>
-                  <Typography variant="h4" align="center">
-                    <Box fontWeight="fontWeightBold">End of the Quiz</Box>
-                  </Typography>
+                <>
+                  <div>
+                    <Typography variant="h4" align="center">
+                      <Box fontWeight="fontWeightBold">End of the Quiz</Box>
+                    </Typography>
 
-                  <Typography variant="h4" align="center">
-                    your score is: {this.state.score} / {questions.length}
-                  </Typography>
-                </div>
+                    <Typography variant="h4" align="center">
+                      your score is: {this.state.score} / {questions.length}
+                    </Typography>
+                  </div>
+                  <Grid container justify="center">
+                    <Button
+                      variant="outlined"
+                      // onClick={this.formSubmit}
+                      style={{
+                        marginLeft: 20,
+                        marginTop: 15,
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        style={{ color: "#7e57c2" }}
+                        p={50}
+                      >
+                        submit
+                      </Typography>
+                    </Button>
+                  </Grid>
+                </>
               ) : (
-                <form onSubmit={this.formSubmit}>
+                <form>
                   <div className="radio">
                     <br></br>
 
@@ -193,25 +235,48 @@ class ExamTab extends Component {
                       {questions[this.state.index].E}
                     </label>
                   </div>
-                  {/* <div>Selected option is : {this.state.selectedOption}</div> */}
-                  <Button
-                    variant="outlined"
-                    type="submit"
-                    style={{
-                      marginLeft: 680,
-                      marginTop: 15,
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      style={{ color: "#7e57c2" }}
-                      p={50}
+                  <Grid container justify="flex-end">
+                    {/* from snippet https://stackblitz.com/edit/react-material-quiz?file=app.js */}
+                    {moveLeft ? (
+                      <></>
+                    ) : (
+                      <Button
+                        variant="outlined"
+                        value=""
+                        onClick={this.PreviousQuestion}
+                        style={{
+                          marginRight: 20,
+                          marginTop: 15,
+                        }}
+                      >
+                        <Typography
+                          variant="h6"
+                          style={{ color: "#7e57c2" }}
+                          p={50}
+                        >
+                          Previous Question
+                        </Typography>
+                      </Button>
+                    )}
+                    <Button
+                      variant="outlined"
+                      type="submit"
+                      onClick={this.formSubmit}
+                      style={{
+                        marginTop: 15,
+                      }}
                     >
-                      Next Question
-                    </Typography>
-                  </Button>
+                      <Typography
+                        variant="h6"
+                        style={{ color: "#7e57c2" }}
+                        p={50}
+                      >
+                        Next Question
+                      </Typography>
+                    </Button>
+                  </Grid>
+
                   <br />
-                  {/* <h1 align="center">{this.state.score}</h1> */}
                 </form>
               )}
             </Typography>
