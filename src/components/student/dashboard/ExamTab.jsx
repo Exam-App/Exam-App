@@ -13,14 +13,7 @@ import Radio from "@material-ui/core/Radio";
 import { Grid, withStyles } from "@material-ui/core";
 
 const styles = (theme) => ({
-  root: {
-    minWidth: 275,
-    backgroundColor: "#151515",
-  },
-  pos: {
-    textAlign: "center",
-    marginBottom: 10,
-  },
+
   cardStyle: {
     width: 1000,
     marginTop: 15,
@@ -82,6 +75,7 @@ class ExamTab extends Component {
       index: this.state.index - 1,
       selectedOption: "",
     });
+    // @TODO pop up a value of previous question
 
     // const clear_obj = Object.assign({}, this.state);
     // for (let key in clear_obj) {
@@ -104,7 +98,9 @@ class ExamTab extends Component {
       <div>
         <Card variant="outlined" className={this.props.classes.timeStyle}>
           <Timer
-            initialTime={22000 * 1 * 1}
+            
+            // @TODO using this.state declare time with teachers input
+            initialTime={this.state.seconds * this.state.minutes * this.state.hours}
             lastUnit="h"
             direction="backward"
             checkpoints={[
@@ -145,7 +141,7 @@ class ExamTab extends Component {
                   <Grid container justify="center">
                     <Button
                       variant="outlined"
-                      // onClick={this.formSubmit}
+                      // onClick={this.formSubmit} // @TODO add axios here to submit result and store in DB / Cloud 
                       style={{
                         marginLeft: 20,
                         marginTop: 15,
@@ -175,7 +171,8 @@ class ExamTab extends Component {
                     <FormControl
                       component="fieldset"
                       className={this.props.classes.formControl}
-                    >
+                      >
+                        
                       <RadioGroup>
                         {questions[this.state.index].A !== undefined && (
                           <FormControlLabel
@@ -188,7 +185,8 @@ class ExamTab extends Component {
                             label={questions[this.state.index].A}
                             onChange={this.onValueChange}
                           />
-                        )}
+                          )}
+                          
                         {questions[this.state.index].B !== undefined && (
                           <FormControlLabel
                             value={questions[this.state.index].B}
@@ -239,7 +237,8 @@ class ExamTab extends Component {
                             label={questions[this.state.index].E}
                             onChange={this.onValueChange}
                           />
-                        )}
+                          )}
+                          
                       </RadioGroup>
                     </FormControl>
                   </div>
@@ -283,7 +282,6 @@ class ExamTab extends Component {
                       </Typography>
                     </Button>
                   </Grid>
-
                   <br />
                 </form>
               )}
