@@ -6,9 +6,13 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Timer from "react-compound-timer";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
 import { Grid, withStyles } from "@material-ui/core";
 
-const styles = (_theme) => ({
+const styles = (theme) => ({
   root: {
     minWidth: 275,
     backgroundColor: "#151515",
@@ -27,6 +31,12 @@ const styles = (_theme) => ({
     width: 300,
     marginTop: 80,
     marginLeft: 950,
+  },
+  struct: {
+    marginTop: 15,
+  },
+  formControl: {
+    margin: theme.spacing(3),
   },
 });
 
@@ -87,7 +97,6 @@ class ExamTab extends Component {
   };
 
   render() {
-    
     /* from snippet https://stackblitz.com/edit/react-material-quiz?file=app.js */
     var moveLeft = this.state.index === 0;
 
@@ -118,6 +127,7 @@ class ExamTab extends Component {
                 Chooses
               </Box>
             </Typography>
+
             <Typography variant="h6" component="h2">
               {questions[this.state.index] === undefined ||
               this.state.timeUp ? (
@@ -131,6 +141,7 @@ class ExamTab extends Component {
                       your score is: {this.state.score} / {questions.length}
                     </Typography>
                   </div>
+
                   <Grid container justify="center">
                     <Button
                       variant="outlined"
@@ -152,88 +163,85 @@ class ExamTab extends Component {
                 </>
               ) : (
                 <form>
-                  <div className="radio">
-                    <br></br>
+                  <div>
+                    <Typography
+                      variant="h5"
+                      component="p"
+                      className={this.props.classes.struct}
+                    >
+                      {questions[this.state.index].Question}
+                    </Typography>
 
-                    <p>{questions[this.state.index].Question}</p>
-                    <label>
-                      {questions[this.state.index].A !== undefined && (
-                        <input
-                          type="radio"
-                          value={questions[this.state.index].A}
-                          checked={
-                            this.state.selectedOption ===
-                            questions[this.state.index].A
-                          }
-                          onChange={this.onValueChange}
-                        />
-                      )}
-                      {questions[this.state.index].A}
-                    </label>
-                  </div>
-                  <div className="radio">
-                    <label>
-                      {questions[this.state.index].B !== undefined && (
-                        <input
-                          type="radio"
-                          value={questions[this.state.index].B}
-                          checked={
-                            this.state.selectedOption ===
-                            questions[this.state.index].B
-                          }
-                          onChange={this.onValueChange}
-                        />
-                      )}
-                      {questions[this.state.index].B}
-                    </label>
-                  </div>
-                  <div className="radio">
-                    <label>
-                      {questions[this.state.index].C !== undefined && (
-                        <input
-                          type="radio"
-                          value={questions[this.state.index].C}
-                          checked={
-                            this.state.selectedOption ===
-                            questions[this.state.index].C
-                          }
-                          onChange={this.onValueChange}
-                        />
-                      )}
-                      {questions[this.state.index].C}
-                    </label>
-                  </div>
-                  <div className="radio">
-                    <label>
-                      {questions[this.state.index].D !== undefined && (
-                        <input
-                          type="radio"
-                          value={questions[this.state.index].D}
-                          checked={
-                            this.state.selectedOption ===
-                            questions[this.state.index].D
-                          }
-                          onChange={this.onValueChange}
-                        />
-                      )}
-                      {questions[this.state.index].D}
-                    </label>
-                  </div>
-                  <div className="radio">
-                    <label>
-                      {questions[this.state.index].E !== undefined && (
-                        <input
-                          type="radio"
-                          value={questions[this.state.index].E}
-                          checked={
-                            this.state.selectedOption ===
-                            questions[this.state.index].E
-                          }
-                          onChange={this.onValueChange}
-                        />
-                      )}
-                      {questions[this.state.index].E}
-                    </label>
+                    <FormControl
+                      component="fieldset"
+                      className={this.props.classes.formControl}
+                    >
+                      <RadioGroup>
+                        {questions[this.state.index].A !== undefined && (
+                          <FormControlLabel
+                            value={questions[this.state.index].A}
+                            control={<Radio />}
+                            checked={
+                              this.state.selectedOption ===
+                              questions[this.state.index].A
+                            }
+                            label={questions[this.state.index].A}
+                            onChange={this.onValueChange}
+                          />
+                        )}
+                        {questions[this.state.index].B !== undefined && (
+                          <FormControlLabel
+                            value={questions[this.state.index].B}
+                            control={<Radio />}
+                            checked={
+                              this.state.selectedOption ===
+                              questions[this.state.index].B
+                            }
+                            label={questions[this.state.index].B}
+                            onChange={this.onValueChange}
+                          />
+                        )}
+
+                        {questions[this.state.index].C !== undefined && (
+                          <FormControlLabel
+                            value={questions[this.state.index].C}
+                            control={<Radio />}
+                            checked={
+                              this.state.selectedOption ===
+                              questions[this.state.index].C
+                            }
+                            label={questions[this.state.index].C}
+                            onChange={this.onValueChange}
+                          />
+                        )}
+
+                        {questions[this.state.index].D !== undefined && (
+                          <FormControlLabel
+                            value={questions[this.state.index].D}
+                            control={<Radio />}
+                            checked={
+                              this.state.selectedOption ===
+                              questions[this.state.index].D
+                            }
+                            label={questions[this.state.index].D}
+                            onChange={this.onValueChange}
+                          />
+                        )}
+
+                        {questions[this.state.index].E !== undefined && (
+                          <FormControlLabel
+                            value={questions[this.state.index].E}
+                            control={<Radio />}
+                            checked={
+                              this.state.selectedOption ===
+                              questions[this.state.index].E
+                            }
+                            label={questions[this.state.index].E}
+                            onChange={this.onValueChange}
+                          />
+                        )}
+                      </RadioGroup>
+                    </FormControl>
                   </div>
                   <Grid container justify="flex-end">
                     {/* from snippet https://stackblitz.com/edit/react-material-quiz?file=app.js */}
