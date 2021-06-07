@@ -2,6 +2,23 @@
   "name": "exam-app",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
+  "scripts": {
+    "server": "cd backend && nodemon server",
+    "start": "concurrently --kill-others-on-fail \"react-scripts start\" \"yarn server\" ",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Exam-App/Exam-App.git"
+  },
+  "author": "K Vamsi Krishna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Exam-App/Exam-App/issues"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
@@ -27,13 +44,16 @@
     "react-scripts": "^4.0.3",
     "web-vitals": "^2.0.1",
     "xlsx": "^0.17.0",
-    "yarn": "^1.22.10"
-  },
-  "scripts": {
-    "start": "concurrently --kill-others-on-fail \"react-scripts start\" \"cd ./backend && yarn server\" ",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "yarn": "^1.22.10",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.12",
+    "nodemon": "^2.0.7"
   },
   "eslintConfig": {
     "extends": [
