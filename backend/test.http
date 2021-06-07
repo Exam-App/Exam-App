@@ -1,0 +1,7 @@
+POST http://localhost:4000/app/login
+Content-Type: application/json
+
+{
+    "FacultyID":"saiep",
+    "password":"123456"
+}

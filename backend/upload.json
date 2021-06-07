@@ -1,0 +1,47 @@
+[
+  {
+    "Question": "what are the basic datatypes",
+    "A": "int",
+    "B": "float",
+    "C": "char",
+    "D": "string",
+    "E": "All of the above",
+    "Answer": "All of the above"
+  },
+  {
+    "Question": "syntax to add two numbers",
+    "A": "A-B",
+    "B": "A*B",
+    "C": "A+B",
+    "Answer": "C"
+  },
+  {
+    "Question": "syntax to sub two numbers",
+    "A": "A-B",
+    "B": "A*B",
+    "C": "A+B",
+    "Answer": "A-B"
+  },
+  {
+    "Question": "syntax to mul two numbers",
+    "A": "A-B",
+    "B": "A*B",
+    "C": "A+B",
+    "Answer": "A*B"
+  },
+  {
+    "Question": "syntax to divide two numbers",
+    "A": "A-B",
+    "B": "A*B",
+    "C": "A+B",
+    "E": "A/B",
+    "Answer": "A/B"
+  },
+  {
+    "Question": "syntax to and  in React js",
+    "A": "||",
+    "B": "&&",
+    "C": "&",
+    "Answer": "&&"
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "login form",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Exam-App/backend.git"
+  },
+  "author": "K Vamsi Krishna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Exam-App/backend/issues"
+  },
+  "homepage": "https://github.com/Exam-App/backend#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.12",
+    "nodemon": "^2.0.7"
+  }
+}
