@@ -1,2 +1,0 @@
-[alias]
-  glog = log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
