@@ -40,6 +40,10 @@ class ExamTab extends Component {
       index: 0,
       score: 0,
       timeUp: false,
+      seconds:60000,
+      minutes:1,
+      hours:1
+
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
@@ -90,14 +94,22 @@ class ExamTab extends Component {
     });
   };
 
+  Timestop=()=>{
+    <Timer></Timer>
+  }
+
   render() {
     /* from snippet https://stackblitz.com/edit/react-material-quiz?file=app.js */
     var moveLeft = this.state.index === 0;
 
     return (
       <div>
+        
         <Card variant="outlined" className={this.props.classes.timeStyle}>
-          <Timer
+        <p>This is the current index:{this.state.index}</p>
+          {this.state.index===questions.length ? (
+            <div><p>Exam Ended!!!</p></div>
+          ):(<Timer
             
             // @TODO using this.state declare time with teachers input
             initialTime={this.state.seconds * this.state.minutes * this.state.hours}
@@ -113,7 +125,7 @@ class ExamTab extends Component {
             <Typography align="center" variant="h3">
               <Timer.Hours /> : <Timer.Minutes /> : <Timer.Seconds />
             </Typography>
-          </Timer>
+          </Timer>)}
         </Card>
 
         <Card variant="outlined" className={this.props.classes.cardStyle}>
