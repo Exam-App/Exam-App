@@ -95,9 +95,6 @@ class ExamTab extends Component {
     });
   };
 
-  Timestop=()=>{
-    <Timer></Timer>
-  }
 
   render() {
     /* from snippet https://stackblitz.com/edit/react-material-quiz?file=app.js */
@@ -105,28 +102,35 @@ class ExamTab extends Component {
 
     return (
       <div>
-        
         <Card variant="outlined" className={this.props.classes.timeStyle}>
-        {/* <p>This is the current index:{this.state.index}</p> */}
-          {this.state.index===questions.length ? (
-            <div><p>Exam Ended!!!</p></div>
-          ):(<Timer
-            
-            // @TODO using this.state declare time with teachers input
-            initialTime={this.state.seconds * this.state.minutes * this.state.hours}
-            lastUnit="h"
-            direction="backward"
-            checkpoints={[
-              {
-                time: 0,
-                callback: () => this.Timeout(),
-              },
-            ]}
-          >
-            <Typography align="center" variant="h3">
-              <Timer.Hours /> : <Timer.Minutes /> : <Timer.Seconds />
-            </Typography>
-          </Timer>)}
+
+          {this.state.index === questions.length ? (
+            <div>
+              <Typography variant="h5" gutterBottom>
+                  Exam Ended
+              </Typography>
+            </div>
+          ) : (
+            <Timer
+              // @TODO using this.state declare time with teachers input
+              initialTime={
+                this.state.seconds * this.state.minutes * this.state.hours
+              }
+              lastUnit="h"
+              direction="backward"
+              checkpoints={[
+                {
+                  time: 0,
+                  callback: () => this.Timeout(),
+                },
+              ]}
+            >
+              <Typography align="center" variant="h3">
+                <Timer.Hours /> : <Timer.Minutes /> : <Timer.Seconds />
+              </Typography>
+            </Timer>
+          )}
+
         </Card>
 
         <Card variant="outlined" className={this.props.classes.cardStyle}>
@@ -154,7 +158,7 @@ class ExamTab extends Component {
                   <Grid container justify="center">
                     <Button
                       variant="outlined"
-                      // onClick={this.formSubmit} // @TODO add axios here to submit result and store in DB / Cloud 
+                      // onClick={this.formSubmit} // @TODO add axios here to submit result and store in DB / Cloud
                       style={{
                         marginLeft: 20,
                         marginTop: 15,
@@ -184,8 +188,7 @@ class ExamTab extends Component {
                     <FormControl
                       component="fieldset"
                       className={this.props.classes.formControl}
-                      >
-                        
+                    >
                       <RadioGroup>
                         {questions[this.state.index].A !== undefined && (
                           <FormControlLabel
@@ -198,8 +201,8 @@ class ExamTab extends Component {
                             label={questions[this.state.index].A}
                             onChange={this.onValueChange}
                           />
-                          )}
-                          
+                        )}
+
                         {questions[this.state.index].B !== undefined && (
                           <FormControlLabel
                             value={questions[this.state.index].B}
@@ -250,8 +253,7 @@ class ExamTab extends Component {
                             label={questions[this.state.index].E}
                             onChange={this.onValueChange}
                           />
-                          )}
-                          
+                        )}
                       </RadioGroup>
                     </FormControl>
                   </div>
