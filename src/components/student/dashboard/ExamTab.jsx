@@ -94,9 +94,6 @@ class ExamTab extends Component {
     });
   };
 
-  Timestop=()=>{
-    <Timer></Timer>
-  }
 
   render() {
     /* from snippet https://stackblitz.com/edit/react-material-quiz?file=app.js */
