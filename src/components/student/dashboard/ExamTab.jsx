@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import questions from "../../../upload.json";
+
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -106,7 +107,7 @@ class ExamTab extends Component {
       <div>
         
         <Card variant="outlined" className={this.props.classes.timeStyle}>
-        <p>This is the current index:{this.state.index}</p>
+        {/* <p>This is the current index:{this.state.index}</p> */}
           {this.state.index===questions.length ? (
             <div><p>Exam Ended!!!</p></div>
           ):(<Timer

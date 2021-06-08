@@ -1,47 +1,78 @@
-[
-  {
-    "Question": "what are the basic datatypes",
-    "A": "int",
-    "B": "float",
-    "C": "char",
-    "D": "string",
-    "E": "All of the above",
-    "Answer": "All of the above"
-  },
-  {
-    "Question": "syntax to add two numbers",
-    "A": "A-B",
-    "B": "A*B",
-    "C": "A+B",
-    "Answer": "C"
-  },
-  {
-    "Question": "syntax to sub two numbers",
-    "A": "A-B",
-    "B": "A*B",
-    "C": "A+B",
-    "Answer": "A-B"
-  },
-  {
-    "Question": "syntax to mul two numbers",
-    "A": "A-B",
-    "B": "A*B",
-    "C": "A+B",
-    "Answer": "A*B"
-  },
-  {
-    "Question": "syntax to divide two numbers",
-    "A": "A-B",
-    "B": "A*B",
-    "C": "A+B",
-    "E": "A/B",
-    "Answer": "A/B"
-  },
-  {
-    "Question": "syntax to and  in React js",
-    "A": "||",
-    "B": "&&",
-    "C": "&",
-    "Answer": "&&"
-  }
-]
+{
+  "Sheet1": [
+    {
+      "Question": "Question",
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D",
+      "E": "E",
+      "Answer": "Answer"
+    },
+    {
+      "Question": "what are the basic datatypes",
+      "A": "int",
+      "B": "float",
+      "C": "char",
+      "D": "string",
+      "E": "All of the above",
+      "Answer": "All of the above"
+    },
+    {
+      "Question": "syntax to add two numbers",
+      "A": "A-B",
+      "B": "A*B",
+      "C": "A+B",
+      "Answer": "C"
+    },
+    {
+      "Question": "next question3",
+      "A": "option1",
+      "B": "option2",
+      "C": "option3",
+      "Answer": "option2"
+    },
+    {
+      "Question": "next question4",
+      "A": "option1",
+      "B": "option2",
+      "C": "option3",
+      "D": "option4",
+      "Answer": "option2"
+    },
+    {
+      "Question": "next question5",
+      "A": "option1",
+      "B": "option2",
+      "C": "option3",
+      "D": "option4"
+    },
+    {
+      "Question": "next question6",
+      "A": "option1",
+      "B": "option2",
+      "C": "option3",
+      "D": "option4"
+    }
+  ],
+  "Sheet2": [
+    {
+      "Question": "Question",
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D",
+      "E": "E",
+      "Answer": "Answer"
+    },
+    {
+      "Question": "Compound components is an advanced pattern so it might be overwhelming to use. \r\nThis guide aims to help you understand the pattern so that you can use it effectively with confidence and clarity.",
+      "A": "What is compund compoentn",
+      "B": "aba",
+      "C": "bss",
+      "D": "ieieei",
+      "E": "ejeek",
+      "Answer": "aba"
+    }
+  ]
+}
