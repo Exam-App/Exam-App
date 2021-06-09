@@ -102,6 +102,7 @@ class ExamTab extends Component {
     return (
       <div>
         <Card variant="outlined" className={this.props.classes.timeStyle}>
+
           {this.state.index === questions.length ? (
             <div>
               <Typography variant="h5" gutterBottom>
@@ -128,6 +129,7 @@ class ExamTab extends Component {
               </Typography>
             </Timer>
           )}
+
         </Card>
 
         <Card variant="outlined" className={this.props.classes.cardStyle}>
