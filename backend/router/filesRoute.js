@@ -3,12 +3,11 @@ const router = express.Router();
 const fs = require("fs");
 
 router.post("/sendFile", (request) => {
+  // console.log(request.body)
   try {
-    fs.writeFileSync("upload.json", JSON.stringify(request.body, null, 2));
+    fs.writeFileSync("../src/readJson/upload.json", JSON.stringify(request.body, null, 2));
   } catch (err) {
     console.error(err);
   }
-
-  // console.log(request.body)
 });
 module.exports = router;

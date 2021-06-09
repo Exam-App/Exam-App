@@ -1,52 +1,23 @@
 import React, { useState } from "react";
-import * as XLSX from "xlsx";
 import axios from "axios";
+import xlsxParser from "xlsx-parse-json";
 
 function FacultyHome() {
   const [items, setItems] = useState([]);
 
   const readExcel = (file) => {
-    const promise = new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsArrayBuffer(file);
+    console.log("excel");
+    var f = file;
 
-      fileReader.onload = (e) => {
-        const bufferArray = e.target.result;
-
-        const wb = XLSX.read(bufferArray, { type: "buffer" });
-
-        const wsname = wb.SheetNames[0];
-
-        const ws = wb.Sheets[wsname];
-
-        const data = XLSX.utils.sheet_to_json(ws);
-
-        resolve(data);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
+    xlsxParser.onFileSelection(f).then(function (data) {
+      const items = data;
+      console.log(JSON.stringify(items));
+      axios.post("http://localhost:4000/app/sendFile", items);
     });
-
-    promise.then((d) => {
-      setItems(d);
-    });
-  };
-
-  const handleClick = () => {
-    axios.post("http://localhost:4000/app/sendFile", items);
   };
 
   return (
     <div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
       <input
         type="file"
         onChange={(e) => {
@@ -96,9 +67,8 @@ function FacultyHome() {
           )}
         </>
       ))}
-      <button onClick={handleClick}> Send to the server </button>
+      {/* <button onClick={handleClick}> Send to the server </button> */}
     </div>
   );
 }
-
 export default FacultyHome;

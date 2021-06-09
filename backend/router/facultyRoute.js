@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 router.post("/signup", (request, response) => {
   let { FacultyID, FullName, password } = request.body;
 
-  if (FacultyID == "" || FullName == "" || password == "") {
+  if (FacultyID === "" || FullName === "" || password === "") {
     response.json({
       status: "FAILED",
       message: "Please fill all required fields.",
@@ -107,7 +107,7 @@ router.post("/signup", (request, response) => {
 router.post("/faculty", (request, response) => {
   let { FacultyID, password } = request.body;
 
-  if (FacultyID == "" || password == "") {
+  if (FacultyID === "" || password === "") {
     response.json({
       status: "WARNING",
       message: "Empty credentials supplied",

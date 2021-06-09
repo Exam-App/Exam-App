@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import questions from "../../../upload.json";
+import questions from "../../../readJson/upload.json";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";

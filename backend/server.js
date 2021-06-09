@@ -8,7 +8,7 @@ const studentUrls = require("./router/studentRoute");
 const fileUrls = require("./router/filesRoute");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const auth = require("./middleware/auth");
+const fileUpload = require('express-fileupload')
 dotenv.config();
 
 mongoose.connect(
@@ -22,6 +22,7 @@ mongoose.connect(
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(fileUpload());
 
 app.use(
   cors({
@@ -32,8 +33,5 @@ app.use(
 app.use("/app", facultyUrls);
 app.use("/app", studentUrls);
 app.use("/app", fileUrls);
-
-
-app.get('/dashboard',auth , (request, response) => response.render('dashboard') )
 
 app.listen(4000, () => console.log("server is up and running"));
