@@ -8,7 +8,7 @@ const studentUrls = require("./router/studentRoute");
 const fileUrls = require("./router/filesRoute");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const fileUpload = require('express-fileupload')
+
 dotenv.config();
 
 mongoose.connect(
@@ -22,7 +22,6 @@ mongoose.connect(
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(fileUpload());
 
 app.use(
   cors({
