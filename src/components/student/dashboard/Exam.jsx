@@ -12,12 +12,14 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
 import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import { mainListItems } from "./listItems";
 import Quiz from "../Quiz";
 import LogOutBtn from "../../LogOutBtn";
+import { mainListItems } from "./listItems";
+import Comprehensive from "../Comprehensive";
 
 function Copyright() {
   return (
@@ -173,11 +175,14 @@ export default function Exam() {
         <List>{mainListItems}</List>
       </Drawer>
       <main className={classes.content}>
+        {/* Timer */}
+        <Card variant="outlined"></Card>
+
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           {/* Quiz */}
           <Grid item xs={12}>
-            <Quiz />
+            <Comprehensive />
           </Grid>
           <Box pt={4}>
             <Copyright />
