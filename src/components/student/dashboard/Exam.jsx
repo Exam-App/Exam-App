@@ -18,7 +18,13 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Quiz from "../Quiz";
 import LogOutBtn from "../../LogOutBtn";
-import { mainListItems } from "./listItems";
+import Button from "@material-ui/core/Button";
+
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import BallotIcon from "@material-ui/icons/Ballot";
 import Comprehensive from "../Comprehensive";
 
 function Copyright() {
@@ -118,11 +124,31 @@ const useStyles = makeStyles((theme) => ({
 export default function Exam() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const [state, setState] = React.useState(
+    {
+      quiz: true,
+      comp: false,
+    },
+  );
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleQuiz = (e) => {
+    e.preventDefault()
+    setState({
+      quiz: true,
+    });
+  };
+
+  const handleComp = (e) => {
+    e.preventDefault();
+    setState({
+      comp: true,
+    });
   };
 
   return (
@@ -154,9 +180,9 @@ export default function Exam() {
           >
             Exam
           </Typography>
-          <IconButton color="inherit">
+          <Button color="inherit">
             <LogOutBtn />
-          </IconButton>
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -172,17 +198,33 @@ export default function Exam() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List>
+          {" "}
+          <div>
+            <ListItem button onClick={handleQuiz}>
+              <ListItemIcon>
+                <BallotIcon />
+              </ListItemIcon>
+              <ListItemText primary="Quiz" />
+            </ListItem>
+            <ListItem button onClick={handleComp}>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Comprehensive" />
+            </ListItem>
+          </div>
+        </List>
       </Drawer>
       <main className={classes.content}>
-        {/* Timer */}
         <Card variant="outlined"></Card>
-
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           {/* Quiz */}
           <Grid item xs={12}>
-            <Comprehensive />
+            {/* <Quiz /> */}
+            {state.quiz === true && <Quiz />}
+            {state.comp === true && <Comprehensive />}
           </Grid>
           <Box pt={4}>
             <Copyright />

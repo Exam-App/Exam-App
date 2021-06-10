@@ -3,7 +3,7 @@ import axios from "axios";
 import xlsxParser from "xlsx-parse-json";
 
 function FacultyHome() {
-  const [items, setItems] = useState([]);
+  const [items] = useState([]);
 
   const readExcel = (file) => {
     console.log("excel");

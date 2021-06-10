@@ -12,6 +12,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import { Grid, withStyles } from "@material-ui/core";
 
+
 const styles = (theme) => ({
   cardStyle: {
     width: 1000,
@@ -144,8 +145,7 @@ class Quiz extends Component {
                     </Typography>
 
                     <Typography variant="h4" align="center">
-                      your score is: {this.state.score} /
-                      {questions.quiz.length}
+                      your score is: {this.state.score} /{questions.quiz.length}
                     </Typography>
                   </div>
 
