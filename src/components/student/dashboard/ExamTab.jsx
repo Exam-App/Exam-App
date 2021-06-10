@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import questions from "../../readJson/upload.json";
+import questions from "../../../readJson/upload.json";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -12,20 +12,18 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import { Grid, withStyles } from "@material-ui/core";
 
-
 const styles = (theme) => ({
 
   cardStyle: {
     width: 1000,
     marginTop: 15,
     marginBottom: 15,
-    marginLeft: 50,
+    marginLeft: 250,
   },
   timeStyle: {
-    width: 150,
-    marginLeft: 1025,
-   
-    
+    width: 300,
+    marginTop: 80,
+    marginLeft: 950,
   },
   struct: {
     marginTop: 15,
@@ -35,16 +33,17 @@ const styles = (theme) => ({
   },
 });
 
-class Comprehensive extends Component {
+class ExamTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
       index: 0,
       score: 0,
       timeUp: false,
-      seconds: 60000,
-      minutes: 1,
-      hours: 1,
+      seconds:60000,
+      minutes:1,
+      hours:1
+
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
@@ -62,7 +61,7 @@ class Comprehensive extends Component {
     });
     event.preventDefault();
     console.log(this.state.selectedOption);
-    if (this.state.selectedOption === questions.comprehensive[this.state.index].Answer) {
+    if (this.state.selectedOption === questions[this.state.index].Answer) {
       this.setState({
         // index: this.state.index + 1,
         score: this.state.score + 1,
@@ -95,17 +94,19 @@ class Comprehensive extends Component {
     });
   };
 
+
   render() {
-    /* from snippet https://stackblitz.com/edit/react-material-comprehensive?file=app.js */
+    /* from snippet https://stackblitz.com/edit/react-material-quiz?file=app.js */
     var moveLeft = this.state.index === 0;
 
     return (
       <div>
         <Card variant="outlined" className={this.props.classes.timeStyle}>
-          {this.state.index === questions.comprehensive.length ? (
+
+          {this.state.index === questions.length ? (
             <div>
               <Typography variant="h5" gutterBottom>
-                Exam Ended
+                  Exam Ended
               </Typography>
             </div>
           ) : (
@@ -123,41 +124,33 @@ class Comprehensive extends Component {
                 },
               ]}
             >
-              <Typography align="center" variant="h5">
+              <Typography align="center" variant="h3">
                 <Timer.Hours /> : <Timer.Minutes /> : <Timer.Seconds />
               </Typography>
             </Timer>
           )}
-        </Card>
 
-        <Box  m={2} fontSize={20} >
-            
-            {questions["comprehensive"][0]["Passage"]}
-          
-          </Box>
+        </Card>
 
         <Card variant="outlined" className={this.props.classes.cardStyle}>
           <CardContent style={{ marginLeft: 30 }}>
             <Typography variant="h4" component="h2" align="center" gutterBottom>
               <Box fontWeight="fontWeightBold" m={1}>
-                Comprehensive 
+                Multiple choice
               </Box>
             </Typography>
 
             <Typography variant="h6" component="h2">
-              {questions.comprehensive[this.state.index] === undefined ||
+              {questions[this.state.index] === undefined ||
               this.state.timeUp ? (
                 <>
                   <div>
                     <Typography variant="h4" align="center">
-                      <Box fontWeight="fontWeightBold">
-                        End of the comprehensive
-                      </Box>
+                      <Box fontWeight="fontWeightBold">End of the Quiz</Box>
                     </Typography>
 
                     <Typography variant="h4" align="center">
-                      your score is: {this.state.score} /
-                      {questions.comprehensive.length}
+                      your score is: {this.state.score} / {questions.length}
                     </Typography>
                   </div>
 
@@ -188,7 +181,7 @@ class Comprehensive extends Component {
                       component="p"
                       className={this.props.classes.struct}
                     >
-                      {questions.comprehensive[this.state.index].Question}
+                      {questions[this.state.index].Question}
                     </Typography>
 
                     <FormControl
@@ -196,72 +189,67 @@ class Comprehensive extends Component {
                       className={this.props.classes.formControl}
                     >
                       <RadioGroup>
-                        {questions.comprehensive[this.state.index].A !==
-                          undefined && (
+                        {questions[this.state.index].A !== undefined && (
                           <FormControlLabel
-                            value={questions.comprehensive[this.state.index].A}
+                            value={questions[this.state.index].A}
                             control={<Radio />}
                             checked={
                               this.state.selectedOption ===
-                              questions.comprehensive[this.state.index].A
+                              questions[this.state.index].A
                             }
-                            label={questions.comprehensive[this.state.index].A}
+                            label={questions[this.state.index].A}
                             onChange={this.onValueChange}
                           />
                         )}
 
-                        {questions.comprehensive[this.state.index].B !==
-                          undefined && (
+                        {questions[this.state.index].B !== undefined && (
                           <FormControlLabel
-                            value={questions.comprehensive[this.state.index].B}
+                            value={questions[this.state.index].B}
                             control={<Radio />}
                             checked={
                               this.state.selectedOption ===
-                              questions.comprehensive[this.state.index].B
+                              questions[this.state.index].B
                             }
-                            label={questions.comprehensive[this.state.index].B}
+                            label={questions[this.state.index].B}
                             onChange={this.onValueChange}
                           />
                         )}
 
-                        {questions.comprehensive[this.state.index].C !==
-                          undefined && (
+                        {questions[this.state.index].C !== undefined && (
                           <FormControlLabel
-                            value={questions.comprehensive[this.state.index].C}
+                            value={questions[this.state.index].C}
                             control={<Radio />}
                             checked={
                               this.state.selectedOption ===
-                              questions.comprehensive[this.state.index].C
+                              questions[this.state.index].C
                             }
-                            label={questions.comprehensive[this.state.index].C}
+                            label={questions[this.state.index].C}
                             onChange={this.onValueChange}
                           />
                         )}
 
-                        {questions.comprehensive[this.state.index].D !==
-                          undefined && (
+                        {questions[this.state.index].D !== undefined && (
                           <FormControlLabel
-                            value={questions.comprehensive[this.state.index].D}
+                            value={questions[this.state.index].D}
                             control={<Radio />}
                             checked={
                               this.state.selectedOption ===
-                              questions.comprehensive[this.state.index].D
+                              questions[this.state.index].D
                             }
-                            label={questions.comprehensive[this.state.index].D}
+                            label={questions[this.state.index].D}
                             onChange={this.onValueChange}
                           />
                         )}
 
-                        {questions.comprehensive[this.state.index].E !==
-                          undefined && (
+                        {questions[this.state.index].E !== undefined && (
                           <FormControlLabel
-                            value={questions.comprehensive[this.state.index].E}
+                            value={questions[this.state.index].E}
                             control={<Radio />}
                             checked={
                               this.state.selectedOption ===
-                              questions.comprehensive[this.state.index].E
+                              questions[this.state.index].E
                             }
-                            label={questions.comprehensive[this.state.index].E}
+                            label={questions[this.state.index].E}
                             onChange={this.onValueChange}
                           />
                         )}
@@ -269,7 +257,7 @@ class Comprehensive extends Component {
                     </FormControl>
                   </div>
                   <Grid container justify="flex-end">
-                    {/* from snippet https://stackblitz.com/edit/react-material-comprehensive?file=app.js */}
+                    {/* from snippet https://stackblitz.com/edit/react-material-quiz?file=app.js */}
                     {moveLeft ? (
                       <></>
                     ) : (
@@ -319,6 +307,4 @@ class Comprehensive extends Component {
   }
 }
 
-export default withStyles(styles)(Comprehensive);
-
-
+export default withStyles(styles)(ExamTab);
