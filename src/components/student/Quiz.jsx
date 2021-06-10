@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import questions from "../../../readJson/upload.json";
+import questions from "../../readJson/upload.json";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -13,17 +13,15 @@ import Radio from "@material-ui/core/Radio";
 import { Grid, withStyles } from "@material-ui/core";
 
 const styles = (theme) => ({
-
   cardStyle: {
     width: 1000,
     marginTop: 15,
     marginBottom: 15,
-    marginLeft: 250,
+    marginLeft: 50,
   },
   timeStyle: {
     width: 300,
-    marginTop: 80,
-    marginLeft: 950,
+    marginLeft: 750,
   },
   struct: {
     marginTop: 15,
@@ -33,17 +31,16 @@ const styles = (theme) => ({
   },
 });
 
-class ExamTab extends Component {
+class Quiz extends Component {
   constructor(props) {
     super(props);
     this.state = {
       index: 0,
       score: 0,
       timeUp: false,
-      seconds:60000,
-      minutes:1,
-      hours:1
-
+      seconds: 60000,
+      minutes: 1,
+      hours: 1,
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
@@ -61,7 +58,7 @@ class ExamTab extends Component {
     });
     event.preventDefault();
     console.log(this.state.selectedOption);
-    if (this.state.selectedOption === questions[this.state.index].Answer) {
+    if (this.state.selectedOption === questions.quiz[this.state.index].Answer) {
       this.setState({
         // index: this.state.index + 1,
         score: this.state.score + 1,
@@ -94,7 +91,6 @@ class ExamTab extends Component {
     });
   };
 
-
   render() {
     /* from snippet https://stackblitz.com/edit/react-material-quiz?file=app.js */
     var moveLeft = this.state.index === 0;
@@ -102,11 +98,10 @@ class ExamTab extends Component {
     return (
       <div>
         <Card variant="outlined" className={this.props.classes.timeStyle}>
-
-          {this.state.index === questions.length ? (
+          {this.state.index === questions.quiz.length ? (
             <div>
               <Typography variant="h5" gutterBottom>
-                  Exam Ended
+                Exam Ended
               </Typography>
             </div>
           ) : (
@@ -129,7 +124,6 @@ class ExamTab extends Component {
               </Typography>
             </Timer>
           )}
-
         </Card>
 
         <Card variant="outlined" className={this.props.classes.cardStyle}>
@@ -141,7 +135,7 @@ class ExamTab extends Component {
             </Typography>
 
             <Typography variant="h6" component="h2">
-              {questions[this.state.index] === undefined ||
+              {questions.quiz[this.state.index] === undefined ||
               this.state.timeUp ? (
                 <>
                   <div>
@@ -150,7 +144,8 @@ class ExamTab extends Component {
                     </Typography>
 
                     <Typography variant="h4" align="center">
-                      your score is: {this.state.score} / {questions.length}
+                      your score is: {this.state.score} /
+                      {questions.quiz.length}
                     </Typography>
                   </div>
 
@@ -181,7 +176,7 @@ class ExamTab extends Component {
                       component="p"
                       className={this.props.classes.struct}
                     >
-                      {questions[this.state.index].Question}
+                      {questions.quiz[this.state.index].Question}
                     </Typography>
 
                     <FormControl
@@ -189,67 +184,67 @@ class ExamTab extends Component {
                       className={this.props.classes.formControl}
                     >
                       <RadioGroup>
-                        {questions[this.state.index].A !== undefined && (
+                        {questions.quiz[this.state.index].A !== undefined && (
                           <FormControlLabel
-                            value={questions[this.state.index].A}
+                            value={questions.quiz[this.state.index].A}
                             control={<Radio />}
                             checked={
                               this.state.selectedOption ===
-                              questions[this.state.index].A
+                              questions.quiz[this.state.index].A
                             }
-                            label={questions[this.state.index].A}
+                            label={questions.quiz[this.state.index].A}
                             onChange={this.onValueChange}
                           />
                         )}
 
-                        {questions[this.state.index].B !== undefined && (
+                        {questions.quiz[this.state.index].B !== undefined && (
                           <FormControlLabel
-                            value={questions[this.state.index].B}
+                            value={questions.quiz[this.state.index].B}
                             control={<Radio />}
                             checked={
                               this.state.selectedOption ===
-                              questions[this.state.index].B
+                              questions.quiz[this.state.index].B
                             }
-                            label={questions[this.state.index].B}
+                            label={questions.quiz[this.state.index].B}
                             onChange={this.onValueChange}
                           />
                         )}
 
-                        {questions[this.state.index].C !== undefined && (
+                        {questions.quiz[this.state.index].C !== undefined && (
                           <FormControlLabel
-                            value={questions[this.state.index].C}
+                            value={questions.quiz[this.state.index].C}
                             control={<Radio />}
                             checked={
                               this.state.selectedOption ===
-                              questions[this.state.index].C
+                              questions.quiz[this.state.index].C
                             }
-                            label={questions[this.state.index].C}
+                            label={questions.quiz[this.state.index].C}
                             onChange={this.onValueChange}
                           />
                         )}
 
-                        {questions[this.state.index].D !== undefined && (
+                        {questions.quiz[this.state.index].D !== undefined && (
                           <FormControlLabel
-                            value={questions[this.state.index].D}
+                            value={questions.quiz[this.state.index].D}
                             control={<Radio />}
                             checked={
                               this.state.selectedOption ===
-                              questions[this.state.index].D
+                              questions.quiz[this.state.index].D
                             }
-                            label={questions[this.state.index].D}
+                            label={questions.quiz[this.state.index].D}
                             onChange={this.onValueChange}
                           />
                         )}
 
-                        {questions[this.state.index].E !== undefined && (
+                        {questions.quiz[this.state.index].E !== undefined && (
                           <FormControlLabel
-                            value={questions[this.state.index].E}
+                            value={questions.quiz[this.state.index].E}
                             control={<Radio />}
                             checked={
                               this.state.selectedOption ===
-                              questions[this.state.index].E
+                              questions.quiz[this.state.index].E
                             }
-                            label={questions[this.state.index].E}
+                            label={questions.quiz[this.state.index].E}
                             onChange={this.onValueChange}
                           />
                         )}
@@ -307,4 +302,4 @@ class ExamTab extends Component {
   }
 }
 
-export default withStyles(styles)(ExamTab);
+export default withStyles(styles)(Quiz);

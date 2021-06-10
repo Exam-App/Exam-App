@@ -9,7 +9,6 @@ import FacultyHome from "./components/faculty/dashboard/FacultyHome";
 
 // Student Routes
 import StudentLogin from "./components/student/StudentLogin";
-import ExamTab from "./components/student/dashboard/ExamTab";
 
 // Home Routes
 import Instructions from "./components/Instructions";
@@ -18,6 +17,7 @@ import FacultyTab from "./components/faculty/dashboard/FacultyTab";
 
 // Auth Provider
 import AuthContext from "./components/context/AuthContext";
+import Exam from "./components/student/dashboard/Exam";
 
 function Routes() {
   const { loggedIn } = useContext(AuthContext);
@@ -47,7 +47,7 @@ function Routes() {
                 <Switch>
                   <Route path="/dashboard" component={FacultyTab} />
                   <Route path="/welcome" component={FacultyHome} />
-                  <Route path="/exam" component={ExamTab} />
+                  <Route path="/exam" component={Exam} />
                   <Route component={error404} />
                 </Switch>
               </>

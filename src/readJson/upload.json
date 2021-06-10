@@ -1,5 +1,5 @@
 {
-  "Sheet1": [
+  "quiz": [
     {
       "Question": "what are the basic datatypes",
       "A": "int",
@@ -14,47 +14,47 @@
       "A": "A-B",
       "B": "A*B",
       "C": "A+B",
-      "Answer": "C"
+      "Answer": "A+B"
     },
     {
-      "Question": "next question3",
-      "A": "option1",
-      "B": "option2",
-      "C": "option3",
-      "Answer": "option2"
+      "Question": "syntax to sub two numbers",
+      "A": "A-B",
+      "B": "A*B",
+      "C": "A+B",
+      "Answer": "A-B"
     },
     {
-      "Question": "next question4",
-      "A": "option1",
-      "B": "option2",
-      "C": "option3",
-      "D": "option4",
-      "Answer": "option2"
+      "Question": "syntax to mul two numbers",
+      "A": "A-B",
+      "B": "A*B",
+      "C": "A+B",
+      "Answer": "A*B"
     },
     {
-      "Question": "next question5",
-      "A": "option1",
-      "B": "option2",
-      "C": "option3",
-      "D": "option4"
+      "Question": "syntax to divide two numbers",
+      "A": "A-B",
+      "B": "A*B",
+      "C": "A+B",
+      "E": "A/B",
+      "Answer": "A/B"
     },
     {
-      "Question": "next question6",
-      "A": "option1",
-      "B": "option2",
-      "C": "option3",
-      "D": "option4"
+      "Question": "syntax to and  in React js",
+      "A": "||",
+      "B": "&&",
+      "C": "&",
+      "Answer": "&&"
     }
   ],
-  "Sheet2": [
+  "comprehensive": [
     {
-      "Question": "Compound components is an advanced pattern so it might be overwhelming to use. \r\nThis guide aims to help you understand the pattern so that you can use it effectively with confidence and clarity.",
-      "A": "What is compund compoentn",
-      "B": "aba",
-      "C": "bss",
-      "D": "ieieei",
-      "E": "ejeek",
-      "Answer": "aba"
+      "Questions": "The main point of this passage is that...   Carbon tetrachloride is a colorless and inflammable liquid that can be produced by combining carbon disulfide and chlorine. This compound is widely used in industry today because of its effectiveness as a solvent as well as its use in the production of propellants.   Despite its widespread use in industry, carbon tetrachloride has been banned for home use. In the past, carbon tetrachloride was a common ingredient in cleaning compounds that were used throughout the home, but it was found to be dangerous: when heated, it changes into a poisonous gas that can cause severe illness and even death if it is inhaled. Because of this dangerous characteristic, the United States revoked permission for the home use of carbon tetrachloride in 1970. The United States has taken similar action with various other chemical compounds.",
+      "A": "Carbon tetrachloride can be very dangerous when it is heated",
+      "B": "The government banned carbon tetrachloride in 1970",
+      "C": "Although carbon tetrachloride can legally be used in industry, it is not allowed in home products.",
+      "D": "Carbon tetrachloride used to be a regular part of cleaning compounds",
+      "E": "None of the above",
+      "Answer": "Although carbon tetrachloride can legally be used in industry, it is not allowed in home products."
     }
   ]
 }
