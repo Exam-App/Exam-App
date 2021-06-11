@@ -58,17 +58,13 @@ class Quiz extends Component {
       index: this.state.index + 1,
     });
     event.preventDefault();
-    console.log(this.state.selectedOption);
+    // console.log(this.state.selectedOption);
     if (this.state.selectedOption === questions.quiz[this.state.index].Answer) {
       this.setState({
         // index: this.state.index + 1,
         score: this.state.score + 1,
       });
     }
-  };
-
-  NextQuestion = (event) => {
-    event.preventDefault();
   };
 
   PreviousQuestion = (event) => {
@@ -86,6 +82,12 @@ class Quiz extends Component {
     // this.setState(clear_obj);
   };
 
+  ScoreSubmit = () => {
+    this.props.change1(this.state.score)
+    
+    // return(<h3>Result submitted successfully</h3>) //Toaster
+  }
+
   Timeout = () => {
     this.setState({
       timeUp: true,
@@ -98,6 +100,7 @@ class Quiz extends Component {
 
     return (
       <div>
+        {this.props.change}
         <Card variant="outlined" className={this.props.classes.timeStyle}>
           {this.state.index === questions.quiz.length ? (
             <div>
@@ -145,14 +148,15 @@ class Quiz extends Component {
                     </Typography>
 
                     <Typography variant="h4" align="center">
-                      your score is: {this.state.score} /{questions.quiz.length}
+                      your score is: {this.state.score} /{" "}
+                      {questions.quiz.length}
                     </Typography>
                   </div>
 
                   <Grid container justify="center">
                     <Button
                       variant="outlined"
-                      // onClick={this.formSubmit} // @TODO add axios here to submit result and store in DB / Cloud
+                      onClick={this.ScoreSubmit} // @TODO add axios here to submit result and store in DB / Cloud
                       style={{
                         marginLeft: 20,
                         marginTop: 15,

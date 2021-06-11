@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import Box from "@material-ui/core/Box";
@@ -11,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
+import { Grid, withStyles } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -26,6 +25,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import BallotIcon from "@material-ui/icons/Ballot";
 import Comprehensive from "../Comprehensive";
+import questions from "../../../readJson/upload.json";
+import { Component } from "react";
 
 function Copyright() {
   return (
@@ -42,7 +43,7 @@ function Copyright() {
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   root: {
     display: "flex",
   },
@@ -119,118 +120,197 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
-}));
+});
 
-export default function Exam() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const [state, setState] = React.useState(
-    {
+class Exam extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       quiz: true,
       comp: false,
-    },
-  );
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+      index: 0,
+      open: true,
+      score1: 0,
+      score2: 0,
+      totalScore:0
+    };
+  }
 
-  const handleQuiz = (e) => {
-    e.preventDefault()
-    setState({
-      quiz: true,
+  handleDrawerOpen = () => {
+    this.setState({
+      open: true,
+    });
+  };
+  handleDrawerClose = () => {
+    this.setState({
+      open: false,
     });
   };
 
-  const handleComp = (e) => {
+  handleQuiz = (e) => {
     e.preventDefault();
-    setState({
-      comp: true,
+    this.setState({
+      quiz: true,
+      comp: false,
     });
   };
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden
-            )}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            Exam
-          </Typography>
-          <Button color="inherit">
-            <LogOutBtn />
-          </Button>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {" "}
-          <div>
-            <ListItem button onClick={handleQuiz}>
-              <ListItemIcon>
-                <BallotIcon />
-              </ListItemIcon>
-              <ListItemText primary="Quiz" />
-            </ListItem>
-            <ListItem button onClick={handleComp}>
-              <ListItemIcon>
-                <AssignmentIcon />
-              </ListItemIcon>
-              <ListItemText primary="Comprehensive" />
-            </ListItem>
+  handleComp = (e) => {
+    e.preventDefault();
+    this.setState({
+      comp: true,
+      quiz: false,
+    });
+  };
+
+  formSubmit = (event) => {
+    this.setState({
+      index: this.state.index + 1,
+    });
+    event.preventDefault();
+    console.log(this.state.selectedOption);
+    if (this.state.selectedOption === questions.quiz[this.state.index].Answer) {
+      this.setState({
+        // index: state.index + 1,
+        score: this.state.score + 1,
+      });
+    }
+  };
+
+  PreviousQuestion = (event) => {
+    event.preventDefault();
+    this.setState({
+      index: this.state.index - 1,
+      selectedOption: "",
+    });
+  };
+
+  quizScore = (data1) => {
+    console.log(data1);
+    this.setState({
+      score1:data1
+    })
+  };
+
+  compScore = (data2) => {
+    console.log(data2);
+    this.setState({
+      score2: data2,
+    });
+  };
+
+  render() {
+    return (
+      <div className={this.props.classes.root}>
+        <CssBaseline />
+        <AppBar
+          position="absolute"
+          className={clsx(
+            this.props.classes.appBar,
+            this.state.open && this.props.classes.appBarShift
+          )}
+        >
+          <Toolbar className={this.props.classes.toolbar}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={this.handleDrawerOpen}
+              className={clsx(
+                this.props.classes.menuButton,
+                this.state.open && this.props.classes.menuButtonHidden
+              )}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={this.props.classes.title}
+            >
+              Exam
+            </Typography>
+            <Button color="inherit">
+              <LogOutBtn />
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(
+              this.props.classes.drawerPaper,
+              !this.state.open && this.props.classes.drawerPaperClose
+            ),
+          }}
+          open={this.state.open}
+        >
+          <div className={this.props.classes.toolbarIcon}>
+            <IconButton onClick={this.state.handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
           </div>
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <Card variant="outlined"></Card>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          {/* Quiz */}
-          <Grid item xs={12}>
-            {/* <Quiz /> */}
-            {state.quiz === true && <Quiz />}
-            {state.comp === true && <Comprehensive />}
-          </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
-      </main>
-    </div>
-  );
+          <Divider />
+          <List>
+            {" "}
+            <div>
+              {/* 0 === 6 */}
+              {console.log(questions.quiz.length)}
+              {console.log(this.state.index)}
+              {this.state.index === questions.quiz.length ? (
+                <ListItem disabled button onClick={this.handleQuiz}>
+                  <ListItemIcon>
+                    <BallotIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Quiz" />
+                </ListItem>
+              ) : (
+                <ListItem button onClick={this.handleQuiz}>
+                  <ListItemIcon>
+                    <BallotIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Quiz" />
+                </ListItem>
+              )}
+
+              <ListItem button onClick={this.handleComp}>
+                <ListItemIcon>
+                  <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Comprehensive" />
+              </ListItem>
+            </div>
+          </List>
+        </Drawer>
+        <main className={this.props.classes.content}>
+          <Card variant="outlined"></Card>
+          <div className={this.props.classes.appBarSpacer} />
+          <Container maxWidth="lg" className={this.props.classes.container}>
+            {/* Quiz */}
+            <Grid item xs={12}>
+              {/* <Quiz /> */}
+              {this.state.quiz === true && (
+                <Quiz change1={this.quizScore.bind(this)} />
+              )}
+              {this.state.comp === true && (
+                <Comprehensive change2={this.compScore.bind(this)} />
+              )}
+            </Grid>
+            <Card>
+              <h3>Score of quiz:{this.state.score1}</h3>
+              <h3>Score of comprehensive:{this.state.score2}</h3>
+              <h3>Total Score: {this.state.score1 + this.state.score2}</h3>
+            </Card>
+            <Box pt={4}>
+              <Copyright />
+            </Box>
+          </Container>
+        </main>
+      </div>
+    );
+  }
 }
+
+export default withStyles(styles)(Exam);

@@ -14,7 +14,6 @@ import { Grid, withStyles } from "@material-ui/core";
 
 
 const styles = (theme) => ({
-
   cardStyle: {
     width: 1000,
     marginTop: 15,
@@ -22,10 +21,8 @@ const styles = (theme) => ({
     marginLeft: 50,
   },
   timeStyle: {
-    width: 150,
-    marginLeft: 1025,
-   
-    
+    width: 300,
+    marginLeft: 750,
   },
   struct: {
     marginTop: 15,
@@ -95,6 +92,14 @@ class Comprehensive extends Component {
     });
   };
 
+  compSubmit = () => {
+    this.props.change2(this.state.score);
+    // console.log(this.state.score)
+    // console.log("Result submitted successfully");
+    // return <h3>Result submitted successfully</h3>; //Toaster
+    
+  };
+
   render() {
     /* from snippet https://stackblitz.com/edit/react-material-comprehensive?file=app.js */
     var moveLeft = this.state.index === 0;
@@ -123,24 +128,22 @@ class Comprehensive extends Component {
                 },
               ]}
             >
-              <Typography align="center" variant="h5">
+              <Typography align="center" variant="h3">
                 <Timer.Hours /> : <Timer.Minutes /> : <Timer.Seconds />
               </Typography>
             </Timer>
           )}
         </Card>
 
-        <Box  m={2} fontSize={20} >
-            
-            {questions["comprehensive"][0]["Passage"]}
-          
-          </Box>
+        <Box m={2} p={2} fontSize={20} bgcolor="background.paper" className={this.props.classes.cardStyle}>
+          {questions["comprehensive"][0]["Passage"]}
+        </Box>
 
         <Card variant="outlined" className={this.props.classes.cardStyle}>
           <CardContent style={{ marginLeft: 30 }}>
             <Typography variant="h4" component="h2" align="center" gutterBottom>
               <Box fontWeight="fontWeightBold" m={1}>
-                Comprehensive 
+                Comprehensive
               </Box>
             </Typography>
 
@@ -156,15 +159,14 @@ class Comprehensive extends Component {
                     </Typography>
 
                     <Typography variant="h4" align="center">
-                      your score is: {this.state.score} /
-                      {questions.comprehensive.length}
+                      your score is: {this.state.score} / {questions.comprehensive.length}
                     </Typography>
                   </div>
 
                   <Grid container justify="center">
                     <Button
                       variant="outlined"
-                      // onClick={this.formSubmit} // @TODO add axios here to submit result and store in DB / Cloud
+                      onClick={this.compSubmit} // @TODO add axios here to submit result and store in DB / Cloud
                       style={{
                         marginLeft: 20,
                         marginTop: 15,
