@@ -83,7 +83,7 @@ class Quiz extends Component {
   };
 
   ScoreSubmit = () => {
-    this.props.change1(this.state.score)
+    this.props.change1(this.state.score,this.state.index)
     
     // return(<h3>Result submitted successfully</h3>) //Toaster
   }
@@ -105,7 +105,7 @@ class Quiz extends Component {
           {this.state.index === questions.quiz.length ? (
             <div>
               <Typography variant="h5" gutterBottom>
-                Exam Ended
+                Quiz section Ended, Please go to next section
               </Typography>
             </div>
           ) : (
@@ -156,7 +156,7 @@ class Quiz extends Component {
                   <Grid container justify="center">
                     <Button
                       variant="outlined"
-                      onClick={this.ScoreSubmit} // @TODO add axios here to submit result and store in DB / Cloud
+                      onClick={this.ScoreSubmit.bind(this,this)} // @TODO add axios here to submit result and store in DB / Cloud
                       style={{
                         marginLeft: 20,
                         marginTop: 15,

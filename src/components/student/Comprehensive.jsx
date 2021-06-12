@@ -58,7 +58,7 @@ class Comprehensive extends Component {
       index: this.state.index + 1,
     });
     event.preventDefault();
-    console.log(this.state.selectedOption);
+    // console.log(this.state.selectedOption);
     if (this.state.selectedOption === questions.comprehensive[this.state.index].Answer) {
       this.setState({
         // index: this.state.index + 1,
@@ -93,7 +93,7 @@ class Comprehensive extends Component {
   };
 
   compSubmit = () => {
-    this.props.change2(this.state.score);
+    this.props.change2(this.state.score,this.state.index);
     // console.log(this.state.score)
     // console.log("Result submitted successfully");
     // return <h3>Result submitted successfully</h3>; //Toaster
@@ -110,7 +110,7 @@ class Comprehensive extends Component {
           {this.state.index === questions.comprehensive.length ? (
             <div>
               <Typography variant="h5" gutterBottom>
-                Exam Ended
+                Comprehensive section Ended, Please go to next section
               </Typography>
             </div>
           ) : (
@@ -135,7 +135,13 @@ class Comprehensive extends Component {
           )}
         </Card>
 
-        <Box m={2} p={2} fontSize={20} bgcolor="background.paper" className={this.props.classes.cardStyle}>
+        <Box
+          m={2}
+          p={2}
+          fontSize={20}
+          bgcolor="background.paper"
+          className={this.props.classes.cardStyle}
+        >
           {questions["comprehensive"][0]["Passage"]}
         </Box>
 
@@ -159,14 +165,15 @@ class Comprehensive extends Component {
                     </Typography>
 
                     <Typography variant="h4" align="center">
-                      your score is: {this.state.score} / {questions.comprehensive.length}
+                      your score is: {this.state.score} /{" "}
+                      {questions.comprehensive.length}
                     </Typography>
                   </div>
 
                   <Grid container justify="center">
                     <Button
                       variant="outlined"
-                      onClick={this.compSubmit} // @TODO add axios here to submit result and store in DB / Cloud
+                      onClick={this.compSubmit.bind(this,this)} // @TODO add axios here to submit result and store in DB / Cloud
                       style={{
                         marginLeft: 20,
                         marginTop: 15,

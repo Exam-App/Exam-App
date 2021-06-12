@@ -126,13 +126,15 @@ class Exam extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quiz: true,
+      quiz: false,
       comp: false,
       index: 0,
       open: true,
       score1: 0,
       score2: 0,
-      totalScore:0
+      totalScore: 0,
+      quizindex: 0,
+      compindex:0
     };
   }
 
@@ -185,18 +187,24 @@ class Exam extends Component {
     });
   };
 
-  quizScore = (data1) => {
-    console.log(data1);
+  quizScore = (data1,index1) => {
+    console.log("score", data1);
+    console.log("index", index1);
     this.setState({
-      score1:data1
+      score1: data1,
+      quizindex: index1
     })
+    console.log(data1);
   };
 
-  compScore = (data2) => {
-    console.log(data2);
+  compScore = (data2,index2) => {
+    console.log("score", data2);
+    console.log("index", index2);
     this.setState({
       score2: data2,
+      compindex: index2 
     });
+    console.log(data2);
   };
 
   render() {
@@ -257,9 +265,9 @@ class Exam extends Component {
             {" "}
             <div>
               {/* 0 === 6 */}
-              {console.log(questions.quiz.length)}
-              {console.log(this.state.index)}
-              {this.state.index === questions.quiz.length ? (
+              
+
+              {this.state.quizindex === questions.quiz.length || this.state.comp === true  ? (
                 <ListItem disabled button onClick={this.handleQuiz}>
                   <ListItemIcon>
                     <BallotIcon />
@@ -275,12 +283,21 @@ class Exam extends Component {
                 </ListItem>
               )}
 
-              <ListItem button onClick={this.handleComp}>
-                <ListItemIcon>
-                  <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Comprehensive" />
-              </ListItem>
+              {this.state.compindex === questions.comprehensive.length || this.state.quiz === true  ? (
+                <ListItem disabled button onClick={this.handleComp}>
+                  <ListItemIcon>
+                    <AssignmentIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Comprehensive" />
+                </ListItem>
+              ) : (
+                <ListItem button onClick={this.handleComp}>
+                  <ListItemIcon>
+                    <AssignmentIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Comprehensive" />
+                </ListItem>
+              )}
             </div>
           </List>
         </Drawer>
@@ -300,7 +317,11 @@ class Exam extends Component {
             </Grid>
             <Card>
               <h3>Score of quiz:{this.state.score1}</h3>
+              <h3>index of quiz: { this.state.quizindex}</h3>
+                
               <h3>Score of comprehensive:{this.state.score2}</h3>
+              <h3>index of comprehensive: {this.state.compindex }</h3>
+
               <h3>Total Score: {this.state.score1 + this.state.score2}</h3>
             </Card>
             <Box pt={4}>
