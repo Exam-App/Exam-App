@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import xlsxParser from "xlsx-parse-json";
-
+import questions from "../../../readJson/upload.json"
 function FacultyHome() {
   const [items] = useState([]);
 
@@ -17,16 +17,28 @@ function FacultyHome() {
   };
 
   return (
-    <div>
+    <div align ="center">
+      <h2>Upload Questions Excel File </h2>
       <input
         type="file"
         onChange={(e) => {
+          
           const file = e.target.files[0];
+          
           readExcel(file);
+
         }}
       />
-
-      {items.map((d) => (
+   
+        {/* {questions=== [] ? (
+          <h2> Unsuccessful Upload</h2>
+        ):(
+          <h2>Uploaded Successfully</h2>
+        )} */}
+      {/* {questions.map((d) => (
+        
+      <>
+        <h2>Preview</h2>
         <>
           <p>{d.Question}</p>
 
@@ -65,8 +77,10 @@ function FacultyHome() {
               <br></br>
             </>
           )}
+          </>
         </>
-      ))}
+      ))} */}
+
       {/* <button onClick={handleClick}> Send to the server </button> */}
     </div>
   );
