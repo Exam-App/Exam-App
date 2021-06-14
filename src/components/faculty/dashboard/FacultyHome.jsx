@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import xlsxParser from "xlsx-parse-json";
-import questions from "../../../readJson/upload.json"
+import Button from "@material-ui/core/Button";
+
 function FacultyHome() {
   const [items] = useState([]);
 
@@ -19,7 +20,13 @@ function FacultyHome() {
   return (
     <div align ="center">
       <h2>Upload Questions Excel File </h2>
-      <input
+      <Button
+        variant="outlined"
+        component="label"
+        style={{ color: "#7e57c2" }}
+      >
+        
+        <input
         type="file"
         onChange={(e) => {
           
@@ -29,6 +36,9 @@ function FacultyHome() {
 
         }}
       />
+
+      </Button>
+      
    
         {/* {questions=== [] ? (
           <h2> Unsuccessful Upload</h2>

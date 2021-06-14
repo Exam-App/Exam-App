@@ -31,6 +31,16 @@ function Copyright() {
 const drawerWidth = 240;
 
 const styles = (theme) => ({
+  
+  
+  cardStyle: {
+    width: 1000,
+    marginTop: 15,
+    marginBottom: 15,
+    marginLeft: 50,
+  },
+
+
   root: {
     display: "flex",
   },
@@ -216,6 +226,7 @@ class Exam extends Component {
       SID:this.state.studentID
     };
     axios.post("http://localhost:4000/app/results", finalScore);
+    window.location = "/thanks"
   };
 
   render() {
@@ -237,7 +248,13 @@ class Exam extends Component {
                 <Quiz change1={this.quizScore.bind(this)} />
               )}
             </Grid>
-            <Card>
+            <Box
+          m={2}
+          p={2}
+          fontSize={15}
+          bgcolor="background.paper"
+          className={this.props.classes.cardStyle}>
+              
               <h3>Student ID:{this.state.studentID}</h3>
               <h3>Score of quiz:{this.state.score1}</h3>
               <h3>index of quiz: {this.state.quizindex}</h3>
@@ -254,11 +271,13 @@ class Exam extends Component {
                     className={this.props.classes.finish}
                     onClick={this.finish}
                   >
-                    <Typography>Finish</Typography>
+                    <Typography variant="h6" align="center" style={{ color: "#7e57c2" }}>
+                      Finish
+                    </Typography>
                   </Button>
                 )}
               </Grid>
-            </Card>
+            </Box>
             <Box pt={4}>
               <Copyright />
             </Box>
