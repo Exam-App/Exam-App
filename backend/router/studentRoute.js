@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 router.post("/register", (request, response) => {
   let { StudentID, FullName, password } = request.body;
 
-  if (StudentID == "" || FullName == "" || password == "") {
+  if (StudentID === "" || FullName === "" || password === "") {
     response.json({
       status: "FAILED",
       message: "Please fill all required fields.",
@@ -19,7 +19,7 @@ router.post("/register", (request, response) => {
       status: "WARNING",
       message: "Name should consist only a-z or A-Z",
     });
-  } else if (!/^[a-zA-Z][0-9]*$/.test(StudentID)) {
+  } else if (!/^[a-zA-Z0-9]*$/.test(StudentID)) {
     response.json({
       status: "WARNING",
       message:
@@ -59,13 +59,17 @@ router.post("/register", (request, response) => {
                 .save()
                 .then((result) => {
                   const token = jwt.sign(
-                    { id: newStudentID._id },
+                    { sid: newStudentID.StudentID, sname: newStudentID.FullName },
                     process.env.JWT_SECRET,
+                    
                     {
                       //expiresIn: 3600
                     }
                   );
-
+                    console.log({
+                      sid: newStudentID.StudentID,
+                      sname: newStudentID.FullName,
+                    });
                   response.cookie("token", token, {
                     httpOnly: true,
                   });
@@ -107,14 +111,14 @@ router.post("/register", (request, response) => {
 router.post("/login", (request, response) => {
   let { StudentID, password } = request.body;
 
-  if (StudentID == "" || password == "") {
+  if (StudentID === "" || password === "") {
     response.json({
       status: "WARNING",
       message: "Empty credentials supplied",
     });
   } else {
     // Check if StudentID exist
-    const existingStudent = newStudent
+    const newStudentID = newStudent
       .find({ StudentID })
       .then((data) => {
         if (data.length) {
@@ -126,13 +130,13 @@ router.post("/login", (request, response) => {
             .then((result) => {
               if (result) {
                 const token = jwt.sign(
-                  { id: existingStudent._id },
+                  { sid: newStudentID.StudentID },
                   process.env.JWT_SECRET,
                   {
-                    // expiresIn: 3600,
+                    expiresIn: 3600,
                   }
                 );
-
+                  console.log(newStudentID.StudentID)
                 response.cookie("token", token, {
                   httpOnly: true,
                 });

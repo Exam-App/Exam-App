@@ -83,7 +83,8 @@ class Quiz extends Component {
   };
 
   ScoreSubmit = () => {
-    this.props.change1(this.state.score,this.state.index)
+    this.props.change1(this.state.score, this.state.index)
+    
     
     // return(<h3>Result submitted successfully</h3>) //Toaster
   }
@@ -140,7 +141,7 @@ class Quiz extends Component {
 
             <Typography variant="h6" component="h2">
               {questions.quiz[this.state.index] === undefined ||
-              this.state.timeUp ? (
+              this.state.timeUp  ? (
                 <>
                   <div>
                     <Typography variant="h4" align="center">

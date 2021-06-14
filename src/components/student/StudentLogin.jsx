@@ -11,7 +11,6 @@ import {
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import MuiAlert from "@material-ui/lab/Alert";
 import axios from "axios";
-// import logo from "./logo.png"
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -68,6 +67,7 @@ function StudentLogin() {
       if (response.data.status === "SUCCESS") {
         window.location = "/exam";
         setState({ Success: response.data.message });
+        localStorage.setItem('StudentID', JSON.stringify(state.StudentID))
       } else if (response.data.status === "WARNING") {
         setState({ Warn: response.data.message });
       } else if (response.data.status === "FAILED") {
@@ -80,6 +80,8 @@ function StudentLogin() {
       password: "",
     });
     setOpen(true);
+    
+
   }
 
   const handleClose = (_event, reason) => {
@@ -98,6 +100,7 @@ function StudentLogin() {
     }));
   };
 
+  
   return (
     <Grid
       container
@@ -161,7 +164,7 @@ function StudentLogin() {
               <TextField
                 id="StudentID"
                 label="StudentID"
-                type="name"
+                type="id"
                 variant="outlined"
                 fullWidth
                 autoFocus

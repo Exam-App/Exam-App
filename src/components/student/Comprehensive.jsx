@@ -93,7 +93,8 @@ class Comprehensive extends Component {
   };
 
   compSubmit = () => {
-    this.props.change2(this.state.score,this.state.index);
+    this.props.change2(this.state.score, this.state.index);
+    
     // console.log(this.state.score)
     // console.log("Result submitted successfully");
     // return <h3>Result submitted successfully</h3>; //Toaster
