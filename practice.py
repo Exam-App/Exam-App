@@ -1,0 +1,2 @@
+s=[{"_id":"60afa0e263ced32de8cdf3d7","StudentID":"vamsee9","FullName":"vamsee","password":"$2a$10$u8rBmglc4BQA1Rs/54ZIUOs/Gkcng8XDSdEWOcLC4a0GFI9QcblSC","date":"2021-05-27T13:38:42.241Z","__v":0}]
+print(s[0]["FullName"])

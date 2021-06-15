@@ -58,22 +58,7 @@ router.post("/register", (request, response) => {
               newStudentID
                 .save()
                 .then((result) => {
-                  const token = jwt.sign(
-                    { sid: newStudentID.StudentID, sname: newStudentID.FullName },
-                    process.env.JWT_SECRET,
-                    
-                    {
-                      //expiresIn: 3600
-                    }
-                  );
-                    console.log({
-                      sid: newStudentID.StudentID,
-                      sname: newStudentID.FullName,
-                    });
-                  response.cookie("token", token, {
-                    httpOnly: true,
-                  });
-
+                  
                   response.json({
                     status: "SUCCESS",
                     message: "Signup successful",
@@ -109,7 +94,7 @@ router.post("/register", (request, response) => {
 });
 
 router.post("/login", (request, response) => {
-  let { StudentID, password } = request.body;
+  const { StudentID, password } = request.body;
 
   if (StudentID === "" || password === "") {
     response.json({
@@ -118,8 +103,8 @@ router.post("/login", (request, response) => {
     });
   } else {
     // Check if StudentID exist
-    const newStudentID = newStudent
-      .find({ StudentID })
+     newStudent
+      .find({ StudentID: StudentID })
       .then((data) => {
         if (data.length) {
           // StudentID exists
@@ -130,23 +115,31 @@ router.post("/login", (request, response) => {
             .then((result) => {
               if (result) {
                 const token = jwt.sign(
-                  { sid: newStudentID.StudentID },
+                  {
+                    student: {
+                      sid: StudentID,
+                      name: data[0]["FullName"],
+                    },
+                  },
                   process.env.JWT_SECRET,
                   {
-                    expiresIn: 3600,
+                    // expiresIn: 3600,
                   }
                 );
-                  console.log(newStudentID.StudentID)
                 response.cookie("token", token, {
                   httpOnly: true,
                 });
-
+                
                 // Password match
                 response.json({
                   status: "SUCCESS",
                   message: "login successful",
                   data: data,
                 });
+              
+                console.log(data[0]["FullName"]);
+
+               
               } else {
                 response.json({
                   status: "FAILED",
