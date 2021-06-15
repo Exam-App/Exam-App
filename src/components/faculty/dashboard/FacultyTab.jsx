@@ -20,6 +20,7 @@ import { mainListItems } from "./listItems";
 import FacultyHome from "./FacultyHome";
 import LogOutBtn from "../../LogOutBtn";
 import Registration from "../../student/Registration";
+import ResultsTable from "./ResultsTable"
 // import Chart from "./Chart";
 // import Deposits from "./Deposits";
 // import Orders from "./Orders";
@@ -154,7 +155,7 @@ export default function Dashboard() {
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
-              <Paper className={classes.paper}>{/* <Orders /> */}</Paper>
+              <Paper className={classes.paper}>{ <ResultsTable /> }</Paper>
             </Grid>
           </Grid>
           <Box pt={4}>
