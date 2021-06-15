@@ -1,0 +1,152 @@
+router.post("/register", async (request, response) => {
+  try {
+    let { StudentID, FullName, password } = request.body;
+
+    // validate
+
+    if (!StudentID || !FullName || !password) {
+      response.json({
+        status: "FAILED",
+        message: "Please fill all required fields.",
+      });
+    }
+    if (!/^[a-zA-Z0-9]*$/.test(StudentID)) {
+      response.json({
+        status: "WARNING",
+        message: "Name should consist only a-z or A-Z",
+      });
+    }
+    if (!/^[a-zA-Z]*$/.test(FullName)) {
+      response.json({
+        status: "WARNING",
+        message: "Name should consist only a-z or A-Z",
+      });
+    }
+    if (password.length < 6) {
+      response.json({
+        status: "WARNING",
+        message: "Password is too short! enter atleast 6 character",
+      });
+    }
+
+    const existingStudent = await Student.findOne({ StudentID: StudentID });
+    if (existingStudent) {
+      response.json({
+        status: "FAILED",
+        message: "StudentID already exists",
+      });
+    }
+
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(password, salt);
+
+    const newStudent = new Student({
+      StudentID,
+      FullName,
+      password: passwordHash,
+    });
+
+    const savedStudent = await newStudent.save().then(
+      response.json({
+        status: "SUCCESS",
+        message: "Registration Successful",
+      })
+    );
+    response.json(savedStudent);
+  } catch (err) {
+    response.status(500).json({
+      status: "FAILED",
+      message: "Internal Server Error",
+    });
+  }
+});
+
+// Login
+
+router.post("/login", async (request, response) => {
+  try {
+    const { StudentID, password } = request.body;
+
+    // validation
+    if (!StudentID || !password) {
+      response.json({
+        status: "WARNING",
+        message: "Empty credentials supplied",
+      });
+    }
+    const student = await Student.findOne({ StudentID: StudentID }).then((data) => {
+      if (data.length) {
+         const isMatch = bcrypt
+           .compare(password, student.password)
+           .then((result) => {
+             if (result) {
+               const token = jwt.sign(
+                 {
+                   id: student._id,
+                   student: {
+                     sid: student.StudentID,
+                     name: student.FullName,
+                   },
+                 },
+                 process.env.JWT_SECRET
+               );
+               response.cookie("token", token, { httpOnly: true });
+               console.log(token);
+               // response.json({
+               //   // token,
+               //   student: {
+               //     sid: student.StudentID,
+               //     name: student.FullName,
+               //   },
+               // });
+               response.json({
+                 status: "SUCCESS",
+                 message: "login Successful",
+                 data: result,
+               });
+             }
+           });
+         if (!isMatch) {
+           response.json({
+             status: "Warning",
+             message: "Invalid password",
+           });
+         }
+      }
+    } )
+    if (!student) {
+      response.json({
+        status: "Warning",
+        message: "No account with this ID has been registered.",
+      });
+    }
+   
+  } catch (err) {
+    response.status(500).json({
+      status: "FAILED",
+      message: "Internal Server Error",
+    });
+  }
+});
+
+router.get("/logout", (request, response) => {
+  response
+    .cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+    })
+    .send();
+});
+
+router.get("/loggedIn", (request, response) => {
+  try {
+    const token = request.cookies.token;
+    if (!token) return response.json(false);
+
+    jwt.verify(token, process.env.JWT_SECRET);
+
+    response.send(true);
+  } catch (err) {
+    response.json(false);
+  }
+});

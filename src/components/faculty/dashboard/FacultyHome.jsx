@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import xlsxParser from "xlsx-parse-json";
 import Button from "@material-ui/core/Button";
 
 function FacultyHome() {
-  const [items] = useState([]);
 
   const readExcel = (file) => {
     console.log("excel");
