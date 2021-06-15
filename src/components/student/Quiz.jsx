@@ -83,7 +83,7 @@ class Quiz extends Component {
   };
 
   ScoreSubmit = () => {
-    this.props.change1(this.state.score, this.state.index)
+    this.props.change1(this.state.score, this.state.index, this.state.timeUp)
     
     
     // return(<h3>Result submitted successfully</h3>) //Toaster

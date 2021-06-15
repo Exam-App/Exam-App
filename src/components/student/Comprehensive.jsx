@@ -42,6 +42,7 @@ class Comprehensive extends Component {
       seconds: 60000,
       minutes: 1,
       hours: 1,
+      compDone:false
     };
     this.onValueChange = this.onValueChange.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
@@ -93,7 +94,10 @@ class Comprehensive extends Component {
   };
 
   compSubmit = () => {
-    this.props.change2(this.state.score, this.state.index);
+    this.setState({
+      compDone:true
+    })
+    this.props.change2(this.state.score, this.state.index,this.state.compDone);
     
     // console.log(this.state.score)
     // console.log("Result submitted successfully");

@@ -134,7 +134,9 @@ class Exam extends Component {
       totalScore: 0,
       quizindex: 0,
       compindex: 0,
-      studentID:""
+      studentID:"",
+      timeup:false,
+      CompDone:false
     };
   }
 
@@ -176,17 +178,20 @@ class Exam extends Component {
     });
   };
 
-  quizScore = (data1, index1) => {
+  quizScore = (data1, index1, tp) => {
     this.setState({
       score1: data1,
       quizindex: index1,
+      timeup:tp
+      
     });
   };
 
-  compScore = (data2, index2) => {
+  compScore = (data2, index2,CD) => {
     this.setState({
       score2: data2,
       compindex: index2,
+      CompDone:CD
     });
   };
 
@@ -242,7 +247,7 @@ class Exam extends Component {
             {/* Quiz */}
             <Grid item xs={12}>
               {/* <Quiz /> */}
-              {this.state.quizindex === questions.quiz.length ? (
+              {this.state.quizindex === questions.quiz.length || this.state.timeup ? (
                 <Comprehensive change2={this.compScore.bind(this)} />
               ) : (
                 <Quiz change1={this.quizScore.bind(this)} />
@@ -264,7 +269,7 @@ class Exam extends Component {
 
               <h3>Total Score: {this.state.score1 + this.state.score2}</h3>
               <Grid container justify="flex-end">
-                {questions.comprehensive.length === this.state.compindex && (
+                {questions.comprehensive.length === this.state.compindex || this.state.CompDone ? (
                   <Button
                     styles={{ marginLeft: 50 }}
                     variant="outlined"
@@ -275,7 +280,16 @@ class Exam extends Component {
                       Finish
                     </Typography>
                   </Button>
-                )}
+                ):(<Button
+                  styles={{ marginLeft: 50 }}
+                  variant="outlined"
+                  className={this.props.classes.finish}
+                  onClick={this.finish}
+                >
+                  <Typography variant="h6" align="center" style={{ color: "#7e57c2" }}>
+                    Finish
+                  </Typography>
+                </Button>)}
               </Grid>
             </Box>
             <Box pt={4}>
