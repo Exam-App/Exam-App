@@ -10,7 +10,7 @@ import Quiz from "../Quiz";
 
 import Comprehensive from "../Comprehensive";
 import questions from "../../../readJson/upload.json";
-import jwt from "jsonwebtoken"
+// import jwt from "jsonwebtoken"
 import { Component } from "react";
 import axios from "axios";
 

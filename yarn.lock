@@ -3771,6 +3771,11 @@ cookie@0.4.0:
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.0.tgz#beb437e7022b3b6d49019d088665303ebe9c14ba"
   integrity sha512-+Hp8fLp57wnUSt0tY0tHEXh4voZRDnoIrZPqlo3DPiI4y9lwg/jqx+1Om94/W6ZaPDOUbnjOt/99w66zk+l1Xg==
 
+cookie@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
+  integrity sha1-5+Ch+e9DtMi6klxcWpboBtFoc7s=
+
 copy-concurrently@^1.0.0:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/copy-concurrently/-/copy-concurrently-1.0.5.tgz#92297398cae34937fcafd6ec8139c18051f0b5e0"
@@ -6607,6 +6612,11 @@ is-negative-zero@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/is-negative-zero/-/is-negative-zero-2.0.1.tgz#3de746c18dda2319241a53675908d8f766f11c24"
   integrity sha512-2z6JzQvZRa9A2Y7xC6dQQm4FSTSTNWjKIYYTt4246eMTJmIo0Q+ZyOsU66X8lxK1AbB92dFeglPLrhwpeRKO6w==
+
+is-node@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/is-node/-/is-node-1.0.2.tgz#d7d002745ef7debbb7477e988956ab0a4fccb653"
+  integrity sha1-19ACdF733ru3R36YiVarCk/MtlM=
 
 is-npm@^4.0.0:
   version "4.0.0"
@@ -10018,6 +10028,15 @@ react-compound-timer@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-compound-timer/-/react-compound-timer-1.2.0.tgz#52df2980dce0b63ddaf5718235a51188cb223d1d"
   integrity sha512-BEFT0Z/+vusfAy4Ci1+G5lr8mI+dk3ddRJuu1DIYA5xGS+5P+M0o4krHmFMKgHuaIY9H3xx0KCvf3ilb1+HFWA==
+
+react-cookie@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-cookie/-/react-cookie-1.0.5.tgz#234190bd55ddfea361444a89c873077ab6abf651"
+  integrity sha1-I0GQvVXd/qNhREqJyHMHerar9lE=
+  dependencies:
+    cookie "^0.3.1"
+    is-node "^1.0.2"
+    object-assign "^4.1.0"
 
 react-dev-utils@^11.0.3:
   version "11.0.4"
