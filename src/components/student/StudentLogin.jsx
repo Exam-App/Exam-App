@@ -65,7 +65,7 @@ function StudentLogin() {
 
     axios.post("http://localhost:4000/app/login", login).then((response) => {
       if (response.data.status === "SUCCESS") {
-        window.location = "/exam";
+        window.location = "/Start";
         setState({ Success: response.data.message });
         localStorage.setItem('StudentID', JSON.stringify(state.StudentID))
       } else if (response.data.status === "WARNING") {

@@ -253,7 +253,7 @@ class Exam extends Component {
                 <Quiz change1={this.quizScore.bind(this)} />
               )}
             </Grid>
-            <Box
+        <Box
           m={2}
           p={2}
           fontSize={15}

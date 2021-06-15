@@ -10,9 +10,6 @@ export default class Thanks extends Component {
                     Thank You<br/>
                     
                 </Typography>
-                <div>
-                    <LogOutBtn/>
-                </div>
             </div>
         )
     }

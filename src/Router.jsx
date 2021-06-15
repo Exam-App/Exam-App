@@ -19,6 +19,7 @@ import FacultyTab from "./components/faculty/dashboard/FacultyTab";
 import AuthContext from "./components/context/AuthContext";
 import Exam from "./components/student/dashboard/Exam";
 import Thanks from "./components/student/dashboard/Thanks";
+import Start from"./components/student/dashboard/Start";
 
 function Routes() {
   const { loggedIn } = useContext(AuthContext);
@@ -47,6 +48,7 @@ function Routes() {
             return (
               <>
                 <Switch>
+                  <Route path="/Start" component={Start}/>
                   <Route path="/dashboard" component={FacultyTab} />
                   <Route path="/welcome" component={FacultyHome} />
                   <Route path="/exam" component={Exam} />
