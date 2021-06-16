@@ -1,6 +1,5 @@
 import { Typography } from '@material-ui/core'
 import React, { Component } from 'react'
-import LogOutBtn from '../../LogOutBtn'
 
 export default class Thanks extends Component {
     render() {

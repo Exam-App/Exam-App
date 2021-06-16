@@ -103,8 +103,7 @@ router.post("/login", (request, response) => {
     });
   } else {
     // Check if StudentID exist
-     newStudent
-      .find({ StudentID: StudentID })
+     newStudent.find({ StudentID })
       .then((data) => {
         if (data.length) {
           // StudentID exists
