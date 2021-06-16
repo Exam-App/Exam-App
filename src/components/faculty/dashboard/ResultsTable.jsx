@@ -20,16 +20,23 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import axios from 'axios';
 
 function ResultsTable(Student_name,Quiz_Score,Comprehensive_Score,Total_Score) {
   return { Student_name,Quiz_Score,Comprehensive_Score,Total_Score };
 }
 
+axios.get("http://localhost:4000/app/leaderboard").then((response)=>{
+  console.log(response.data)
+})
 const rows = [
   //retriving results 
+
   ResultsTable('Saikiran',360, 19.0, 9),
-  ResultsTable('Oreo', 437, 18.0, 63),
+  
+  
 ];
+
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {

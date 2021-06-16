@@ -231,6 +231,7 @@ class Exam extends Component {
       SID:this.state.studentID
     };
     axios.post("http://localhost:4000/app/results", finalScore);
+    // axios.post("http://localhost:4000/app/display", finalScore);
     window.location = "/thanks"
   };
 
