@@ -43,8 +43,9 @@ const styles = (theme) => ({
       
       // rows1.push([SID,QS,CS,TS])
       this.setState({
-        rows:[...rows,[SID,QS,CS,TS]]
+        rows:[...this.state.rows,[SID,QS,CS,TS]]
       })
+      console.log(this.state.rows)
   
     }
     // console.log(rows1)
