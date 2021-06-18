@@ -10,7 +10,6 @@ const results = require("./router/resultsRoute");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
-
 dotenv.config();
 
 mongoose.connect(
@@ -27,22 +26,14 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://18.119.16.231:3000"],
     credentials: true,
   })
 );
 
-
-
-// var token = process.env.JWT_Token
-// var base64Url = token.split(".")[1];
-// var decodedValue = JSON.parse(window.atob(base64Url))
-
-// console.log(decodedValue)
-
 app.use("/app", facultyUrls);
 app.use("/app", studentUrls);
 app.use("/app", fileUrls);
-app.use("/app", results)
+app.use("/app", results);
 
 app.listen(4000, () => console.log("server is up and running"));

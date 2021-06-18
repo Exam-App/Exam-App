@@ -58,16 +58,18 @@ function SignUpTab() {
       password: state.password,
     };
 
-    axios.post("http://localhost:4000/app/signup", signUp).then((response) => {
-      if (response.data.status === "SUCCESS") {
-        // window.location = "/faculty";
-        setState({ Success: response.data.message });
-      } else if (response.data.status === "WARNING") {
-        setState({ Warn: response.data.message });
-      } else if (response.data.status === "FAILED") {
-        setState({ Error: response.data.message });
-      }
-    });
+    axios
+      .post("http://18.119.16.231:4000/app/signup", signUp)
+      .then((response) => {
+        if (response.data.status === "SUCCESS") {
+          // window.location = "/faculty";
+          setState({ Success: response.data.message });
+        } else if (response.data.status === "WARNING") {
+          setState({ Warn: response.data.message });
+        } else if (response.data.status === "FAILED") {
+          setState({ Error: response.data.message });
+        }
+      });
 
     setState({
       FacultyID: "",

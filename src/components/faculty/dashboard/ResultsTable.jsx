@@ -25,7 +25,8 @@ class BasicTable extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:4000/app/leaderboard").then((response) => {
+    axios.get("http://18.119.16.231:4000/app/leaderboard").then((response) => {
+      //http://:3000/
       console.log(response.data);
 
       for (var i = 0; i < response.data.length; i++) {
