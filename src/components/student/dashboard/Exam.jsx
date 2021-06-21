@@ -223,7 +223,7 @@ class Exam extends Component {
       TotalScore: this.state.score1 + this.state.score2,
       SID: this.state.studentID,
     };
-    axios.post("http://18.119.16.231:4000/app/results", finalScore);
+    axios.post("http://localhost:4000/app/results", finalScore);
 
     window.location = "/thanks";
   };

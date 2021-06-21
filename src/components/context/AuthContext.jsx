@@ -9,7 +9,7 @@ function AuthContextProvider(props) {
 
   async function getLoggedIn() {
     const loggedInRes = await axios.get(
-      "http://18.119.16.231:4000/app/loggedIn"
+      "http://localhost:4000/app/loggedIn"
     );
     setLoggedIn(loggedInRes.data);
   }
