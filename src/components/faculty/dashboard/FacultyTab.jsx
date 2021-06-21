@@ -11,9 +11,6 @@ import Link from "@material-ui/core/Link";
 import FacultyHome from "./FacultyHome";
 import Registration from "../../student/Registration";
 import ResultsTable from "./ResultsTable"
-// import Chart from "./Chart";
-// import Deposits from "./Deposits";
-// import Orders from "./Orders";
 
 function Copyright() {
   return (

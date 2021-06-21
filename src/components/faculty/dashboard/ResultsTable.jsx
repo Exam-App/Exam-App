@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 import { Component } from "react";
 
-const styles = (theme) => ({
+const styles = () => ({
   table: {
     minWidth: 650,
   },

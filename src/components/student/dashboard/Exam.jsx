@@ -14,7 +14,6 @@ import questions from "../../../readJson/upload.json";
 import { Component } from "react";
 import axios from "axios";
 
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -31,15 +30,12 @@ function Copyright() {
 const drawerWidth = 240;
 
 const styles = (theme) => ({
-  
-  
   cardStyle: {
     width: 1000,
     marginTop: 15,
     marginBottom: 15,
     marginLeft: 50,
   },
-
 
   root: {
     display: "flex",
@@ -117,7 +113,6 @@ const styles = (theme) => ({
   fixedHeight: {
     height: 240,
   },
-  
 });
 
 class Exam extends Component {
@@ -183,8 +178,7 @@ class Exam extends Component {
     this.setState({
       score1: data1,
       quizindex: index1,
-      timeup:tp
-      
+      timeup: tp,
     });
   };
 
@@ -198,31 +192,28 @@ class Exam extends Component {
   };
 
   componentDidMount() {
-
     let name = localStorage.getItem("StudentID").replace(/"/g, "");
     this.setState({
-      studentID:name
-    })
+      studentID: name,
+    });
 
-//     function parseJwt(token) {
-//     if (!token) { return; }
-//     const base64Url = token.split('.')[1];
-//     const base64 = base64Url.replace('-', '+').replace('_', '/');
-//     return JSON.parse(window.atob(base64));
-// }
+    //     function parseJwt(token) {
+    //     if (!token) { return; }
+    //     const base64Url = token.split('.')[1];
+    //     const base64 = base64Url.replace('-', '+').replace('_', '/');
+    //     return JSON.parse(window.atob(base64));
+    // }
 
-// console.log(
-//   parseJwt(
-//     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM2MDc1NDEsImV4cCI6MTYyMzYxMTE0MX0.qIZrPg9zlzi1Y6q-15CyzmSmFE4ZgYCZTMEEW3TPi8E"
-//   )
-// );
+    // console.log(
+    //   parseJwt(
+    //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM2MDc1NDEsImV4cCI6MTYyMzYxMTE0MX0.qIZrPg9zlzi1Y6q-15CyzmSmFE4ZgYCZTMEEW3TPi8E"
+    //   )
+    // );
 
     // var token =
     //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjM2MDIwNTV9.bQTsdejLxB5ZN9ufnIVSZomNYKc--jeMVd-euHo1zN8";
     // var decoded = jwt.decode(token);
     // console.log(decoded)
-
-    
   }
 
   finish = () => {
@@ -230,15 +221,14 @@ class Exam extends Component {
       QuizScore: this.state.score1,
       CompScore: this.state.score2,
       TotalScore: this.state.score1 + this.state.score2,
-      SID:this.state.studentID
+      SID: this.state.studentID,
     };
-    axios.post("http://localhost:4000/app/results", finalScore);
-    // axios.post("http://localhost:4000/app/display", finalScore);
-    window.location = "/thanks"
+    axios.post("http://18.119.16.231:4000/app/results", finalScore);
+
+    window.location = "/thanks";
   };
 
   render() {
-    
     return (
       <div className={this.props.classes.root}>
         <CssBaseline />
@@ -250,19 +240,20 @@ class Exam extends Component {
             {/* Quiz */}
             <Grid item xs={12}>
               {/* <Quiz /> */}
-              {this.state.quizindex === questions.quiz.length || this.state.timeup ? (
+              {this.state.quizindex === questions.quiz.length ||
+              this.state.timeup ? (
                 <Comprehensive change2={this.compScore.bind(this)} />
               ) : (
                 <Quiz change1={this.quizScore.bind(this)} />
               )}
             </Grid>
-        <Box
-          m={2}
-          p={2}
-          fontSize={15}
-          bgcolor="background.paper"
-          className={this.props.classes.cardStyle}>
-              
+            <Box
+              m={2}
+              p={2}
+              fontSize={15}
+              bgcolor="background.paper"
+              className={this.props.classes.cardStyle}
+            >
               <h3>Student ID:{this.state.studentID}</h3>
               <h3>Score of quiz:{this.state.score1}</h3>
               <h3>index of quiz: {this.state.quizindex}</h3>
@@ -280,7 +271,11 @@ class Exam extends Component {
                     onClick={this.finish}
                     
                   >
-                    <Typography variant="h6" align="center" style={{ color: "#7e57c2" }}>
+                    <Typography
+                      variant="h6"
+                      align="center"
+                      style={{ color: "#7e57c2" }}
+                    >
                       Finish
                     </Typography>
                   </Button>
