@@ -136,7 +136,8 @@ class Exam extends Component {
       compindex: 0,
       studentID:"",
       timeup:false,
-      CompDone:false
+      CompDone:false,
+      CompTimeup:false
     };
   }
 
@@ -187,11 +188,12 @@ class Exam extends Component {
     });
   };
 
-  compScore = (data2, index2,CD) => {
+  compScore = (data2, index2,CD,tp) => {
     this.setState({
       score2: data2,
       compindex: index2,
-      CompDone:CD
+      CompDone:CD,
+      CompTimeup:tp
     });
   };
 
@@ -270,27 +272,19 @@ class Exam extends Component {
 
               <h3>Total Score: {this.state.score1 + this.state.score2}</h3>
               <Grid container justify="flex-end">
-                {questions.comprehensive.length === this.state.compindex || this.state.CompDone ? (
+                {questions.comprehensive.length === this.state.compindex || this.state.CompDone || this.state.CompTimeup ? (
                   <Button
                     styles={{ marginLeft: 50 }}
                     variant="outlined"
                     className={this.props.classes.finish}
                     onClick={this.finish}
+                    
                   >
                     <Typography variant="h6" align="center" style={{ color: "#7e57c2" }}>
                       Finish
                     </Typography>
                   </Button>
-                ):(<Button
-                  styles={{ marginLeft: 50 }}
-                  variant="outlined"
-                  className={this.props.classes.finish}
-                  onClick={this.finish}
-                >
-                  <Typography variant="h6" align="center" style={{ color: "#7e57c2" }}>
-                    Finish
-                  </Typography>
-                </Button>)}
+                ):(<></>)}
               </Grid>
             </Box>
             <Box pt={4}>

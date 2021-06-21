@@ -2,18 +2,20 @@ const express = require("express");
 const router = express.Router();
 const results = require("../models/result");
 
-router.post("/results", (request, response) => {
+router.post("/results", async (request, response) => {
   let { QuizScore, CompScore, TotalScore, SID } = request.body;
-  console.log(QuizScore, CompScore, TotalScore, SID);
 
-  const finalScore = new results({
-    QuizScore,
-    CompScore,
-    TotalScore,
-    SID,
-  });
-  finalScore
-    .save()
+  await results
+    .findOneAndUpdate(
+      { SID: SID },
+      {
+        QuizScore: QuizScore,
+        CompScore: CompScore,
+        TotalScore: TotalScore,
+        SID: SID,
+      },
+      { upsert: true }
+    )
     .then((result) => {
       response.json({
         status: "SUCCESS",
@@ -37,6 +39,13 @@ router.get("/leaderboard", (_request, response) => {
     }
     response.json(result);
   });
+});
+
+router.delete("/deleteSID/:SID", async (request, response) => {
+  const SID = request.params.SID;
+  console.log(SID);
+  await results.findOneAndRemove({ SID: SID }).exec();
+  response.send("deleted");
 });
 
 module.exports = router;

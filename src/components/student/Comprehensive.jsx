@@ -97,7 +97,7 @@ class Comprehensive extends Component {
     this.setState({
       compDone:true
     })
-    this.props.change2(this.state.score, this.state.index,this.state.compDone);
+    this.props.change2(this.state.score, this.state.index,this.state.compDone,this.state.timeUp);
     
     // console.log(this.state.score)
     // console.log("Result submitted successfully");
