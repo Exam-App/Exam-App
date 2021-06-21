@@ -69,7 +69,7 @@ class BasicTable extends Component {
                 <TableCell align="right">{row[3]}</TableCell>
                 <TableCell align="right">
                   <Button
-                  variant="contained"
+                  variant="outlined"
                   color="secondary"
                   className={this.props.classes.button}
                   startIcon={<DeleteIcon />}
