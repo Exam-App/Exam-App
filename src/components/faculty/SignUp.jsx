@@ -59,7 +59,7 @@ function SignUpTab() {
     };
 
     axios
-      .post("http://localhost:4000/app/signup", signUp)
+      .post("http://18.119.16.231:4000/app/signup", signUp)
       .then((response) => {
         if (response.data.status === "SUCCESS") {
           // window.location = "/faculty";

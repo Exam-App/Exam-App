@@ -28,7 +28,7 @@ class BasicTable extends Component {
   // rows1=[]
   componentDidMount() {
     // const rows1=[]
-    axios.get("http://localhost:4000/app/leaderboard").then((response) => {
+    axios.get("http://18.119.16.231:4000/app/leaderboard").then((response) => {
       console.log(response.data);
 
       for (var i = 0; i < response.data.length; i++) {
@@ -78,7 +78,7 @@ class BasicTable extends Component {
                         rows,
                       });
                       axios.delete(
-                        `http://localhost:4000/app/deleteSID/${row[0]}`
+                        `http://18.119.16.231:4000/app/deleteSID/${row[0]}`
                       );
                     }}
                   >
