@@ -6,6 +6,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 import { Component } from "react";
@@ -68,6 +69,10 @@ class BasicTable extends Component {
                 <TableCell align="right">{row[3]}</TableCell>
                 <TableCell align="right">
                   <Button
+                  variant="contained"
+                  color="secondary"
+                  className={this.props.classes.button}
+                  startIcon={<DeleteIcon />}
                     onClick={() => {
                       console.log(row[0]);
                       var t = row[0];
