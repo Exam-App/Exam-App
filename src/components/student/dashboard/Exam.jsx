@@ -117,12 +117,6 @@ const styles = (theme) => ({
   fixedHeight: {
     height: 240,
   },
-  buttonSuccess: {
-    backgroundColor: green[500],
-    '&:hover': {
-      backgroundColor: green[700],
-    },
-  },
   buttonProgress: {
     color: green[500],
     position: 'absolute',
@@ -147,9 +141,9 @@ class Exam extends Component {
       totalScore: 0,
       quizindex: 0,
       compindex: 0,
-      studentID:"",
-      timeup:false,
-      CompDone:false,
+      studentID: "",
+      timeup: false,
+      CompDone: false,
       CompTimeup: false,
       loading: false,
       success: false,
@@ -157,9 +151,7 @@ class Exam extends Component {
     };
   }
 
-  buttonClassname = clsx({
-    [this.props.classes.buttonSuccess]: this.state.success,
-  });
+
 
   componentDidUpdate() {
     clearTimeout(this.state.timer);
@@ -212,12 +204,12 @@ class Exam extends Component {
     });
   };
 
-  compScore = (data2, index2,CD,tp) => {
+  compScore = (data2, index2, CD, tp) => {
     this.setState({
       score2: data2,
       compindex: index2,
-      CompDone:CD,
-      CompTimeup:tp
+      CompDone: CD,
+      CompTimeup: tp
     });
   };
 
@@ -269,7 +261,7 @@ class Exam extends Component {
       window.location = "/thanks";
     }
 
-   // window.location = "/thanks";
+    // window.location = "/thanks";
   };
 
   render() {
@@ -285,7 +277,7 @@ class Exam extends Component {
             <Grid item xs={12}>
               {/* <Quiz /> */}
               {this.state.quizindex === questions.quiz.length ||
-              this.state.timeup ? (
+                this.state.timeup ? (
                 <Comprehensive change2={this.compScore.bind(this)} />
               ) : (
                 <Quiz change1={this.quizScore.bind(this)} />
@@ -307,26 +299,26 @@ class Exam extends Component {
 
               <h3>Total Score: {this.state.score1 + this.state.score2}</h3>
               <Grid container justify="flex-end">
-                
+
                 {questions.comprehensive.length === this.state.compindex || this.state.CompDone || this.state.CompTimeup ? (
                   <div>
-                  <Button
-                    styles={{ marginLeft: 50 }}
-                    variant="outlined"
-                    className={this.props.classes.finish}
-                    onClick={this.finish}
-                  >
-                    <Typography
-                      variant="h6"
-                      align="center"
-                      style={{ color: "#7e57c2" }}
+                    <Button
+                      styles={{ marginLeft: 50 }}
+                      variant="outlined"
+                      className={this.props.classes.finish}
+                      onClick={this.finish}
                     >
-                      Finish
-                    </Typography>
-                  </Button>
+                      <Typography
+                        variant="h6"
+                        align="center"
+                        style={{ color: "#7e57c2" }}
+                      >
+                        Finish
+                      </Typography>
+                    </Button>
                     {this.state.loading && <CircularProgress size={24} className={this.props.classes.buttonProgress} />}
                   </div>
-                ):(<></>)}
+                ) : (<></>)}
               </Grid>
             </Box>
             <Box pt={4}>
