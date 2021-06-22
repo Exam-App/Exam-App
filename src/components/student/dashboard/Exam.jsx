@@ -266,6 +266,7 @@ class Exam extends Component {
           loading: false
         })
       }, 5000);
+      window.location = "/thanks";
     }
 
    // window.location = "/thanks";
