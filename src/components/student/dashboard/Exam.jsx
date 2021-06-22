@@ -6,6 +6,10 @@ import Container from "@material-ui/core/Container";
 import { Button, Grid, withStyles } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import Link from "@material-ui/core/Link";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { green } from '@material-ui/core/colors';
+import clsx from 'clsx';
+
 import Quiz from "../Quiz";
 
 import Comprehensive from "../Comprehensive";
@@ -113,6 +117,20 @@ const styles = (theme) => ({
   fixedHeight: {
     height: 240,
   },
+  buttonSuccess: {
+    backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[700],
+    },
+  },
+  buttonProgress: {
+    color: green[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
 });
 
 class Exam extends Component {
@@ -132,9 +150,21 @@ class Exam extends Component {
       studentID:"",
       timeup:false,
       CompDone:false,
-      CompTimeup:false
+      CompTimeup: false,
+      loading: false,
+      success: false,
+      timer: null
     };
   }
+
+  buttonClassname = clsx({
+    [this.props.classes.buttonSuccess]: this.state.success,
+  });
+
+  componentDidUpdate() {
+    clearTimeout(this.state.timer);
+  }
+
 
   handleQuiz = (e) => {
     e.preventDefault();
@@ -224,7 +254,20 @@ class Exam extends Component {
       SID: this.state.studentID,
     };
     axios.post("http://18.119.16.231:4000/app/results", finalScore);
-    console.log(finalScore);
+
+    if (!this.state.loading) {
+      this.setState({
+        success: false,
+        loading: true
+      })
+      this.timer = window.setTimeout(() => {
+        this.setState({
+          success: true,
+          loading: false
+        })
+      }, 5000);
+    }
+
    // window.location = "/thanks";
   };
 
@@ -263,7 +306,9 @@ class Exam extends Component {
 
               <h3>Total Score: {this.state.score1 + this.state.score2}</h3>
               <Grid container justify="flex-end">
+                
                 {questions.comprehensive.length === this.state.compindex || this.state.CompDone || this.state.CompTimeup ? (
+                  <div>
                   <Button
                     styles={{ marginLeft: 50 }}
                     variant="outlined"
@@ -278,6 +323,8 @@ class Exam extends Component {
                       Finish
                     </Typography>
                   </Button>
+                    {this.state.loading && <CircularProgress size={24} className={this.props.classes.buttonProgress} />}
+                  </div>
                 ):(<></>)}
               </Grid>
             </Box>
