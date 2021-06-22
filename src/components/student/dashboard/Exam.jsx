@@ -8,7 +8,6 @@ import Card from "@material-ui/core/Card";
 import Link from "@material-ui/core/Link";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { green } from '@material-ui/core/colors';
-import { Redirect } from 'react-router-dom'
 
 import Quiz from "../Quiz";
 
@@ -151,8 +150,6 @@ class Exam extends Component {
     };
   }
 
-
-
   componentDidUpdate() {
     clearTimeout(this.state.timer);
   }
@@ -257,10 +254,8 @@ class Exam extends Component {
           success: true,
           loading: false
         })
+        window.location="/thanks"
       }, 5000);
-      
-    } else {
-      return <Redirect to='/thanks' />
     }
   };
 
