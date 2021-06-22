@@ -258,10 +258,8 @@ class Exam extends Component {
           loading: false
         })
       }, 5000);
-      window.location = "/thanks";
     }
-
-    // window.location = "/thanks";
+    window.location = "/thanks";
   };
 
   render() {
@@ -315,8 +313,8 @@ class Exam extends Component {
                       >
                         Finish
                       </Typography>
+                      {this.state.loading && <CircularProgress size={24} className={this.props.classes.buttonProgress} />}
                     </Button>
-                    {this.state.loading && <CircularProgress size={24} className={this.props.classes.buttonProgress} />}
                   </div>
                 ) : (<></>)}
               </Grid>
