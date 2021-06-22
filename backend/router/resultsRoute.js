@@ -4,9 +4,7 @@ const results = require("../models/result");
 
 router.post("/results", async (request, response) => {
   let { QuizScore, CompScore, TotalScore, SID } = request.body;
-
-  await results
-    .findOneAndUpdate(
+  await results.findOneAndUpdate(
       { SID: SID },
       {
         QuizScore: QuizScore,
@@ -14,9 +12,8 @@ router.post("/results", async (request, response) => {
         TotalScore: TotalScore,
         SID: SID,
       },
-      { upsert: true }
-    )
-    .then((result) => {
+      {new: true, upsert: true }
+    ).then((result) => {
       response.json({
         status: "SUCCESS",
         message: "data sent to database",
@@ -31,7 +28,7 @@ router.post("/results", async (request, response) => {
       });
     });
 });
-
+console.log("result")
 router.get("/leaderboard", (_request, response) => {
   results.find({}, function (err, result) {
     if (err) {

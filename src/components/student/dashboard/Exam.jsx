@@ -224,8 +224,8 @@ class Exam extends Component {
       SID: this.state.studentID,
     };
     axios.post("http://18.119.16.231:4000/app/results", finalScore);
-
-    window.location = "/thanks";
+    console.log(finalScore);
+   // window.location = "/thanks";
   };
 
   render() {
@@ -269,7 +269,6 @@ class Exam extends Component {
                     variant="outlined"
                     className={this.props.classes.finish}
                     onClick={this.finish}
-                    
                   >
                     <Typography
                       variant="h6"
