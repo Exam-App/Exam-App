@@ -28,7 +28,6 @@ class StudentTable extends Component {
 
     
     componentDidMount() {
-        // const rows1=[]
         axios.get("http://18.119.16.231:4000/app/studentDetails").then((response) => {
             for (var i = 0; i < response.data.length; i++) {
                 var StudentID = response.data[i]["StudentID"];
