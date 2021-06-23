@@ -10,7 +10,6 @@ function LogOutBtn() {
   const history = useHistory();
 
   async function logOut() {
-      console.log("clicked")
     await axios.get("http://18.119.16.231:4000/app/logout");
     await getLoggedIn();
     history.push("/");

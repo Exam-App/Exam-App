@@ -12,12 +12,10 @@ import { Typography } from "@material-ui/core";
 function FacultyHome() {
 
   const readExcel = (file) => {
-    console.log("excel");
     var f = file;
 
     xlsxParser.onFileSelection(f).then(function (data) {
       const items = data;
-      console.log(JSON.stringify(items));
       axios.post("http://18.119.16.231:4000/app/sendFile", items);
     });
   };

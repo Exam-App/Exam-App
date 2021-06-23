@@ -59,7 +59,6 @@ class Comprehensive extends Component {
       index: this.state.index + 1,
     });
     event.preventDefault();
-    // console.log(this.state.selectedOption);
     if (this.state.selectedOption === questions.comprehensive[this.state.index].Answer) {
       this.setState({
         // index: this.state.index + 1,

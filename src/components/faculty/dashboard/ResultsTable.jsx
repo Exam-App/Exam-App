@@ -30,7 +30,6 @@ class BasicTable extends Component {
   componentDidMount() {
     // const rows1=[]
     axios.get("http://18.119.16.231:4000/app/leaderboard").then((response) => {
-      console.log(response.data);
 
       for (var i = 0; i < response.data.length; i++) {
         var SID = response.data[i]["SID"];
@@ -69,12 +68,11 @@ class BasicTable extends Component {
                 <TableCell align="right">{row[3]}</TableCell>
                 <TableCell align="right">
                   <Button
-                  variant="outlined"
-                  color="secondary"
-                  className={this.props.classes.button}
-                  startIcon={<DeleteIcon />}
+                    variant="outlined"
+                    color="secondary"
+                    className={this.props.classes.button}
+                    startIcon={<DeleteIcon />}
                     onClick={() => {
-                      console.log(row[0]);
                       var t = row[0];
                       const rows = this.state.rows.filter(
                         (row) => row[0] !== t

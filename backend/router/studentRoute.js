@@ -58,7 +58,7 @@ router.post("/register", (request, response) => {
               newStudentID
                 .save()
                 .then((result) => {
-                  
+
                   response.json({
                     status: "SUCCESS",
                     message: "Signup successful",
@@ -103,7 +103,7 @@ router.post("/login", (request, response) => {
     });
   } else {
     // Check if StudentID exist
-     newStudent.find({ StudentID })
+    newStudent.find({ StudentID })
       .then((data) => {
         if (data.length) {
           // StudentID exists
@@ -128,17 +128,16 @@ router.post("/login", (request, response) => {
                 response.cookie("token", token, {
                   httpOnly: true,
                 });
-                
+
                 // Password match
                 response.json({
                   status: "SUCCESS",
                   message: "login successful",
                   data: data,
                 });
-              
-                console.log(data[0]["FullName"]);
 
-               
+
+
               } else {
                 response.json({
                   status: "FAILED",

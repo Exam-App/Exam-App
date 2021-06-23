@@ -28,7 +28,6 @@ router.post("/results", async (request, response) => {
       });
     });
 });
-console.log("result")
 router.get("/leaderboard", (_request, response) => {
   results.find({}, function (err, result) {
     if (err) {
@@ -40,7 +39,6 @@ router.get("/leaderboard", (_request, response) => {
 
 router.delete("/deleteSID/:SID", async (request, response) => {
   const SID = request.params.SID;
-  console.log(SID);
   await results.findOneAndRemove({ SID: SID }).exec();
   response.send("deleted");
 });

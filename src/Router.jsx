@@ -26,11 +26,9 @@ function Routes() {
 
   return (
     <BrowserRouter>
-      <Nav/>
+      <Nav />
       <Switch>
-        
         <Route exact path="/" component={Instructions} />
-
         {(() => {
           if (loggedIn === false) {
             return (
@@ -47,11 +45,11 @@ function Routes() {
             return (
               <>
                 <Switch>
-                  <Route path="/Start" component={Start}/>
+                  <Route path="/Start" component={Start} />
                   <Route path="/dashboard" component={FacultyTab} />
                   <Route path="/welcome" component={FacultyHome} />
                   <Route path="/exam" component={Exam} />
-                  <Route path="/thanks" component={Thanks}/>
+                  <Route path="/thanks" component={Thanks} />
                   <Route exact path="*" component={error404} />
                 </Switch>
               </>
