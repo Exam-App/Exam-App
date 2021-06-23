@@ -50,6 +50,7 @@ class StudentTable extends Component {
                         <TableRow>
                             <TableCell>Student ID</TableCell>
                             <TableCell align="right">Student Name</TableCell>
+                            <TableCell align="right">Delete</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
