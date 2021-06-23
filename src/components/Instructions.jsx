@@ -68,42 +68,26 @@ export default function Instructions() {
                 </li>
                 <ul>
                   <li>Computer-Pentium IV/Dual core,1GB RAM or higher,</li>
-                  <li>80GB HDD or higher</li>
-                  <li>15' colour Monitor,keyboard and mouse</li>
-                  <li>Microsoft Windows 10 and Antivirus</li>
-                  <li>Webcam and microphone</li>
+                  <li>make sure using latest web browser</li>
+                  <li>Colour Monitor,keyboard and mouse</li>
                   <li>Internet connection of at least 1MBPS</li>
                 </ul>
-                <li>
-                  Place the computer so that your back is facing the wall and
-                  there are no devices placed in the background
-                </li>
                 <li>
                   The room where you sit should be isolated and only you need to
                   be present for complete exam duration
                 </li>
                 <li>
-                  Sit at table with computer.Keep the desk clear of
+                  Keep the desk clear of
                   objects,papers books and any other electronic material like
                   mobiles
                 </li>
-                <li>
-                  Ensure proper lighting so that your face is clearly visible to
-                  the camera
-                </li>
-                <li>Ensure your dressed formally</li>
               </ol>
 
               <b>Don'ts:</b>
 
               <ol>
                 <li>Do not take help from others</li>
-                <li>Do not wear any bluetooth devices</li>
-                <li>Do not read out anything loudly</li>
                 <li>Do not leave the work station while taking the test</li>
-                <li>
-                  Do not let anyone in the room and avoid background noise
-                </li>
               </ol>
               <CardContent className={classes.pos}>
                 <Button variant="outlined" onClick={routeChange}>
