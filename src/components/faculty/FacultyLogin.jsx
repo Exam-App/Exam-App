@@ -60,8 +60,8 @@ function LoginTab() {
       .post("http://18.119.16.231:4000/app/faculty", login)
       .then((response) => {
         if (response.data.status === "SUCCESS") {
+          localStorage.setItem("ID", JSON.stringify(state.FacultyID));
           window.location = "/dashboard";
-
           setState({ Success: response.data.message });
         } else if (response.data.status === "WARNING") {
           setState({ Warn: response.data.message });

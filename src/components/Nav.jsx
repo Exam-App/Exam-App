@@ -29,7 +29,7 @@ export default function Nav() {
   };
 
   const { loggedIn } = useContext(AuthContext);
-  let name = localStorage.getItem("StudentID").replace(/"/g, "");
+  let name = localStorage.getItem("ID").replace(/"/g, "");
 
   return (
     <div className={classes.root}>
