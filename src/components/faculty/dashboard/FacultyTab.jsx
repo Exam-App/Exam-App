@@ -11,6 +11,7 @@ import Link from "@material-ui/core/Link";
 import FacultyHome from "./FacultyHome";
 import Registration from "../../student/Registration";
 import ResultsTable from "./ResultsTable"
+import StudentTable from "./StudentDetails"
 
 function Copyright() {
   return (
@@ -139,6 +140,12 @@ export default function Dashboard() {
                 Students marks list
               </Typography>
               <Paper className={classes.paper}>{ <ResultsTable /> }</Paper>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography align="center" style={{ color: "#7e57c2" }} variant="h4">
+                Students details
+              </Typography>
+              <Paper className={classes.paper}>{<StudentTable />}</Paper>
             </Grid>
           </Grid>
           <Box pt={4}>

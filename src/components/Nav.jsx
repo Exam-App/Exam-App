@@ -48,7 +48,7 @@ export default function Nav() {
               return (
                 <>
                 <Typography style={{marginRight: 15}}>
-                Welcome {name}
+                Welcome!, {name}
                 </Typography>
                 <Button color="inherit">
                   <LogOutBtn />

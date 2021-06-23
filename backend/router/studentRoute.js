@@ -145,7 +145,7 @@ router.post("/login", (request, response) => {
                 });
               }
             })
-            .catch((err) => {
+            .catch((_err) => {
               response.json({
                 status: "FAILED",
                 message: "An error occurred while comparing passwords",
@@ -158,7 +158,7 @@ router.post("/login", (request, response) => {
           });
         }
       })
-      .catch((err) => {
+      .catch((_err) => {
         response.json({
           status: "FAILED",
           message: "An error occurred while checking for existing StudentID",
@@ -169,7 +169,7 @@ router.post("/login", (request, response) => {
 
 // delete cookie on logout
 
-router.get("/logout", (request, response) => {
+router.get("/logout", (_request, response) => {
   response
     .cookie("token", "", {
       httpOnly: true,
@@ -190,5 +190,21 @@ router.get("/loggedIn", (request, response) => {
     response.json(false);
   }
 });
+
+router.get("/studentDetails", (_request, response) => {
+  newStudent.find({}, function (err, result) {
+    if (err) {
+      console.warn(err)
+    }
+    response.json(result);
+  })
+})
+
+router.delete("/deleteStudent/:StudentID", async (request, response) => {
+  const StudentID = request.params.StudentID;
+  await newStudent.findOneAndRemove({ StudentID: StudentID }).exec()
+  response.send('delete')
+})
+
 
 module.exports = router;
