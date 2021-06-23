@@ -29,6 +29,7 @@ export default function Nav() {
   };
 
   const { loggedIn } = useContext(AuthContext);
+  let name = localStorage.getItem("StudentID").replace(/"/g, "");
 
   return (
     <div className={classes.root}>
@@ -45,9 +46,14 @@ export default function Nav() {
               return <></>;
             } else if (loggedIn === true) {
               return (
+                <>
+                <Typography style={{marginRight: 15}}>
+                Welcome {name}
+                </Typography>
                 <Button color="inherit">
                   <LogOutBtn />
-                </Button>
+                  </Button>
+                  </>
               );
             }
           })()}
