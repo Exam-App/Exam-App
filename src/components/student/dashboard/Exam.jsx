@@ -277,36 +277,27 @@ class Exam extends Component {
                 <Quiz change1={this.quizScore.bind(this)} />
               )}
             </Grid>
-            <Box
-              m={2}
-              p={2}
-              fontSize={15}
-              bgcolor="background.paper"
-              className={this.props.classes.cardStyle}
-            >
-              <Grid container justify="flex-end">
-
-                {questions.comprehensive.length === this.state.compindex || this.state.CompDone || this.state.CompTimeup ? (
-                  <div>
-                    <Button
-                      styles={{ marginLeft: 50 }}
-                      variant="outlined"
-                      className={this.props.classes.finish}
-                      onClick={this.finish}
+            <Grid container justify="flex-end">
+              {questions.comprehensive.length === this.state.compindex || this.state.CompDone || this.state.CompTimeup ? (
+                <div>
+                  <Button
+                    styles={{ marginLeft: 50 }}
+                    variant="outlined"
+                    className={this.props.classes.finish}
+                    onClick={this.finish}
+                  >
+                    <Typography
+                      variant="h6"
+                      align="center"
+                      style={{ color: "#7e57c2" }}
                     >
-                      <Typography
-                        variant="h6"
-                        align="center"
-                        style={{ color: "#7e57c2" }}
-                      >
-                        Finish
-                      </Typography>
-                      {this.state.loading && <CircularProgress size={24} className={this.props.classes.buttonProgress} />}
-                    </Button>
-                  </div>
-                ) : (<></>)}
-              </Grid>
-            </Box>
+                      Finish
+                    </Typography>
+                    {this.state.loading && <CircularProgress size={24} className={this.props.classes.buttonProgress} />}
+                  </Button>
+                </div>
+              ) : (<></>)}
+            </Grid>
             <Box pt={4}>
               <Copyright />
             </Box>
