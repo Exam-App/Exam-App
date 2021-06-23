@@ -139,15 +139,7 @@ class Comprehensive extends Component {
           )}
         </Card>
 
-        <Box
-          m={2}
-          p={2}
-          fontSize={20}
-          bgcolor="background.paper"
-          className={this.props.classes.cardStyle}
-        >
-          {questions["comprehensive"][0]["Passage"]}
-        </Box>
+       
 
         <Card variant="outlined" className={this.props.classes.cardStyle}>
           <CardContent style={{ marginLeft: 30 }}>
@@ -195,7 +187,16 @@ class Comprehensive extends Component {
                 </>
               ) : (
                 <form>
-                  <div>
+                    <div>
+                      <Box
+                        m={2}
+                        p={2}
+                        fontSize={20}
+                        bgcolor="background.paper"
+                        className={this.props.classes.cardStyle}
+                      >
+                        {questions["comprehensive"][0]["Passage"]}
+                      </Box>
                     <Typography
                       variant="h5"
                       component="p"

@@ -54,7 +54,6 @@ function Registration() {
       .post("http://18.119.16.231:4000/app/register", signUp)
       .then((response) => {
         if (response.data.status === "SUCCESS") {
-          // window.location = "/login";
           setState({ Success: response.data.message });
         } else if (response.data.status === "WARNING") {
           setState({ Warn: response.data.message });
