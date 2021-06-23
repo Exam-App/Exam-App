@@ -197,9 +197,6 @@ function Registration() {
       </div>
 
       <br />
-      {/* <Typography className={classes.pos}>
-          Already Registered ? <a href="/faculty">login</a>
-        </Typography> */}
       <br />
     </Grid>
   );

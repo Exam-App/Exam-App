@@ -135,6 +135,9 @@ export default function Dashboard() {
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
+              <Typography align="center" style={{ color: "#7e57c2" }} variant="h4">
+                Students marks list
+              </Typography>
               <Paper className={classes.paper}>{ <ResultsTable /> }</Paper>
             </Grid>
           </Grid>

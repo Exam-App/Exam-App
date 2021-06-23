@@ -254,7 +254,7 @@ class Exam extends Component {
           success: true,
           loading: false
         })
-        window.location="/thanks"
+        window.location = "/thanks"
       }, 5000);
     }
   };
@@ -285,14 +285,6 @@ class Exam extends Component {
               bgcolor="background.paper"
               className={this.props.classes.cardStyle}
             >
-              <h3>Student ID:{this.state.studentID}</h3>
-              <h3>Score of quiz:{this.state.score1}</h3>
-              <h3>index of quiz: {this.state.quizindex}</h3>
-
-              <h3>Score of comprehensive:{this.state.score2}</h3>
-              <h3>index of comprehensive: {this.state.compindex}</h3>
-
-              <h3>Total Score: {this.state.score1 + this.state.score2}</h3>
               <Grid container justify="flex-end">
 
                 {questions.comprehensive.length === this.state.compindex || this.state.CompDone || this.state.CompTimeup ? (
