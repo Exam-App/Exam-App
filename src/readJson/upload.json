@@ -1,49 +1,54 @@
 {
   "quiz": [
     {
-      "Question": "what are the basic datatypes",
-      "A": "int",
-      "B": "float",
-      "C": "char",
-      "D": "string",
-      "E": "All of the above",
-      "Answer": "All of the above"
+      "Question": "Who developed the Python language?",
+      "A": "Zim Den",
+      "B": "Guido van Rossum",
+      "C": "Niene Stom",
+      "D": "Wick van Rossum",
+      "E": "None of the above",
+      "Answer": "Guido van Rossum"
     },
     {
-      "Question": "syntax to add two numbers",
-      "A": "A-B",
-      "B": "A*B",
-      "C": "A+B",
-      "Answer": "A+B"
+      "Question": "In which year was the Python language developed?",
+      "A": "1995",
+      "B": "1972",
+      "C": "1981",
+      "D": "1989",
+      "E": "1990",
+      "Answer": "1989"
     },
     {
-      "Question": "syntax to sub two numbers",
-      "A": "A-B",
-      "B": "A*B",
-      "C": "A+B",
-      "Answer": "A-B"
+      "Question": "Which one of the following is the correct extension of the Python file?",
+      "A": ".py",
+      "B": ".python",
+      "C": ".p",
+      "D": ".pyc",
+      "Answer": ".py"
     },
     {
-      "Question": "syntax to mul two numbers",
-      "A": "A-B",
-      "B": "A*B",
-      "C": "A+B",
-      "Answer": "A*B"
+      "Question": "Which character is used in Python to make a single line comment?",
+      "A": "/",
+      "B": "//",
+      "C": "#",
+      "D": "!",
+      "Answer": "#"
     },
     {
-      "Question": "syntax to divide two numbers",
-      "A": "A-B",
-      "B": "A*B",
-      "C": "A+B",
-      "E": "A/B",
-      "Answer": "A/B"
+      "Question": "What do we use to define a block of code in Python language?",
+      "A": "Key",
+      "B": "Brackets",
+      "C": "Indentation",
+      "D": "All the above",
+      "Answer": "Indentation"
     },
     {
-      "Question": "syntax to and  in React js",
-      "A": "||",
-      "B": "&&",
-      "C": "&",
-      "Answer": "&&"
+      "Question": "Which of the following statements is correct regarding the object-oriented programming concept in Python?",
+      "A": "Classes are real-world entities while objects are not real",
+      "B": "Objects are real-world entities while classes are not real",
+      "C": "Both objects and classes are real-world entities",
+      "D": "All of the above",
+      "Answer": "Objects are real-world entities while classes are not real"
     }
   ],
   "comprehensive": [
