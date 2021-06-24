@@ -210,7 +210,7 @@ class Exam extends Component {
   };
 
   componentDidMount() {
-    let name = localStorage.getItem("StudentID").replace(/"/g, "");
+    let name = localStorage.getItem("StudentID");
     this.setState({
       studentID: name,
     });
