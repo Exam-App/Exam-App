@@ -69,7 +69,7 @@ function StudentLogin() {
         if (response.data.status === "SUCCESS") {
           window.location = "/Start";
           setState({ Success: response.data.message });
-          localStorage.setItem("StudentID", JSON.stringify(state.StudentID));
+          localStorage.setItem("ID", JSON.stringify(state.StudentID));
         } else if (response.data.status === "WARNING") {
           setState({ Warn: response.data.message });
         } else if (response.data.status === "FAILED") {

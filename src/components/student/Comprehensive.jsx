@@ -15,10 +15,8 @@ import { Grid, withStyles } from "@material-ui/core";
 
 const styles = (theme) => ({
   cardStyle: {
-    width: 1000,
     marginTop: 15,
     marginBottom: 15,
-    marginLeft: 50,
   },
   timeStyle: {
     width: 300,
